@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="raky.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="News" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="NEWS_TYPE" property="newsType" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="IMAGE_PATH" property="imagePath" jdbcType="VARCHAR" />
+    <result column="IMAGE_MEMO" property="imageMemo" jdbcType="VARCHAR" />
+    <result column="VIDEO_PATH" property="videoPath" jdbcType="VARCHAR" />
+    <result column="VIDEO_DESC" property="videoDesc" jdbcType="VARCHAR" />
+    <result column="SUMMARY" property="summary" jdbcType="VARCHAR" />
+    <result column="AUTHOR" property="author" jdbcType="VARCHAR" />
+    <result column="INFO_SOURCE" property="infoSource" jdbcType="VARCHAR" />
+    <result column="INVALID_DATE" property="invalidDate" jdbcType="DATE" />
+    <result column="PUBLISH_TIME" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="VIEW_COUNT" property="viewCount" jdbcType="INTEGER" />
+    <result column="VIEW_DATETIME" property="viewDatetime" jdbcType="TIMESTAMP" />
+    <result column="INFO_STATE" property="infoState" jdbcType="INTEGER" />
+    <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+    <result column="DELETED" property="deleted" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="getListResultMap" type="News" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="condition" >
+    <where>
+      <if test="id != null"> and ID = #{id}</if>
+      <if test="newsType != null and newsType !=''"> and NEWS_TYPE like concat('%',#{newsType},'%')</if>
+      <if test="title != null and title !=''"> and TITLE like concat('%',#{title},'%')</if>
+      <if test="publishTime != null and publishTime !=''"> and PUBLISH_TIME like concat('%',#{publishTime},'%')</if>
+      <if test="author != null and author !=''"> and AUTHOR like concat('%',#{author},'%')</if>
+      <if test="content != null and content !=''"> and CONTENT like concat('%',#{content},'%')</if>
+    </where>
+  </sql>
+  <select id="getList" resultMap="getListResultMap" parameterType="News" >
+    select * from NEWS <include refid="condition" />
+  </select>
+  <select id="getPageList" resultMap="getListResultMap"  parameterType="News">
+    select * from NEWS <include refid="condition" />
+    limit #{offset}, #{limit}
+  </select>
+  <select id="getOne" parameterType="java.lang.Long" resultType="News">
+        select * from NEWS where ID =#{id}
+    </select>
+  <select id="getCount" parameterType="News" resultType="java.lang.Integer"  >
+    select count(ID) from NEWS <include refid="condition" />
+  </select>
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from NEWS
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="News" >
+    insert into NEWS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="newsType != null" >
+        NEWS_TYPE,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="imagePath != null" >
+        IMAGE_PATH,
+      </if>
+      <if test="imageMemo != null" >
+        IMAGE_MEMO,
+      </if>
+      <if test="videoPath != null" >
+        VIDEO_PATH,
+      </if>
+      <if test="videoDesc != null" >
+        VIDEO_DESC,
+      </if>
+      <if test="summary != null" >
+        SUMMARY,
+      </if>
+      <if test="author != null" >
+        AUTHOR,
+      </if>
+      <if test="infoSource != null" >
+        INFO_SOURCE,
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE,
+      </if>
+      <if test="publishTime != null" >
+        PUBLISH_TIME,
+      </if>
+      <if test="viewCount != null" >
+        VIEW_COUNT,
+      </if>
+      <if test="viewDatetime != null" >
+        VIEW_DATETIME,
+      </if>
+      <if test="infoState != null" >
+        INFO_STATE,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="deleted != null" >
+        DELETED,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="newsType != null" >
+        #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null" >
+        #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="imageMemo != null" >
+        #{imageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null" >
+        #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDesc != null" >
+        #{videoDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSource != null" >
+        #{infoSource,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidDate != null" >
+        #{invalidDate,jdbcType=DATE},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewCount != null" >
+        #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewDatetime != null" >
+        #{viewDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoState != null" >
+        #{infoState,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="News" >
+    update NEWS
+    <set >
+      <if test="uuid != null" >
+        UUID = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="newsType != null" >
+        NEWS_TYPE = #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imagePath != null" >
+        IMAGE_PATH = #{imagePath,jdbcType=VARCHAR},
+      </if>
+      <if test="imageMemo != null" >
+        IMAGE_MEMO = #{imageMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="videoPath != null" >
+        VIDEO_PATH = #{videoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDesc != null" >
+        VIDEO_DESC = #{videoDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        SUMMARY = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null" >
+        AUTHOR = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="infoSource != null" >
+        INFO_SOURCE = #{infoSource,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE = #{invalidDate,jdbcType=DATE},
+      </if>
+      <if test="publishTime != null" >
+        PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viewCount != null" >
+        VIEW_COUNT = #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="viewDatetime != null" >
+        VIEW_DATETIME = #{viewDatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infoState != null" >
+        INFO_STATE = #{infoState,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="deleted != null" >
+        DELETED = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

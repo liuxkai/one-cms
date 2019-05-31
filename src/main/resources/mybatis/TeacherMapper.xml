@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="raky.dao.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="Teacher" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEX" property="sex" jdbcType="INTEGER" />
+    <result column="BIRTH_DATE" property="birthDate" jdbcType="DATE" />
+    <result column="CONTACT_WAY" property="contactWay" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="ONLINE_CONTACT" property="onlineContact" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="DELETED" property="deleted" jdbcType="INTEGER" />
+    <result column="LOCKED" property="locked" jdbcType="INTEGER" />
+    <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+    <result column="POSITIONS" property="positions" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="getListResultMap" type="Teacher" extends="BaseResultMap" >
+    <result column="MEMO" property="memo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="condition" >
+    <where>
+      <if test="id != null"> and ID = #{id}</if>
+      <if test="name != null and name !=''"> and `NAME` like concat('%',#{name},'%')</if>
+      <if test="positions != null and positions !=''"> and `POSITIONS` like concat('%',#{positions},'%')</if>
+    </where>
+  </sql>
+  <select id="getList" resultMap="getListResultMap" parameterType="Teacher">
+    select * from TEACHER <include refid="condition"/>
+  </select>
+  <select id="getPageList" resultMap="getListResultMap"  parameterType="Teacher">
+    select * from TEACHER <include refid="condition" />
+    limit #{offset}, #{limit}
+  </select>
+  <select id="getOne" parameterType="java.lang.Long" resultType="Teacher">
+        select * from TEACHER where ID =#{id}
+    </select>
+  <select id="getCount" parameterType="Teacher" resultType="java.lang.Integer"  >
+    select count(ID) from TEACHER <include refid="condition" />
+  </select>
+
+
+
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from TEACHER
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <insert id="insert" parameterType="Teacher" >
+    insert into TEACHER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="birthDate != null" >
+        BIRTH_DATE,
+      </if>
+      <if test="contactWay != null" >
+        CONTACT_WAY,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="onlineContact != null" >
+        ONLINE_CONTACT,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="deleted != null" >
+        DELETED,
+      </if>
+      <if test="locked != null" >
+        LOCKED,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="positions != null" >
+        POSITIONS,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthDate != null" >
+        #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="contactWay != null" >
+        #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineContact != null" >
+        #{onlineContact,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null" >
+        #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="positions != null" >
+        #{positions,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="update" parameterType="Teacher" >
+    update TEACHER
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        SEX = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="birthDate != null" >
+        BIRTH_DATE = #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="contactWay != null" >
+        CONTACT_WAY = #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineContact != null" >
+        ONLINE_CONTACT = #{onlineContact,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        DELETED = #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null" >
+        LOCKED = #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="positions != null" >
+        POSITIONS = #{positions,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+
+</mapper>

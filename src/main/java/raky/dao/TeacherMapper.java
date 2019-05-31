@@ -1,8 +1,8 @@
 package raky.dao;
 
 import core.dao.CoreMapper;
-import raky.entity.Types;
+import raky.entity.Teacher;
 
-public interface TeacherMapper extends CoreMapper<Types> {
+public interface TeacherMapper extends CoreMapper<Teacher> {
 
 }
