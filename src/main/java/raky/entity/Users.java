@@ -1,13 +1,46 @@
 package raky.entity;
 
 import core.entity.CoreEntity;
-import lombok.*;
+import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class Users extends CoreEntity {
+    private Long id;
 
-    private Integer id;
-    private String user_name;
-    private String pass_word;
+    private String userName;
+
+    private String realName;
+
+    private Integer userType;
+
+    private String passWord;
+
+    private Integer sex;
+
+    private Integer age;
+
+    private Date birthday;
+
+    private String positions;
+
+    private String mobile;
+
+    private String email;
+
+    private Integer loginCount;
+
+    private String lastLoginIp;
+
+    private Date lastLoginTime;
+
+    private Date createTime;
+
+    private Integer locked;
+
+    private Integer deleted;
+
+    private Integer priority;
 
 }

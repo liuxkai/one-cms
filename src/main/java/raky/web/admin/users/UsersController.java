@@ -3,7 +3,12 @@ package raky.web.admin.users;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import raky.entity.Users;
 import raky.service.UsersService;
 
@@ -18,52 +23,40 @@ public class UsersController {
     @Autowired
     private UsersService usersService;
 
-    @RequestMapping(value = "/insert",method = RequestMethod.POST)
-    public String insert(@RequestParam(value = "user_name",required = true)String user_name,
-                         @RequestParam(value = "pass_word" ,required = true)String pass_word){
-        Users users = new Users();
-        users.setUser_name(user_name);
-        users.setPass_word(pass_word);
-
-        int result = usersService.insert(users);
-        if(result == 1){
-            return "success";
-        }else {
-            return "failure";
+    @RequestMapping(value = "/save",method = RequestMethod.POST)
+    public String save(Users users){
+        if(users.getId()!=null){
+            usersService.update(users);
+            return "redirect:";
         }
-    }
-
-    @RequestMapping(value = "/update/{id}",method = RequestMethod.POST) //RequestMethod.PUT
-    public String update(@PathVariable("id")int id , @RequestParam(value = "user_name",required = true)String user_name,
-                         @RequestParam(value = "pass_word" ,required = true)String pass_word){
-        Users users = new Users();
-        users.setId(id);
-        users.setUser_name(user_name);
-        users.setPass_word(pass_word);
-
-        int result = usersService.update(users);
-        if(result == 1){
-            return "success";
-        }else {
-            return "failure";
-        }
+        usersService.insert(users);
+        return "redirect:";
 
     }
 
     @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-    public int delete(@PathVariable("id") int id){
-        return usersService.delete(id);
+    public String delete(@PathVariable("id") Long id){
+        usersService.delete(id);
+        return "redirect:";
     }
 
-    @RequestMapping(value = "/edit/{id}",method = RequestMethod.GET)
-    public Users getOne(@PathVariable("id") int id){
-        return usersService.getOne(id);
+    @RequestMapping(value = "/input",method = RequestMethod.GET)
+    public ModelAndView getOne(Long id, ModelMap model){
+        model.put("user",usersService.getOne(id));
+        return new ModelAndView("",model);
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String getList(){
+    public ModelAndView getList(ModelMap model){
         List<Users> usersList = usersService.getList(new Users());
-        logger.info("list ====> {}",usersList.size());
-        return "success";
+        return new ModelAndView("",model);
     }
+
+
+//    @RequestMapping(value = "/update/{id}",method = RequestMethod.POST) //RequestMethod.PUT
+//    public String update(@PathVariable("id")Long id , @RequestParam(value = "user_name",required = true)String user_name,
+//                         @RequestParam(value = "pass_word" ,required = true)String pass_word){
+//
+//        return null;
+//    }
 }
