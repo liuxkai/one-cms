@@ -8,9 +8,9 @@ public interface CoreService<T> {
 
 	int update(T t);
 
-	int delete(int id);
+	int delete(Long id);
 
-	T getOne(int id);
+	T getOne(Long id);
 
 	int getCount(T t);
 

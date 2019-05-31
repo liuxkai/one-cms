@@ -28,12 +28,12 @@ public class CoreServiceImpl<T> implements CoreService<T> {
 
 	@Override
     @Transactional
-	public int delete(int id) {
+	public int delete(Long id) {
 		return coreMapper.delete(id);
 	}
 
 	@Override
-	public T getOne(int id) {
+	public T getOne(Long id) {
 		return coreMapper.getOne(id);
 	}
 
