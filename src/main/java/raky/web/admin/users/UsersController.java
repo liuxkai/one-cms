@@ -40,21 +40,21 @@ public class UsersController extends CoreController {
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
     public String delete(Long id){
         usersService.delete(id);
-        return "redirect:/list";
+        return "redirect:/users/list";
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model){
         logger.info("xxx");
         model.addAttribute("user",usersService.getOne(id));
-        return "/users/edit";
+        return "/admin/users/edit";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String getList(ModelMap model){
         List<Users> usersList = usersService.getList(new Users());
         model.addAttribute("usersList",usersList);
-        return "/users/list";
+        return "/site/index";
     }
     @RequestMapping(value = "/pageList",method = RequestMethod.GET)
     public String getPageList(ModelMap model,Users users,Integer requestPage){
