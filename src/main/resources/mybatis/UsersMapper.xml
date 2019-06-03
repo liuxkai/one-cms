@@ -27,16 +27,22 @@
             <if test="id != null"> and ID = #{id}</if>
             <if test="userName != null and userName !=''"> and `USER_NAME` like concat('%',#{userName},'%')</if>
             <if test="age != null and age !=''"> and AGE like concat('%',#{age},'%')</if>
+            <if test="lastLoginTime != null and lastLoginTime !=''"> and LAST_LOGIN_TIME like concat('%',#{lastLoginTime},'%')</if>
         </where>
     </sql>
     <select id="getList" resultMap="getListResultMap" parameterType="Users">
         select * from USERS <include refid="condition"/>
     </select>
-
-    <select id="getOne" parameterType="java.lang.Long" resultType="Users">
+    <select id="getPageList" resultMap="getListResultMap"  parameterType="Users">
+        select * from USERS <include refid="condition" />
+        limit #{offset}, #{limit}
+    </select>
+    <select id="getOne" parameterType="java.lang.Long" resultMap="getListResultMap">
         select * from USERS where ID =#{id}
     </select>
-
+    <select id="getCount" parameterType="Users" resultType="java.lang.Integer"  >
+        select count(ID) from USERS <include refid="condition" />
+    </select>
     <insert id="insert" parameterType="Users">
         insert into USERS
         <trim prefix="(" suffix=")" suffixOverrides="," >
