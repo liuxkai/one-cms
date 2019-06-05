@@ -74,7 +74,6 @@
                 </a>
                 <ul class="sub-menu">
                     <li><a _href="${ctx}/users/pageList"><i class="iconfont">&#xe6a7;</i><cite>用户编辑</cite></a></li>
-                    <li><a _href="${ctx}users/list"><i class="iconfont">&#xe6a7;</i><cite>用户新增</cite></a></li>
                 </ul>
             </li>
 
@@ -82,8 +81,7 @@
             <li>
                 <a href="javascript:;"><i class="iconfont">&#xe6f6;</i><cite>教师管理</cite><i class="iconfont nav_right">&#xe6a7;</i></a>
                 <ul class="sub-menu">
-                    <li><a _href="${pageContext.request.contextPath }/users/list"><i class="iconfont">&#xe6a7;</i><cite>教师编辑</cite></a></li>
-                    <li><a _href="html/page.html"><i class="iconfont">&#xe6a7;</i><cite>教师新增</cite></a></li>
+                    <li><a _href="${ctx}/teacher/pageList"><i class="iconfont">&#xe6a7;</i><cite>教师编辑</cite></a></li>
                 </ul>
             </li>
             <li>
@@ -94,9 +92,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="html/order-list.html">
+                        <a _href="${ctx}/student/pageList">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>订单列表</cite>
+                            <cite>学生编辑</cite>
                         </a>
                     </li >
                 </ul>
@@ -109,27 +107,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="html/admin-list.html">
+                        <a _href="${ctx}/types/pageList">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>管理员列表</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="html/admin-role.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>角色管理</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="html/admin-cate.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限分类</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="html/admin-rule.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限管理</cite>
+                            <cite>类型编辑</cite>
                         </a>
                     </li >
                 </ul>
@@ -142,44 +122,12 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="html/member-list.html">
+                        <a _href="${ctx}/course/pageList">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员列表</cite>
+                            <cite>课程编辑</cite>
 
                         </a>
                     </li >
-                    <li>
-                        <a _href="html/member-del.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>会员删除</cite>
-
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="iconfont">&#xe70b;</i>
-                            <cite>会员管理</cite>
-                            <i class="iconfont nav_right">&#xe6a7;</i>
-                        </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a _href="html/member-del.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员列表</cite>
-
-                                </a>
-                            </li >
-                            <li>
-                                <a _href="html/member-del.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员删除</cite>
-
-                                </a>
-                            </li>
-
-                        </ul>
-                    </li>
-
                 </ul>
             </li>
             <li>
@@ -190,9 +138,9 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="html/echarts1.html">
+                        <a _href="${ctx}/news/pageList">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>拆线图</cite>
+                            <cite>新闻编辑</cite>
                         </a>
                     </li >
 

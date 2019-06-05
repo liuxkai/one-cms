@@ -7,7 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.bind.annotation.ResponseBody;
+import raky.entity.Types;
 import raky.entity.Users;
+import raky.service.TypesService;
 import raky.service.UsersService;
 
 import javax.annotation.Resource;
@@ -19,10 +21,16 @@ public class UsersTest {
     private final static Logger logger=Logger.getLogger(UsersTest.class);
     @Resource
     private UsersService usersService;
+    @Resource
+    private TypesService typesService;
     @Test
     @ResponseBody
     public void getUsersList(){
-        usersService.getList(new Users()).forEach(System.out::println);
+//        usersService.getList(new Users()).forEach(System.out::println);
+
+        Types types=new Types();
+        types.setId(0l);
+        typesService.getList(types).forEach(System.out::println);
     }
     @Test
     public void insertUser(){
@@ -50,5 +58,10 @@ public class UsersTest {
         users.setOffset(0);
         users.setLimit(2);
         usersService.getPageList(users).forEach(System.out::println);
+    }
+
+    @Test
+    public void getOneUser(){
+        Types types = typesService.getOne(0l);
     }
 }

@@ -4,6 +4,7 @@ import core.entity.CoreEntity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Types extends CoreEntity {
@@ -24,5 +25,7 @@ public class Types extends CoreEntity {
     private Integer locked;
 
     private Integer priority;
+
+    List<Types> children;
 
 }

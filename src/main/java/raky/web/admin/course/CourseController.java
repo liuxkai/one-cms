@@ -3,6 +3,7 @@ package raky.web.admin.course;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,7 +13,7 @@ import raky.util.Pager;
 
 import javax.annotation.Resource;
 import java.util.List;
-
+@Controller
 @RequestMapping("/course")
 public class CourseController {
     private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
@@ -26,10 +27,10 @@ public class CourseController {
     public String save(Course course) {
         if (course.getId() != null) {
             courseService.update(course);
-            return "redirect:/course/list";
+            return "redirect:/course/pageList";
         }
         courseService.insert(course);
-        return "redirect:/course/list";
+        return "redirect:/course/pageList";
 
     }
 
@@ -42,12 +43,16 @@ public class CourseController {
     @RequestMapping(value = "/input", method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model) {
         model.addAttribute("course", courseService.getOne(id));
-        return "/edit";
+        return "/course/edit";
+    }
+    @RequestMapping(value = "/detailed",method = RequestMethod.GET)
+    public String getDetailed(Long id,ModelMap model){
+        model.addAttribute("course",courseService.getOne(id));
+        return "/course/show";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getList(ModelMap model) {
-        logger.info("进来了");
         List<Course> courseList = courseService.getList(new Course());
         model.addAttribute("courseList", courseList);
         return "/course/list";

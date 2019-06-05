@@ -5,7 +5,6 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
-  
   <head>
     <meta charset="UTF-8">
     <title>欢迎页面-L-admin1.0</title>
@@ -39,16 +38,17 @@
   </div>
   <div class="x-body">
     <div class="layui-row">
-      <form class="layui-form layui-col-md12 x-so" action="/users/pageList" method="get">
-        <input class="layui-input" placeholder="添加时间" value="${users.createTime}" name="createTime" id="start">
-        <input class="layui-input" placeholder="最后登录时间" value="${users.lastLoginTime}" name="lastLoginTime" id="end">
-        <input type="text" name="userName" value="${users.userName}"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+      <form class="layui-form layui-col-md12 x-so" action="/student/pageList" method="get">
+        <input type="text" name="userName" value="${student.name}"  placeholder="请输入姓名" autocomplete="off" class="layui-input">
+        <input type="text" name="userName" value="${student.major}"  placeholder="请输入专业" autocomplete="off" class="layui-input">
+        <input type="text" name="userName" value="${student.school}"  placeholder="请输入班级" autocomplete="off" class="layui-input">
+        <input type="text" name="userName" value="${student.education}"  placeholder="请输入学历" autocomplete="off" class="layui-input">
         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
       </form>
     </div>
     <xblock>
       <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-      <button class="layui-btn" id="add" onclick="location.href='${ctx}/admin/users/edit.jsp'"><i class="layui-icon"></i>添加</button>
+      <button class="layui-btn" id="add" onclick="add()"><i class="layui-icon"></i>添加</button>
       <span class="x-right" style="line-height:40px">共有数据：${pager.totalCount} 条</span>
     </xblock>
     <table class="layui-table">
@@ -58,41 +58,45 @@
           <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
         </th>
         <th>序号</th>
-        <th>用户名</th>
-        <th>真实姓名</th>
-        <th>职位</th>
-        <th>添加时间</th>
+        <th>姓名</th>
+        <th>班级</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>所在公司</th>
+        <th>毕业院校</th>
         <th>状态</th>
         <th>操作</th>
       </tr>
       </thead>
       <tbody>
-      <c:forEach var="user" items="${pager.list}" varStatus="usersStatus">
+      <c:forEach var="student" items="${pager.list}" varStatus="studentStatus">
       <tr>
         <td>
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
-        <td>${usersStatus.count}</td>
-        <td>${user.userName} ${ctx}</td>
-        <td>${user.realName}</td>
-        <td>${user.positions}</td>
-        <td><fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-        <c:if test="${user.locked eq  1 }">
+        <td>${studentStatus.count}</td>
+        <td>${student.name} ${ctx}</td>
+        <td>${student.clazz}</td>
+        <td>${student.sex}</td>
+        <td>${student.salary}</td>
+        <td>${student.company}</td>
+        <td>${student.school}</td>
+        <c:if test="${student.locked eq  1 }">
             <td class="td-status">
                <span class="layui-btn layui-btn-normal layui-btn-sm">正常</span>
             </td>
         </c:if>
-        <c:if test="${user.locked eq 0 }">
+        <c:if test="${student.locked eq 0 }">
             <td class="td-status">
                 <span class="layui-btn layui-btn-normal layui-btn-sm layui-btn-disabled">已锁定</span>
             </td>
         </c:if>
         </td>
         <td class="td-manage">
-          <a onclick="member_stop(this,${user.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${user.locked}">启用</a>
-          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/users/detailed?id=${user.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
-          <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${user.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
-          <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${user.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
+          <a onclick="member_stop(this,${student.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${student.locked}">启用</a>
+          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/student/detailed?id=${student.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
+          <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${student.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
+          <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this)" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
         </td>
 
         </td>
@@ -102,17 +106,21 @@
     </table>
     <div class="page">
       <div>
-        <a class="prev" href="${ctx}/users/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
+        <a class="prev" href="${ctx}/student/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
         <a class="num" href="">${pager.firstPage}</a>
+        <span class="current">2</span>
         <a class="num" href="">${pager.pageCount}</a>
-        <a class="next" href="${ctx}/users/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
+        <a class="next" href="${ctx}/student/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
       </div>
     </div>
 
   </div>
   <script>
       function edit(id){
-          location.href="/users/input?id="+id;
+          location.href="/student/input?id="+id;
+      }
+      function add(){
+          location.href="${ctx}/admin/student/edit.jsp";
       }
 
       layui.use('laydate', function(){
@@ -135,7 +143,6 @@
               if($(obj).attr('title')==1){
                   var value=0;
                   updateAjax(id,value);
-                  //发异步把用户状态进行更改
                   $(obj).attr('title','0')
                   $(obj).find('i').html('&#xe62f;');
                   $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已锁定');
@@ -156,7 +163,7 @@
 
       function updateAjax(id,value) {
           $.ajax({
-              "url" : "/users/save?id="+id+"&locked="+value,    //提交URL
+              "url" : "/student/save?id="+id+"&locked="+value,    //提交URL
               "type" : "POST",//处理方式
               "dataType" : "text",//指定返回的数据格式
               "success" : callback,//执行成功后的回调函数
@@ -172,7 +179,7 @@
           layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
               $.ajax({
-                  "url" : "/users/delete?id="+id,    //提交URL
+                  "url" : "/student/delete?id="+id,    //提交URL
                   "type" : "Get",//处理方式
                   "dataType" : "text",//指定返回的数据格式
                   "success" : callback,//执行成功后的回调函数
@@ -194,7 +201,6 @@
           var data = tableCheck.getData();
 
           layer.confirm('确认要删除吗？'+data,function(index){
-              //捉到所有被选中的，发异步进行删除
               layer.msg('删除成功', {icon: 1});
               $(".layui-form-checked").not('.header').parents('tr').remove();
           });

@@ -30,10 +30,10 @@ public class UsersController extends CoreController {
     public String save(Users users){
         if(users.getId()!=null){
             usersService.update(users);
-            return "redirect:/users/list";
+            return "redirect:/users/pageList";
         }
         usersService.insert(users);
-        return "redirect:/users/list";
+        return "redirect:/users/pageList";
 
     }
 
@@ -47,14 +47,19 @@ public class UsersController extends CoreController {
     public String getOne(Long id, ModelMap model){
         logger.info("xxx");
         model.addAttribute("user",usersService.getOne(id));
-        return "/admin/users/edit";
+        return "/users/edit";
+    }
+    @RequestMapping(value = "/detailed",method = RequestMethod.GET)
+    public String getDetailed(Long id,ModelMap model){
+        model.addAttribute("user",usersService.getOne(id));
+        return "/users/show";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String getList(ModelMap model){
         List<Users> usersList = usersService.getList(new Users());
         model.addAttribute("usersList",usersList);
-        return "/site/index";
+        return "/users/list";
     }
     @RequestMapping(value = "/pageList",method = RequestMethod.GET)
     public String getPageList(ModelMap model,Users users,Integer requestPage){

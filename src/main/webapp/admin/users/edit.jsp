@@ -91,36 +91,35 @@
         </div>
       </div>
       <div class="layui-form-item">
-        <div class="layui-inline">
-          <label class="layui-form-label">用户类型</label>
-          <div class="layui-input-inline">
-            <select id="usertype" name="userType">
-              <option value="">请选择</option>
-              <option value="0">学生</option>
-              <option value="1">其他</option>
-              <option value="2">老师</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="layui-form-item">
         <label class="layui-form-label">所属职称：</label>
-        <div id="positions" class="layui-input-block">
-          <input type="radio" name="positions" value="${user.positions}" title="经理" >
-          <input type="radio" name="positions" value="${user.positions}" title="主管" >
-          <input type="radio" name="positions" value="${user.positions}" title="码农">
-          <input type="radio" name="positions" value="${user.positions}" title="端水">
+        <div id="positions" class="layui-input-inline">
+          <input type="radio" name="positions" value="经理" title="经理" >
+          <input type="radio" name="positions" value="主管" title="主管" >
+          <input type="radio" name="positions" value="码农" title="码农">
+          <input type="radio" name="positions" value="端水" title="端水">
         </div>
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">是否锁定</label>
-        <div class="layui-input-block">
-          <c:if test="${user.locked eq 1}">
-            <input type="checkbox" name="locked" value="${user.locked}" lay-skin="switch" lay-text="ON|OFF" checked>
-          </c:if>
-          <c:if test="${user.locked eq 0}">
-            <input type="checkbox" name="locked" value="${user.locked}" lay-skin="switch" lay-text="OFF|ON">
-          </c:if>
+        <div class="layui-input-inline">
+          <select id="locked" name="locked">
+            <option value="">请选择</option>
+            <option value="0">已锁定</option>
+            <option value="1">正常</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">用户类型</label>
+          <div class="layui-input-inline">
+            <select id="userType" name="userType">
+              <option value="">请选择</option>
+              <c:forEach items="${user.typesList}" var="type">
+                <option value="${type.typeCode}">${type.typeName}</option>
+              </c:forEach>
+            </select>
+          </div>
         </div>
       </div>
       <div class="layui-form-item">
@@ -135,7 +134,8 @@
   <script>
     $(function () {
         $("#usertype option[value=${user.userType}]").prop("selected",true);
-        $("#positions input[value=${user.positions}]").prop('checked',true);
+        $("#positions input[value=${user.positions}]").prop('checked','checked');
+        $("#locked option[value=${user.locked}]").prop("selected",true);
     });
       layui.use(['form','layer'], function(){
           $ = layui.jquery;

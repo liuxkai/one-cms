@@ -3,6 +3,8 @@ package raky.entity;
 import core.entity.CoreEntity;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Course extends CoreEntity {
     private Long id;
@@ -16,4 +18,6 @@ public class Course extends CoreEntity {
     private Integer priority;
 
     private Integer deleted;
+
+    List<Types> typesList;
 }

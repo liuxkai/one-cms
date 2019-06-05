@@ -8,6 +8,7 @@
     <result column="COURSE_MEMO" property="courseMemo" jdbcType="VARCHAR" />
     <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
     <result column="DELETED" property="deleted" jdbcType="INTEGER" />
+    <collection property="typesList" ofType="Types" column="COURSE_TYPE" select="getByCourseType" />
   </resultMap>
   <sql id="condition" >
     <where>
@@ -19,11 +20,14 @@
   <select id="getList" resultMap="getListResultMap" parameterType="java.lang.Long" >
     select * from COURSE <include refid="condition" />
   </select>
+  <select id="getByCourseType" resultType="Types" parameterType="Course">
+      select * from TYPES WHERE PARENT_CODE =(select DISTINCT PARENT_CODE from TYPES where TYPE_CODE = #{courseType})
+	</select>
   <select id="getPageList" resultMap="getListResultMap"  parameterType="Course">
     select * from COURSE <include refid="condition" />
     limit #{offset}, #{limit}
   </select>
-  <select id="getOne" parameterType="java.lang.Long" resultType="Course">
+  <select id="getOne" parameterType="java.lang.Long" resultMap="getListResultMap">
         select * from COURSE where ID =#{id}
   </select>
   <select id="getCount" parameterType="Course" resultType="java.lang.Integer"  >

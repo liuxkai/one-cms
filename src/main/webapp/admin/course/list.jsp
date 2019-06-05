@@ -60,7 +60,6 @@
         <th>序号</th>
         <th>课程类型</th>
         <th>课程名称</th>
-        <th>职位</th>
         <th>课程简介</th>
         <th>状态</th>
         <th>操作</th>
@@ -76,21 +75,21 @@
         <td>${course.courseType} ${ctx}</td>
         <td>${course.courseName}</td>
         <td>${course.courseMemo}</td>
-        <c:if test="${course.deleted eq  1 }">
+        <c:if test="${course.deleted eq  0 }">
             <td class="td-status">
                <span class="layui-btn layui-btn-normal layui-btn-sm">已删除</span>
             </td>
         </c:if>
-        <c:if test="${course.deleted eq 0 }">
+        <c:if test="${course.deleted eq 1 }">
             <td class="td-status">
                 <span class="layui-btn layui-btn-normal layui-btn-sm layui-btn-disabled">未删除</span>
             </td>
         </c:if>
         </td>
         <td class="td-manage">
-          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/course/input?id=${course.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
+          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/course/detailed?id=${course.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
           <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${course.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
-          <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this)" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
+          <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${course.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
         </td>
 
         </td>
@@ -100,11 +99,11 @@
     </table>
     <div class="page">
       <div>
+          <a class="prev" href="${ctx}/course/pageList?requestPage=${pager.firstPage}">首页</a>
         <a class="prev" href="${ctx}/course/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="num" href="">${pager.firstPage}</a>
-        <span class="current">2</span>
-        <a class="num" href="">${pager.pageCount}</a>
         <a class="next" href="${ctx}/course/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
+          <a class="prev" href="${ctx}/course/pageList?requestPage=${pager.lastPage}">尾页</a>
+
       </div>
     </div>
 
@@ -112,6 +111,9 @@
   <script>
       function edit(id){
           location.href="/course/input?id="+id;
+      }
+      function add(){
+          location.href="${ctx}/admin/course/edit.jsp";
       }
 
       layui.use('laydate', function(){
@@ -139,10 +141,11 @@
                   "async" : "false",//是否同步
               });
               function callback() {
-                  alert("成功");
+                  $(obj).parents("tr").remove();
+                  layer.msg('已删除!',{icon:1,time:1000});
+                  window.location.reload();
               }
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+
           });
       }
 

@@ -11,23 +11,26 @@
     <result column="DELETED" property="deleted" jdbcType="INTEGER" />
     <result column="LOCKED" property="locked" jdbcType="INTEGER" />
     <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+    <collection property="children" ofType="Types" column="TYPE_CODE" select="getChildrenType" />
   </resultMap>
-
   <sql id="condition" >
     <where>
-      <if test="id != null"> and ID = #{id}</if>
-      <if test="typeName != null and typeName !=''"> and `USER_NAME` like concat('%',#{typeName},'%')</if>
-      <if test="typeMemo != null and typeMemo !=''"> and `TYPE_MEMO` like concat('%',#{typeMemo},'%')</if>
+      <if test="parentCode != null"> and PARENT_CODE = #{parentCode}</if>
     </where>
   </sql>
+
   <select id="getList" resultMap="getListResultMap" parameterType="Types">
-    select * from TYPES <include refid="condition"/>
+    select * from TYPES where PARENT_CODE =#{id}
+  </select>
+
+  <select id="getChildrenType" resultType="Types" parameterType="Types">
+    select * from TYPES where PARENT_CODE=#{typeCode}
   </select>
   <select id="getPageList" resultMap="getListResultMap"  parameterType="Types">
     select * from TYPES <include refid="condition" />
     limit #{offset}, #{limit}
   </select>
-  <select id="getOne" parameterType="java.lang.Long" resultType="Types">
+  <select id="getOne" parameterType="java.lang.Long" resultMap="getListResultMap">
         select * from TYPES where ID =#{id}
     </select>
   <select id="getCount" parameterType="Types" resultType="java.lang.Integer"  >

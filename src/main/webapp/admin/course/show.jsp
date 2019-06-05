@@ -27,7 +27,7 @@
   </head>
   <body>
   <div class="x-body">
-    <form class="layui-form" method="post" action="/course/save?id=${course.id}">
+    <form class="layui-form">
       <div class="layui-form-item">
         <label for="L_username" class="layui-form-label">
           <span class="x-red">*</span>课程名称
@@ -61,7 +61,7 @@
         <div class="layui-inline">
           <label class="layui-form-label">课程类型</label>
           <div class="layui-input-inline">
-            <select id="courseType" name="courseType">
+            <select id="courseType" name="userType">
               <option value="">请选择</option>
               <c:forEach items="${course.typesList}" var="type">
                 <option value="${type.typeCode}">${type.typeName}</option>
@@ -70,13 +70,6 @@
           </div>
         </div>
       </div>
-      <div class="layui-form-item">
-        <label class="layui-form-label">
-        </label>
-        <button  class="layui-btn" id="add" lay-filter="add" lay-submit="">
-          增加
-        </button>
-      </div>
 
     </form>
   </div>
@@ -84,18 +77,7 @@
     $(function () {
         $("#courseType option[value=${course.courseType}]").prop("selected",true);
     });
-      layui.use(['form','layer'], function(){
-          $ = layui.jquery;
-          var form = layui.form
-              ,layer = layui.layer;
 
-
-          $("#add").click(function () {
-              $("form").submit();
-
-          });
-
-      });
   </script>
   </body>
 </html>
