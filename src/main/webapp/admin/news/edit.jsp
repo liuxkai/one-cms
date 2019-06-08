@@ -67,7 +67,7 @@
         </label>
         <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
           <div class="fileinput-new thumbnail" style="width: 100px;height: auto;max-height:150px;">
-            <img id='picImg'  style="width: 100%;height: auto;max-height: 140px;" src="${ctx}/static/images/pic/${news.imagePath}" alt="" />
+            <img id='picImg'  style="width: 100%;height: auto;max-height: 140px;" src="${ctx}/static/images/pic/1.png" alt="" />
           </div>
           <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
           <div>
@@ -96,27 +96,20 @@
             <label class="layui-form-label">
                 <span class="x-red">*</span>视频
             </label>
-            <div class="fileinput fileinput-new" data-provides="fileinput" >
-                <div class="fileinput-new thumbnail" style="width: 100px;height: auto;max-height:150px;">
-                    <video width="320" height="240" controls>
-                        <source src="movie.mp4" type="video/mp4">
-                        <source src="movie.ogg" type="video/ogg">
-                        <source src="movie.webm" type="video/webm">
-                        <object data="movie.mp4" width="320" height="240">
-                            <embed src="movie.swf" width="320" height="240">
-                        </object>
-                    </video>
-                </div>
-                <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-                <div>
+          <div class="fileinput fileinput-new" data-provides="fileinput" >
+            <div class="fileinput-new thumbnail" style="width: 100px;height: auto;max-height:150px;">
+              <img id='picVideo'  style="width: 100%;height: auto;max-height: 140px;" src="${ctx}/static/images/pic/1.png" alt="" />
+            </div>
+            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+            <div>
               <span class="btn btn-primary btn-file">
                   <span class="fileinput-new">选择文件</span>
-                  <span class="fileinput-exists">换一个</span>
-                  <input type="file" value="${news.imagePath}" name="file"  accept="video/*"/>
+                  <span class="fileinput-exists">换一张</span>
+                  <input type="file" value="${news.imagePath}"  name="file"  accept=""/>
               </span>
-                    <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
-                </div>
+              <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
             </div>
+          </div>
         </div>
 
 
@@ -144,7 +137,7 @@
       <label  class="layui-form-label">
         <span class="x-red">*</span>新闻内容
       </label>
-      <div class="layui-form-item" style="height: 270px;width: 602px;margin-left: 110px;margin-bottom: 30px;">
+      <div class="layui-input-inline" style="height: 250px;width: 602px;margin-bottom: 60px;">
         <textarea style="padding: 0px 0px;" id="editor" name="content" class="layui-textarea">${news.content}</textarea>
       </div>
       </div>
