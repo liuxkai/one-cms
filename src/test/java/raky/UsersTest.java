@@ -62,6 +62,6 @@ public class UsersTest {
 
     @Test
     public void getOneUser(){
-        Types types = typesService.getOne(0l);
+        Users users = usersService.getOne(2l);
     }
 }

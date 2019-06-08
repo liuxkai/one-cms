@@ -72,7 +72,7 @@
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
         <td>${courseStatus.count}</td>
-        <td>${course.courseType} ${ctx}</td>
+        <td>${course.courseType}</td>
         <td>${course.courseName}</td>
         <td>${course.courseMemo}</td>
         <c:if test="${course.deleted eq  0 }">
@@ -113,22 +113,9 @@
           location.href="/course/input?id="+id;
       }
       function add(){
-          location.href="${ctx}/admin/course/edit.jsp";
+          location.href="/course/input";
       }
 
-      layui.use('laydate', function(){
-          var laydate = layui.laydate;
-
-          //执行一个laydate实例
-          laydate.render({
-              elem: '#start' //指定元素
-          });
-
-          //执行一个laydate实例
-          laydate.render({
-              elem: '#end' //指定元素
-          });
-      });
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){

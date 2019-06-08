@@ -10,6 +10,7 @@ import raky.entity.News;
 import raky.service.NewsService;
 
 import javax.annotation.Resource;
+import java.util.UUID;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -19,8 +20,22 @@ public class NewsTest {
     private NewsService newsService;
 
     @Test
-    public void getStudentList(){
+    public void getNewstList(){
         newsService.getList(new News()).forEach(System.out::println);
+        News news = newsService.getOne(1l);
     }
+    @Test
+    public void insertNews() {
+        News news = new News();
+        news.setUuid(UUID.randomUUID().toString());
 
+        news.setNewsType("xx");
+        news.setTitle("xxxx");
+        news.setViewCount(10);
+        news.setInfoState(1);
+        news.setPriority(1);
+        news.setDeleted(1);
+        int insert = newsService.insert(news);
+        logger.info(news.getId());
+    }
 }

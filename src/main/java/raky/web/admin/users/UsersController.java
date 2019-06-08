@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import raky.entity.Types;
 import raky.entity.Users;
 import raky.service.UsersService;
 import raky.util.Pager;
@@ -45,12 +46,22 @@ public class UsersController extends CoreController {
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model){
-        logger.info("xxx");
-        model.addAttribute("user",usersService.getOne(id));
+        List<Types> typesList1 =getTypesListByParentCode(10l);
+        List<Types> typesList2 =getTypesListByParentCode(60l);
+        model.addAttribute("typesList1",typesList1);
+        model.addAttribute("typesList2",typesList2);
+        if(id!=null){
+            model.addAttribute("user",usersService.getOne(id));
+            return "/users/edit";
+        }
         return "/users/edit";
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
+        List<Types> typesList1 =getTypesListByParentCode(10l);
+        List<Types> typesList2 =getTypesListByParentCode(60l);
+        model.addAttribute("typesList1",typesList1);
+        model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",usersService.getOne(id));
         return "/users/show";
     }
