@@ -1838,26 +1838,26 @@ var _hmt = _hmt || [];
 							<p><a href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="园区停车场"><span class="sch-tit">园区停车场</span></a></p>
 							<p><a  href="javascript:void(0);" rel="nofollow" ><img src="${ctx}/static/images/b.jpg" alt="园区班车等候区"><span class="sch-tit">园区班车等候区</span></a></p>
 							<ul>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="信心百倍备战面试"><span class="sch-tit">信心百倍备战面试</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="课下积累讨论"><span class="sch-tit">课下积累讨论</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="学员踊跃发言"><span class="sch-tit">学员踊跃发言</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="3楼教学区前台"><span class="sch-tit">3楼教学区前台</span></a></li></ul>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="信心百倍备战面试"><span class="sch-tit">信心百倍备战面试</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="课下积累讨论"><span class="sch-tit">课下积累讨论</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员踊跃发言"><span class="sch-tit">学员踊跃发言</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="3楼教学区前台"><span class="sch-tit">3楼教学区前台</span></a></li></ul>
 						</div><div class="carousel-item">
-						<p><a href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="线下技术沙龙"><span class="sch-tit">线下技术沙龙</span></a></p>
-						<p><a  href="javascript:void(0);" rel="nofollow" ><img src="#" alt="温馨课堂"><span class="sch-tit">温馨课堂</span></a></p>
+						<p><a href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="线下技术沙龙"><span class="sch-tit">线下技术沙龙</span></a></p>
+						<p><a  href="javascript:void(0);" rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="温馨课堂"><span class="sch-tit">温馨课堂</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="认真听讲"><span class="sch-tit">认真听讲</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="课堂气氛活跃"><span class="sch-tit">课堂气氛活跃</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="课堂学习氛围浓厚"><span class="sch-tit">课堂学习氛围浓厚</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="温馨课堂"><span class="sch-tit">温馨课堂</span></a></li></ul>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="认真听讲"><span class="sch-tit">认真听讲</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="课堂气氛活跃"><span class="sch-tit">课堂气氛活跃</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="课堂学习氛围浓厚"><span class="sch-tit">课堂学习氛围浓厚</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="温馨课堂"><span class="sch-tit">温馨课堂</span></a></li></ul>
 					</div><div class="carousel-item">
-						<p><a href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="学员讨论区"><span class="sch-tit">学员讨论区</span></a></p>
-						<p><a  href="javascript:void(0);" rel="nofollow" ><img src="#" alt="校区楼下环境"><span class="sch-tit">校区楼下环境</span></a></p>
+						<p><a href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员讨论区"><span class="sch-tit">学员讨论区</span></a></p>
+						<p><a  href="javascript:void(0);" rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="校区楼下环境"><span class="sch-tit">校区楼下环境</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="实训区休闲吧台"><span class="sch-tit">实训区休闲吧台</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="学员个性化座谈区"><span class="sch-tit">学员个性化座谈区</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="教学区走廊"><span class="sch-tit">教学区走廊</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="实训区走廊"><span class="sch-tit">实训区走廊</span></a></li>	</ul>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="实训区休闲吧台"><span class="sch-tit">实训区休闲吧台</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员个性化座谈区"><span class="sch-tit">学员个性化座谈区</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="教学区走廊"><span class="sch-tit">教学区走廊</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="实训区走廊"><span class="sch-tit">实训区走廊</span></a></li>	</ul>
 					</div>
 					</div>
 				</div>
@@ -1866,19 +1866,19 @@ var _hmt = _hmt || [];
 					<div class="sch-banner carousel-inner">
 
 						<div class="carousel-item">
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓楼下咖啡厅"><span class="sch-tit">公寓楼下咖啡厅</span></a></p>
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓迷你健身房"><span class="sch-tit">公寓迷你健身房</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="公寓楼下咖啡厅"><span class="sch-tit">公寓楼下咖啡厅</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="公寓迷你健身房"><span class="sch-tit">公寓迷你健身房</span></a></p>
 							<ul>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="解压共享KTV"><span class="sch-tit">解压共享KTV</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓迷你健身房"><span class="sch-tit">公寓迷你健身房</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="寝室内部干净明亮"><span class="sch-tit">寝室内部干净明亮</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓篮球场"><span class="sch-tit">公寓篮球场</span></a></li>	</ul>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="解压共享KTV"><span class="sch-tit">解压共享KTV</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="公寓迷你健身房"><span class="sch-tit">公寓迷你健身房</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="寝室内部干净明亮"><span class="sch-tit">寝室内部干净明亮</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="公寓篮球场"><span class="sch-tit">公寓篮球场</span></a></li>	</ul>
 						</div><div class="carousel-item">
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓自助食品柜"><span class="sch-tit">公寓自助食品柜</span></a></p>
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓休息区"><span class="sch-tit">公寓休息区</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="公寓自助食品柜"><span class="sch-tit">公寓自助食品柜</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="公寓休息区"><span class="sch-tit">公寓休息区</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓楼下咖啡馆"><span class="sch-tit">公寓楼下咖啡馆</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="寝室走廊2"><span class="sch-tit">寝室走廊2</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="公寓楼下咖啡馆"><span class="sch-tit">公寓楼下咖啡馆</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="寝室走廊2"><span class="sch-tit">寝室走廊2</span></a></li>
 							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学生公寓洗衣房"><span class="sch-tit">学生公寓洗衣房</span></a></li>
 							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="寝室走廊"><span class="sch-tit">寝室走廊</span></a></li></ul>
 					</div>
