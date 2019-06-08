@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-		 pageEncoding="UTF-8"%>
+pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
@@ -39,7 +39,7 @@ var _hmt = _hmt || [];
 				<div class="header">
 			<div class="header_con">
 				<div class="head_up">
-					<h1><a href="/"><img src="${ctx}/static/images/logo.png" alt="黑马程序员"></a></h1>
+					<h1><a href="/"><img src="${ctx}/static/images/logo.png" alt="黑马程序员"></a></h1>										
 					<img src="${ctx}/static/images/slogan2.jpg" class="slogan">
 					
 				</div>
@@ -94,18 +94,15 @@ var _hmt = _hmt || [];
 		<div class="sub_nav">
 			<ul class="nav_txt">
 			<!-- 左侧学科 -->
-				<ul>
-					<c:forEach var="course" items="courseList">
-					<%--<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">Java开发培训</a></li>--%>
-					<%--<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">UI/UE设计培训</a></li>--%>
-					<%--<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">大前端（H5+小程序+APP）</a></li>--%>
-					<%--<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">大数据培训</a></li>--%>
-					<%--<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">Python+人工智能</a></li>--%>
-					<%--<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">PHP开发培训</a></li>--%>
-					<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">${course.courseName}</a></li>
-					<%--<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">C/ 安卓开发工程师培训</a></li>--%>
-					<%--<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd"> .net软件工程师培训</a></li>--%>
-					</c:forEach>
+			<ul><li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">Java开发培训</a></li>
+				<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">UI/UE设计培训</a></li>
+				<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">大前端（H5+小程序+APP）</a></li>
+				<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">大数据培训</a></li>
+				<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">Python+人工智能</a></li>
+				<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">PHP开发培训</a></li>
+				<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">云计算工程师培训</a></li>
+				<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd">C/ 安卓开发工程师培训</a></li>
+				<li class=""><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank" class="a_gd"> .net软件工程师培训</a></li>
 				</ul>			
 			</ul>											
 		</div>
@@ -147,7 +144,7 @@ var _hmt = _hmt || [];
 
     <div class="part4_slide">
 
-          <div class="hd"> <span class="prev"><img src="${ctx}/static/images/part4_prev.png" width="8" height="14" alt=""><img style="display:none" class="h" src="images/part4_prevh.png" width="8" height="14" alt=""></span> <span class="next"><img src="images/part4_next.png" width="8" height="14" alt=""><img style="display:none" class="h" src="images/part4_nexth.png" width="8" height="14" alt=""></span> </div>
+          <div class="hd"> <span class="prev"><img src="${ctx}/static/images/part4_prev.png" width="8" height="14" alt=""><img style="display:none" class="h" src="${ctx}/static/images/part4_prevh.png" width="8" height="14" alt=""></span> <span class="next"><img src="${ctx}/static/images/part4_next.png" width="8" height="14" alt=""><img style="display:none" class="h" src="${ctx}/static/images/part4_nexth.png" width="8" height="14" alt=""></span> </div>
 
           <div class="bd">
 
@@ -286,7 +283,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -294,7 +291,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">一线技术大神参与研发，实战项目接轨前沿科技</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -302,7 +299,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">嵌入式开发/物联网/AI嵌入式项目设计等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -310,7 +307,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -319,18 +316,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108121058829.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108121058829.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -351,7 +348,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -359,7 +356,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">行业大咖实力打造高标准课程体系</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -367,7 +364,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">软件基础/平面设计/网站设计/智能设备交互等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -375,7 +372,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -384,18 +381,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190325041850899.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190325041850899.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -416,7 +413,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -424,7 +421,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">了解行业发展趋势，掌握Java技术核心</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -432,7 +429,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">JavaEE/JavaWeb/高级框架/分布式项目实战等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -440,7 +437,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -449,18 +446,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108110337613.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108110337613.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -481,7 +478,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -489,7 +486,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">以市场需求为导向，集前端、后端等实战课程</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -497,7 +494,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">HTML5/CSS3/ES6/JavaScript/小程序/MySQL等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -505,7 +502,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -514,18 +511,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108112144319.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108112144319.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span><em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></span></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span><em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -546,7 +543,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -554,7 +551,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程直击市场需求，打造开发领域稀缺人才</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -562,7 +559,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">Web前端/MySQL数据库/高级应用/系统架构/项目实战等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -570,7 +567,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -579,18 +576,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190111112946243.png" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190111112946243.png" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -611,7 +608,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -619,7 +616,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程融合前沿技术，轻松玩转Python+人工智能</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -627,7 +624,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">Python/数据分析/数据爬取/数据挖掘/人工智能等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -635,7 +632,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -644,18 +641,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108112839407.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108112839407.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -676,7 +673,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -684,7 +681,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">与网易达成合作、强悍教学资源共享</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -692,7 +689,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">VR/AR/Unity/游戏开发/开发语言/开发引擎等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -700,7 +697,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">网易首席游戏开发工程师亲临课堂讲解实战案例</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -709,18 +706,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190109040207827.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190109040207827.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -741,7 +738,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -749,7 +746,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">培养一专多能型互联网营销人才</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -757,7 +754,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">SEO/SEM/新媒体营销/信息流/电商运营等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -765,7 +762,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -774,18 +771,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190109040436992.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190109040436992.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -806,7 +803,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -814,7 +811,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">在实战中与企业接轨，进阶大数据架构师</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -822,7 +819,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">Hadoop/Storm/Scala语言/Spark等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -830,7 +827,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -839,18 +836,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108114913674.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108114913674.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -871,7 +868,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -879,7 +876,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程兼顾实用与前沿，融合一线企业运维思路</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -887,7 +884,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">Linux自动化运维/PaaS+IaaS/数据库管理等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -895,7 +892,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -904,18 +901,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108115320521.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108115320521.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -936,7 +933,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -944,7 +941,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程不断更新迭代，满足企业用人刚需</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -952,7 +949,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">自动化测试/性能测试/QTP项目实践/手机测试等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -960,7 +957,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -969,18 +966,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108120427553.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108120427553.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1001,7 +998,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1009,7 +1006,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">一线技术大神参与研发，实战项目接轨前沿科技</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1017,7 +1014,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">嵌入式开发/物联网/AI嵌入式项目设计等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1025,7 +1022,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1034,18 +1031,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108121058821.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108121058821.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1066,7 +1063,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1074,7 +1071,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">行业大咖实力打造高标准课程体系</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1082,7 +1079,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">软件基础/平面设计/网站设计/智能设备交互等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1090,7 +1087,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1099,18 +1096,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190325041850812.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190325041850812.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1131,7 +1128,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1139,7 +1136,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">了解行业发展趋势，掌握Java技术核心</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1147,7 +1144,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">JavaEE/JavaWeb/高级框架/分布式项目实战等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1155,7 +1152,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1164,18 +1161,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108110337656.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108110337656.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1196,7 +1193,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1204,7 +1201,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">以市场需求为导向，集前端、后端等实战课程</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1212,7 +1209,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">HTML5/CSS3/ES6/JavaScript/小程序/MySQL等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1220,7 +1217,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1229,18 +1226,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190108112144321.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190108112144321.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span><em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></span></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span><em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="state"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1261,7 +1258,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1269,7 +1266,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程直击市场需求，打造开发领域稀缺人才</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1277,7 +1274,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">Web前端/MySQL数据库/高级应用/系统架构/项目实战等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1285,7 +1282,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1294,18 +1291,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/20190111112946287.png" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/20190111112946287.png" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1326,7 +1323,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1334,7 +1331,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程融合前沿技术，轻松玩转Python+人工智能</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1342,7 +1339,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">Python/数据分析/数据爬取/数据挖掘/人工智能等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1350,7 +1347,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1359,18 +1356,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/201901081128394087.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/201901081128394087.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1391,7 +1388,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1399,7 +1396,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">与网易达成合作、强悍教学资源共享</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1407,7 +1404,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">VR/AR/Unity/游戏开发/开发语言/开发引擎等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1415,7 +1412,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">网易首席游戏开发工程师亲临课堂讲解实战案例</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1424,18 +1421,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/12312w.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/12312w.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1456,7 +1453,7 @@ var _hmt = _hmt || [];
 </div>
 <div class="center" style="display: block">
 <ul class="clearfix">
-<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p1.png" width="77" /></a>
+<li class="l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p1.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">学科介绍</a></dt>
@@ -1464,7 +1461,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">培养一专多能型互联网营销人才</a></dd>
 </dl>
 </li>
-<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p2.png" width="77" /></a>
+<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p2.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">课程大纲</a></dt>
@@ -1472,7 +1469,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">SEO/SEM/新媒体营销/信息流/电商运营等</a></dd>
 </dl>
 </li>
-<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="images/part4_p3.png" width="77" /></a>
+<li class="l1 l2"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p3.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">师资团队</a></dt>
@@ -1480,7 +1477,7 @@ var _hmt = _hmt || [];
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">汇聚北大、清华等名校高材生，实战经验丰富</a></dd>
 </dl>
 </li>
-<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="images/part4_p4.png" width="77" /></a>
+<li class="l1"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank"><img alt="" height="77" src="${ctx}/static/images/part4_p4.png" width="77" /></a>
 <dl>
 	<dt>
 		<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" rel="nofollow" target="_blank">就业薪资</a></dt>
@@ -1489,18 +1486,18 @@ var _hmt = _hmt || [];
 </dl>
 </li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/455RFG.jpg" /></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/455RFG.jpg" /></a></div>
 <div class="right">
 <h5>课程开班时间</h5>
 <ul>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-06</span> <span class="state">已开班</span></a></li>
 <li class="clearfix"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-13</span> <span class="state">已开班</span></a></li>
-<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="images/part4_p5.png" width="14" /> </em></a></li>
+<li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-20</span> <span class="state">抢座中</span> <em><img alt="" height="17" src="${ctx}/static/images/part4_p5.png" width="14" /> </em></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-05-27</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-03</span> <span class="state">抢座中</span></a></li>
 <li class="clearfix on"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span class="time">2019-06-10</span> <span class="state">抢座中</span></a></li>
 </ul>
-<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="images/part3_p3.png" width="24" /></span></a></div>
+<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">进入学院<span><img alt="" height="24" src="${ctx}/static/images/part3_p3.png" width="24" /></span></a></div>
 </li>
 </ul>
 <br /> 
@@ -1522,23 +1519,23 @@ var _hmt = _hmt || [];
 <div class="con_tech_l bd">
 
 <ul class="picList">
-<li style="background-image:url(images/zhangy1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/zhangy1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>张勇<span>教学总监</span></p>
 <div>曾中兴软件公司设计师,具有12年的JAVA企业应用开发和内训经验,授课风格幽默风趣,深入浅出，知识体系细致入微...</div>
 </a></li>
-<li style="background-image:url(images/guoxp1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/guoxp1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>郭小培<span>教学督导</span></p>
 <div>曾就职于大唐软件技术有限责任公司系统架构师，6年的培训和教学经验，授课严谨，思路清晰，知识体系细致入微，以...</div>
 </a></li>
-<li style="background-image:url(images/jul1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/jul1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>居律<span>教学经理</span></p>
 <div>多年java开发及教学经验，先后在多家金融行业有影响的企业里任职高级工程师、项目经理，技术功底深厚，授课风格...</div>
 </a></li>
-<li style="background-image:url(images/wuhc1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/wuhc1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>吴红才<span>实训讲师</span></p>
 <div>曾就职于用友公司资深项目经理，具有多年的企业开发和内训经验。授课自然、幽默风趣，深入浅出。擅长于日常生...</div>
 </a></li>
-<li style="background-image:url(images/zhengwb1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/zhengwb1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>郑万宝<span>金牌讲师</span></p>
 <div>多年的设计从业积累了大量工作经验，授课经验丰富，在多年与众多学员交流中研究出一套独特的教学方法，授课思路...</div>
 </a></li>
@@ -1546,19 +1543,19 @@ var _hmt = _hmt || [];
 <p>董丹<span>实训讲师</span></p>
 <div>拥有多年网页设计相关专业授课经验，从事UI行业7年，曾为多家知名公司，中国联通，中国平安等多家企业进行过网站...</div>
 </a></li>
-<li style="background-image:url(/static/images/ligy1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/ligy1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>李桂元<span>营销讲师</span></p>
 <div>10余年职业教育行业从业经验，九年美国上市教育集团营销培训导师经历，擅长各类线上、线下手法，技术功底深厚，...</div>
 </a></li>
-<li style="background-image:url(images/liuc1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/liuc1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>刘晨<span>实训讲师</span></p>
 <div>视觉传达设计科班出身，7年设计行业从业经历，3年设计方向教学经验，曾就职于知名互联网公司，接手设计与运营过...</div>
 </a></li>
-<li style="background-image:url(images/wangl1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/wangl1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>王莲<span>实训讲师</span></p>
 <div>从事软件开发以及软件教育培训9年，java开发方向，曾就职于：江苏省未来网络创新研究院，华为技术有限公司，上海...</div>
 </a></li>
-<li style="background-image:url(images/cuiyf1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
+<li style="background-image:url(${ctx}/static/images/cuiyf1.jpg)"> <a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn">
 <p>崔业富<span>实训讲师</span></p>
 <div>从事软件开发9年时间、专业电子与信息技术方向，一直从事与软件开发及教育培训；后任南京易司拓电力科技研发工...</div>
 </a></li>
@@ -1577,51 +1574,51 @@ var _hmt = _hmt || [];
 				<ul>
 					<li>
 						<!-- 首页就业薪资JavaEE -->
-						<a class="abig" href="http://bbs.itheima.com/thread-448625-1-1.html" target="_blank"><div class="iconbox"><img src="images/1548381230825_JavaEE.png"/><span>JavaEE就业</span></div><div class="text"><span>【第54期】</span><strong>10833元</strong></div></a>			
+						<a class="abig" href="http://bbs.itheima.com/thread-448625-1-1.html" target="_blank"><div class="iconbox"><img src="${ctx}/static/images/1548381230825_JavaEE.png"/><span>JavaEE就业</span></div><div class="text"><span>【第54期】</span><strong>10833元</strong></div></a>			
 					</li>
 					<li>
 						<!-- 首页就业薪资PHP -->
-						<a href="http://bbs.itheima.com/thread-443397-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381287822_PHP+H5全栈工程师.png"/><span class="span_l">PHP+H5全栈<br/>工程师就业</span></div><div class="text"><span>【第17期】</span><strong>10647元</strong></div></a>
+						<a href="http://bbs.itheima.com/thread-443397-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381287822_PHP+H5全栈工程师.png"/><span class="span_l">PHP+H5全栈<br/>工程师就业</span></div><div class="text"><span>【第17期】</span><strong>10647元</strong></div></a>
 					</li>
 					<li>
 						<!-- 首页就业薪资UI设计 -->
-						<a class="abig" href="http://bbs.itheima.com/thread-451994-1-1.html" target="_blank"><div class="iconbox"><img src="images/1548381323709_UIUE设计.png"/><span class="span_l">UI/UE综合<br/>设计师就业</span></div><div class="text"><span>【第26期】</span><strong>9567元</strong></div></a>				
+						<a class="abig" href="http://bbs.itheima.com/thread-451994-1-1.html" target="_blank"><div class="iconbox"><img src="${ctx}/static/images/1548381323709_UIUE设计.png"/><span class="span_l">UI/UE综合<br/>设计师就业</span></div><div class="text"><span>【第26期】</span><strong>9567元</strong></div></a>				
 					</li>
 					<li>
 						<!-- 首页就业薪资云计算大数据 -->
-						<a href="http://bbs.itheima.com/thread-436678-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381360259_大数据.png"/><span>大数据就业</span></div><div class="text"><span>【第3期】</span><strong>12259元</strong></div></a>						
+						<a href="http://bbs.itheima.com/thread-436678-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381360259_大数据.png"/><span>大数据就业</span></div><div class="text"><span>【第3期】</span><strong>12259元</strong></div></a>						
 					</li>
 					<li>
 						<!-- 首页就业薪资软件测试 -->
-						<a href="http://bbs.itheima.com/thread-446303-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381399377_软件测试.png"/><span>软件测试就业</span></div><div class="text"><span>【第8期】</span><strong>9680元</strong></div></a>
+						<a href="http://bbs.itheima.com/thread-446303-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381399377_软件测试.png"/><span>软件测试就业</span></div><div class="text"><span>【第8期】</span><strong>9680元</strong></div></a>
 					</li>
 					<li>
 						<!-- 首页就业薪资前端与移动开发 -->
-						<a href="http://bbs.itheima.com/thread-447292-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381472077_前端与移动开发.png"/><span class="span_l">前端与移动<br/>开发就业</span></div><div class="text"><span>【第32期】</span><strong>10853元</strong></div></a>									
+						<a href="http://bbs.itheima.com/thread-447292-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381472077_前端与移动开发.png"/><span class="span_l">前端与移动<br/>开发就业</span></div><div class="text"><span>【第32期】</span><strong>10853元</strong></div></a>									
 					</li>
 					<li>
 						<!-- 首页就业薪资C/C++ -->
-						<a href="http://bbs.itheima.com/thread-449581-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381523669_CC++.png"/><span>C/C++就业</span></div><div class="text"><span>【第33期】</span><strong>9929元</strong></div></a>										
+						<a href="http://bbs.itheima.com/thread-449581-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381523669_CC++.png"/><span>C/C++就业</span></div><div class="text"><span>【第33期】</span><strong>9929元</strong></div></a>										
 												
 					</li>
 					<li>
 						<!-- 首页就业薪资新媒体运营 -->
-						<a href="http://bbs.itheima.com/thread-434463-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381558433_新媒体+短视频运营.png"/><span class="span_l">新媒体+短视频<br/>运营就业</span></div><div class="text"><span>【第3期】</span><strong>10066元</strong></div></a>
+						<a href="http://bbs.itheima.com/thread-434463-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381558433_新媒体+短视频运营.png"/><span class="span_l">新媒体+短视频<br/>运营就业</span></div><div class="text"><span>【第3期】</span><strong>10066元</strong></div></a>
 										
 					</li>					
 					<li>
 						<!-- 首页就业薪资人工智能+Python -->
-						<a href="http://bbs.itheima.com/thread-448629-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381598383_Python+人工智能.png"/><span class="span_l">Python+<br/>人工智能就业</span></div><div class="text"><span>【第21期】</span><strong>11404元</strong></div></a>				
+						<a href="http://bbs.itheima.com/thread-448629-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381598383_Python+人工智能.png"/><span class="span_l">Python+<br/>人工智能就业</span></div><div class="text"><span>【第21期】</span><strong>11404元</strong></div></a>				
 								
 					</li>
 					<li>
 						<!-- 首页就业薪资产品经理 -->
-						<a href="http://bbs.itheima.com/thread-448326-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381639714_产品经理.png"/><span>产品经理就业</span></div><div class="text"><span>【第4期】</span><strong>11977元</strong></div></a>	
+						<a href="http://bbs.itheima.com/thread-448326-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381639714_产品经理.png"/><span>产品经理就业</span></div><div class="text"><span>【第4期】</span><strong>11977元</strong></div></a>	
 
 					</li>
 					<li>
 						<!-- 首页就业薪资go语言 -->
-						<a href="http://bbs.itheima.com/thread-450270-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="images/1548381667765_GO语言与区块链.png"/><span class="span_l">Go语言与<br/>区块链就业</span></div><div class="text"><span>【第2期】</span><strong>14666元</strong></div></a>
+						<a href="http://bbs.itheima.com/thread-450270-1-1.html" target="_blank" class="abig"><div class="iconbox"><img src="${ctx}/static/images/1548381667765_GO语言与区块链.png"/><span class="span_l">Go语言与<br/>区块链就业</span></div><div class="text"><span>【第2期】</span><strong>14666元</strong></div></a>
 
 					</li>
 				</ul>
@@ -1641,17 +1638,17 @@ var _hmt = _hmt || [];
 		<div class="plot_con">
 			<!-- 学员故事 -->
 			<div class="plot_l"><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank">
-			<img src="images/1547458862103_1.jpg" width="479" height="354" border="0" vspace="0" title="" alt="">
+			<img src="${ctx}/static/images/1547458862103_1.jpg" width="479" height="354" border="0" vspace="0" title="" alt="">
 			<p class="p1">[JavaEE]不安现状，寻求改变，毕业10000+仅是起点</p>
 			<p class="p2"><span>姓名：易锋华</span> <span>班级：广州JavaEE91期</span><span>月薪：10000+</span></p></a>
 			</div><div class="plot_r">
 			<ul>
-			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/1502169957444_郑海滨xiao.jpg"><p>姓名：郑海滨<br>班级：新媒体运营10期<br>就业：上海一元网络科技有限公司<br>月薪：10000</p></a></li>
-			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/1551082935696_tx.jpg"><p>姓名：薛昊宇<br>班级：软件测试1期<br>就业：上海一元网络科技有限公司<br>月薪：13000</p></a></li>
-			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/1547458869385_3.jpg"><p>姓名：马东超<br>班级：JavaEE193期<br>就业：上海一元网络科技有限公司<br>月薪：12000</p></a></li>
-			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/1546411197505_3.jpg"><p>姓名：韩国强<br>班级：UI/UE综合设计师20期<br>月薪：18000</p></a></li>
-			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/1493949571844_李桂龙.jpg"><p>姓名：李桂龙<br>班级：C/C++就业班<br>就业：上海一元网络科技有限公司<br>月薪：15000</p></a></li>
-			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="images/1543478088310_tp.jpg"><p>姓名：范同学<br>班级：PHP14期<br>就业：上海一元网络科技有限公司<br>月薪：12000</p></a></li>
+			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/1502169957444_郑海滨xiao.jpg"><p>姓名：郑海滨<br>班级：新媒体运营10期<br>就业：上海一元网络科技有限公司<br>月薪：10000</p></a></li>
+			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/1551082935696_tx.jpg"><p>姓名：薛昊宇<br>班级：软件测试1期<br>就业：上海一元网络科技有限公司<br>月薪：13000</p></a></li>
+			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/1547458869385_3.jpg"><p>姓名：马东超<br>班级：JavaEE193期<br>就业：上海一元网络科技有限公司<br>月薪：12000</p></a></li>
+			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/1546411197505_3.jpg"><p>姓名：韩国强<br>班级：UI/UE综合设计师20期<br>月薪：18000</p></a></li>
+			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/1493949571844_李桂龙.jpg"><p>姓名：李桂龙<br>班级：C/C++就业班<br>就业：上海一元网络科技有限公司<br>月薪：15000</p></a></li>
+			<li><a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><img src="${ctx}/static/images/1543478088310_tp.jpg"><p>姓名：范同学<br>班级：PHP14期<br>就业：上海一元网络科技有限公司<br>月薪：12000</p></a></li>
 			</ul>
 			</div>				
 		</div>
@@ -1666,7 +1663,7 @@ var _hmt = _hmt || [];
 			<li class="title-r fr"></li>
 		</ul>
 		<div class="part_six_hfyy_img">
-			<img src="images/six_part.jpg" alt="待切换">
+			<img src="${ctx}/static/images/six_part.jpg" alt="待切换">
 		</div>
 	</div>
 </div>
@@ -1838,8 +1835,8 @@ var _hmt = _hmt || [];
 					<div class="sch-banner carousel-inner">
 
 						<div class="carousel-item">
-							<p><a href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="园区停车场"><span class="sch-tit">园区停车场</span></a></p>
-							<p><a  href="javascript:void(0);" rel="nofollow" ><img src="images/b.jpg" alt="园区班车等候区"><span class="sch-tit">园区班车等候区</span></a></p>
+							<p><a href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="园区停车场"><span class="sch-tit">园区停车场</span></a></p>
+							<p><a  href="javascript:void(0);" rel="nofollow" ><img src="${ctx}/static/images/b.jpg" alt="园区班车等候区"><span class="sch-tit">园区班车等候区</span></a></p>
 							<ul>
 								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="信心百倍备战面试"><span class="sch-tit">信心百倍备战面试</span></a></li>
 								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="课下积累讨论"><span class="sch-tit">课下积累讨论</span></a></li>
@@ -1882,8 +1879,8 @@ var _hmt = _hmt || [];
 						<ul>
 							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="公寓楼下咖啡馆"><span class="sch-tit">公寓楼下咖啡馆</span></a></li>
 							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="#" alt="寝室走廊2"><span class="sch-tit">寝室走廊2</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学生公寓洗衣房"><span class="sch-tit">学生公寓洗衣房</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="寝室走廊"><span class="sch-tit">寝室走廊</span></a></li></ul>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学生公寓洗衣房"><span class="sch-tit">学生公寓洗衣房</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="寝室走廊"><span class="sch-tit">寝室走廊</span></a></li></ul>
 					</div>
 
 					</div>
@@ -1893,13 +1890,13 @@ var _hmt = _hmt || [];
 					<div class="sch-banner carousel-inner">
 
 						<div class="carousel-item">
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="园区食堂装饰温馨"><span class="sch-tit">园区食堂装饰温馨</span></a></p>
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="餐厅桌椅摆放整齐"><span class="sch-tit">餐厅桌椅摆放整齐</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="园区食堂装饰温馨"><span class="sch-tit">园区食堂装饰温馨</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="餐厅桌椅摆放整齐"><span class="sch-tit">餐厅桌椅摆放整齐</span></a></p>
 							<ul>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="餐厅桌椅干净整洁"><span class="sch-tit">餐厅桌椅干净整洁</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="园区新食堂"><span class="sch-tit">园区新食堂</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="各种菜系应有尽有"><span class="sch-tit">各种菜系应有尽有</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="食堂饭菜美味可口"><span class="sch-tit">食堂饭菜美味可口</span></a></li></ul>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="餐厅桌椅干净整洁"><span class="sch-tit">餐厅桌椅干净整洁</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="园区新食堂"><span class="sch-tit">园区新食堂</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="各种菜系应有尽有"><span class="sch-tit">各种菜系应有尽有</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="食堂饭菜美味可口"><span class="sch-tit">食堂饭菜美味可口</span></a></li></ul>
 						</div>
 					</div>
 				</div>
@@ -1908,68 +1905,68 @@ var _hmt = _hmt || [];
 					<div class="sch-banner carousel-inner">
 
 						<div class="carousel-item">
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="手机维修清理上门服务"><span class="sch-tit">手机维修清理上门服务</span></a></p>
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="片刻放松嬉笑打闹"><span class="sch-tit">片刻放松嬉笑打闹</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="手机维修清理上门服务"><span class="sch-tit">手机维修清理上门服务</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="片刻放松嬉笑打闹"><span class="sch-tit">片刻放松嬉笑打闹</span></a></p>
 							<ul>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员赴南海子公园郊游"><span class="sch-tit">学员赴南海子公园郊游</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员赴南海子公园郊游"><span class="sch-tit">学员赴南海子公园郊游</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
 							</ul>
 						</div><div class="carousel-item">
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员参加《非你莫属》录制"><span class="sch-tit">学员参加《非你莫属》录制</span></a></p>
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="录制《非你莫属》"><span class="sch-tit">录制《非你莫属》</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员参加《非你莫属》录制"><span class="sch-tit">学员参加《非你莫属》录制</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="录制《非你莫属》"><span class="sch-tit">录制《非你莫属》</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="端午节笑吃蜜粽"><span class="sch-tit">端午节笑吃蜜粽</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="圣诞节收获满满"><span class="sch-tit">圣诞节收获满满</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="开开心心过圣诞"><span class="sch-tit">开开心心过圣诞</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="端午节笑吃蜜粽"><span class="sch-tit">端午节笑吃蜜粽</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="圣诞节收获满满"><span class="sch-tit">圣诞节收获满满</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="开开心心过圣诞"><span class="sch-tit">开开心心过圣诞</span></a></li>
 						</ul>
 					</div><div class="carousel-item">
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="平安夜创意Java图案"><span class="sch-tit">平安夜创意Java图案</span></a></p>
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="户外游戏考验默契"><span class="sch-tit">户外游戏考验默契</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="平安夜创意Java图案"><span class="sch-tit">平安夜创意Java图案</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="户外游戏考验默契"><span class="sch-tit">户外游戏考验默契</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="齐心协力的partner"><span class="sch-tit">齐心协力的partner</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="户外游戏亲自自然"><span class="sch-tit">户外游戏亲自自然</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="户外游戏考验默契"><span class="sch-tit">户外游戏考验默契</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员收获“平安果”"><span class="sch-tit">学员收获“平安果”</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="齐心协力的partner"><span class="sch-tit">齐心协力的partner</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="户外游戏亲自自然"><span class="sch-tit">户外游戏亲自自然</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="户外游戏考验默契"><span class="sch-tit">户外游戏考验默契</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员收获“平安果”"><span class="sch-tit">学员收获“平安果”</span></a></li>
 						</ul>
 					</div><div class="carousel-item">
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></p>
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="圣诞老人亲自发放平安果"><span class="sch-tit">圣诞老人亲自发放平安果</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员参与录制《非你莫属》"><span class="sch-tit">学员参与录制《非你莫属》</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="圣诞老人亲自发放平安果"><span class="sch-tit">圣诞老人亲自发放平安果</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="“捕捉”一只圣诞老人"><span class="sch-tit">“捕捉”一只圣诞老人</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="全员圣诞狂欢"><span class="sch-tit">全员圣诞狂欢</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="解压小游戏"><span class="sch-tit">解压小游戏</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="对口相声尽显魅力"><span class="sch-tit">对口相声尽显魅力</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="“捕捉”一只圣诞老人"><span class="sch-tit">“捕捉”一只圣诞老人</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="全员圣诞狂欢"><span class="sch-tit">全员圣诞狂欢</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="解压小游戏"><span class="sch-tit">解压小游戏</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="对口相声尽显魅力"><span class="sch-tit">对口相声尽显魅力</span></a></li>
 						</ul>
 					</div><div class="carousel-item">
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="游戏放松身心"><span class="sch-tit">游戏放松身心</span></a></p>
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="学员深情献唱"><span class="sch-tit">学员深情献唱</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="游戏放松身心"><span class="sch-tit">游戏放松身心</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="学员深情献唱"><span class="sch-tit">学员深情献唱</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="端午节蜜粽发放"><span class="sch-tit">端午节蜜粽发放</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="南海子公园半日游"><span class="sch-tit">南海子公园半日游</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="圣诞晚会主持CP档"><span class="sch-tit">圣诞晚会主持CP档</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="中秋节收到团圆月饼"><span class="sch-tit">中秋节收到团圆月饼</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="端午节蜜粽发放"><span class="sch-tit">端午节蜜粽发放</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="南海子公园半日游"><span class="sch-tit">南海子公园半日游</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="圣诞晚会主持CP档"><span class="sch-tit">圣诞晚会主持CP档</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="中秋节收到团圆月饼"><span class="sch-tit">中秋节收到团圆月饼</span></a></li>
 						</ul>
 					</div><div class="carousel-item">
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="玩嗨了的拔河比赛"><span class="sch-tit">玩嗨了的拔河比赛</span></a></p>
-						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="师生同心拔河比赛"><span class="sch-tit">师生同心拔河比赛</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="玩嗨了的拔河比赛"><span class="sch-tit">玩嗨了的拔河比赛</span></a></p>
+						<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="师生同心拔河比赛"><span class="sch-tit">师生同心拔河比赛</span></a></p>
 						<ul>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="拔河比赛精彩瞬间"><span class="sch-tit">拔河比赛精彩瞬间</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="拔河比赛为班级而战"><span class="sch-tit">拔河比赛为班级而战</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="中秋节团团圆圆"><span class="sch-tit">中秋节团团圆圆</span></a></li>
-							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="平安夜收“平安果”"><span class="sch-tit">平安夜收“平安果”</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="拔河比赛精彩瞬间"><span class="sch-tit">拔河比赛精彩瞬间</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="拔河比赛为班级而战"><span class="sch-tit">拔河比赛为班级而战</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="中秋节团团圆圆"><span class="sch-tit">中秋节团团圆圆</span></a></li>
+							<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="平安夜收“平安果”"><span class="sch-tit">平安夜收“平安果”</span></a></li>
 						</ul>
 					</div>
 						<div class="carousel-item">
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="圣诞节狂欢晚会"><span class="sch-tit">圣诞节狂欢晚会</span></a></p>
-							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="一起装饰圣诞节"><span class="sch-tit">一起装饰圣诞节</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="圣诞节狂欢晚会"><span class="sch-tit">圣诞节狂欢晚会</span></a></p>
+							<p><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="一起装饰圣诞节"><span class="sch-tit">一起装饰圣诞节</span></a></p>
 							<ul>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="休息日集体郊游散心"><span class="sch-tit">休息日集体郊游散心</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="圣诞节暖心礼物"><span class="sch-tit">圣诞节暖心礼物</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="圣诞节温馨装饰"><span class="sch-tit">圣诞节温馨装饰</span></a></li>
-								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="images/a.jpg" alt="中秋节共享团圆"><span class="sch-tit">中秋节共享团圆</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="休息日集体郊游散心"><span class="sch-tit">休息日集体郊游散心</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="圣诞节暖心礼物"><span class="sch-tit">圣诞节暖心礼物</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="圣诞节温馨装饰"><span class="sch-tit">圣诞节温馨装饰</span></a></li>
+								<li><a  href="javascript:void(0);"  rel="nofollow" ><img src="${ctx}/static/images/a.jpg" alt="中秋节共享团圆"><span class="sch-tit">中秋节共享团圆</span></a></li>
 							</ul>
 						</div>
 					</div>
@@ -1989,7 +1986,7 @@ var _hmt = _hmt || [];
 			<li>
 				<p>
 					<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn"
-					   target="_blank"><img src="images/st.png"
+					   target="_blank"><img src="${ctx}/static/images/st.png"
 											alt="" style="padding-left:25px;"></a></p>
 				<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn"><span>预约试听</span></a>
 			</li>
@@ -1998,7 +1995,7 @@ var _hmt = _hmt || [];
 			<li>
 				<p>
 					<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn"
-					   target="_blank"><img src="images/yh.png"
+					   target="_blank"><img src="${ctx}/static/images/yh.png"
 											alt="" style="padding-left:25px;"></a></p>
 				<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn"
 				   target="_blank"><span>学费优惠</span></a>
@@ -2006,7 +2003,7 @@ var _hmt = _hmt || [];
 			<li>
 				<p>
 					<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn"
-					   target="_blank"><img src="images/dk.png"
+					   target="_blank"><img src="${ctx}/static/images/dk.png"
 											alt="" style="padding-left:25px;"></a></p>
 				<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn" target="_blank"><span>0元入学</span></a>
 			</li>
@@ -2014,7 +2011,7 @@ var _hmt = _hmt || [];
 			<li>
 				<p>
 					<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn"
-					   target="_blank"><img src="images/zx.png"
+					   target="_blank"><img src="${ctx}/static/images/zx.png"
 											alt="" style="padding-left:25px;"></a></p>
 				<a href="http://pdt.zoosnet.net/LR/Chatpre.aspx?id=PDT87252886&lng=cn"
 				   target="_blank"><span>在线咨询</span></a>
@@ -2026,7 +2023,7 @@ var _hmt = _hmt || [];
 <div class="foot">
 	<div class="foot_all">
 		<div class="foot_l">
-			<div class="foot_logo"><img src="images/20190515142127.png"></div>
+			<div class="foot_logo"><img src="${ctx}/static/images/20190515142127.png"></div>
 			<div class="foot_nav">
 				<dl style="margin-left: 60px">
 					<dt>关于我们</dt>
@@ -2059,7 +2056,7 @@ var _hmt = _hmt || [];
 				<a class="locate" href="/contact/">
 				</a></div>
 			<div class="foot_tel">
-				<div><img alt="全国热线" src="images/foot_tel.png">
+				<div><img alt="全国热线" src="${ctx}/static/images/foot_tel.png">
 					<h3>0551-69117050</h3>
 				</div>
 				<p>全国监督服务热线：9:00-23:00</p>
@@ -2110,7 +2107,7 @@ var _hmt = _hmt || [];
 </div>
 <!--=============================九、十模块结束=============================-->
 
-<script src="${ctx}/static/js/jquery.min.js"></script>
+<script src="${ctx}/static/js/jquery-1.10.2.min.js"></script>
 
 <script src="${ctx}/static/js/jquery.SuperSlide.2.1.1.js"></script>
 <script type="text/javascript">
