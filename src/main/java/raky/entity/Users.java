@@ -4,7 +4,6 @@ import core.entity.CoreEntity;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
 public class Users extends CoreEntity {
@@ -44,6 +43,5 @@ public class Users extends CoreEntity {
 
     private Integer priority;
 
-    List<Types> typesList;
 
 }

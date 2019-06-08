@@ -47,7 +47,6 @@
     </div>
     <xblock>
       <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-      <button class="layui-btn" id="add" onclick="add()"><i class="layui-icon"></i>添加</button>
       <span class="x-right" style="line-height:40px">共有数据：${pager.totalCount} 条</span>
     </xblock>
     <table class="layui-table">
@@ -70,7 +69,7 @@
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
         <td>${parentType.id}</td>
-        <td>${parentType.createTime}</td>
+        <td><fmt:formatDate value="${parentType.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <td>
           <c:if test="${not empty parentType.children}">
             <i class="layui-icon x-show" status='true'>&#xe623;</i>
@@ -90,6 +89,7 @@
         </c:if>
           <td class="td-manage">
             <a onclick="member_stop(this,${parentType.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${parentType.locked}">启用</a>
+            <button class="layui-btn" id="add" onclick="addParent();"><i class="layui-icon"></i>添加</button>
             <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/types/detailed?id=${parentType.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
             <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${parentType.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
             <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${parentType.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
@@ -101,7 +101,7 @@
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
         <td>${firstType.id}</td>
-        <td>${firstType.createTime}</td>
+        <td><fmt:formatDate value="${firstType.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <td>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <c:if test="${not empty firstType.children}">
@@ -122,6 +122,7 @@
         </c:if>
         <td class="td-manage">
           <a onclick="member_stop(this,${firstType.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${firstType.locked}">启用</a>
+          <button class="layui-btn" onclick="addChildren(${firstType.id});"><i class="layui-icon"></i>添加</button>
           <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/types/detailed?id=${firstType.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
           <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${firstType.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
           <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${firstType.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
@@ -132,28 +133,24 @@
       </tbody>
     </table>
     <div class="page">
-    <div>
+      <div>
+        <a class="prev" href="${ctx}/types/pageList?requestPage=${pager.firstPage}">首页</a>
         <a class="prev" href="${ctx}/types/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="num" href="">${pager.firstPage}</a>
-        <a class="num" href="">${pager.pageCount}</a>
         <a class="next" href="${ctx}/types/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-    </div>
+        <a class="prev" href="${ctx}/types/pageList?requestPage=${pager.lastPage}">尾页</a>
+      </div>
     </div>
 
   </div>
   <script>
-    layui.use('laydate', function(){
-      var laydate = layui.laydate;
-      laydate.render({
-          elem: '#start'
-      });
-      laydate.render({
-          elem: '#end'
-      });
-    });
-
     function edit(id){
         location.href="/types/input?id="+id;
+    }
+    function addParent() {
+        location.href="${ctx}/admin/types/add.jsp";
+    }
+    function addChildren(id) {
+        location.href="/types/add?id="+id;
     }
 
       function member_stop(obj,id){
@@ -203,6 +200,7 @@
               function callback() {
                   $(obj).parents("tr").remove();
                   layer.msg('已删除!',{icon:1,time:1000});
+                  window.location.reload();
               }
 
           });

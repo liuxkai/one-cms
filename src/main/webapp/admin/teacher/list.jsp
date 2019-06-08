@@ -40,10 +40,9 @@
   <div class="x-body">
     <div class="layui-row">
       <form class="layui-form layui-col-md12 x-so" action="/student/pageList" method="get">
-        <input type="text" name="userName" value="${teacher.name}"  placeholder="请输入姓名"  class="layui-input">
-        <input type="text" name="userName" value="${teacher.contactWay}"  placeholder="请输入联系方式"  class="layui-input">
-        <input type="text" name="userName" value="${teacher.positions}"  placeholder="请输入职位"  class="layui-input">
-        <input type="text" name="userName" value="${teacher.memo}"  placeholder="请输入简历"  class="layui-input">
+        <input type="text" name="name" value="${teacher.name}"  placeholder="请输入姓名"  class="layui-input">
+        <input type="text" name="contactWay" value="${teacher.contactWay}"  placeholder="请输入联系方式"  class="layui-input">
+        <input type="text" name="positions" value="${teacher.positions}"  placeholder="请输入职位"  class="layui-input">
         <button class="layui-btn" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
       </form>
     </div>
@@ -76,6 +75,7 @@
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
         <td>${teacherStatus.count}</td>
+        <td>${teacher.name}</td>
         <td><fmt:formatDate value="${teacher.birthDate}" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
         <td>${teacher.contactWay}</td>
         <td>${teacher.email}</td>
@@ -105,12 +105,12 @@
       </tbody>
     </table>
     <div class="page">
-    <div>
+      <div>
+        <a class="prev" href="${ctx}/teacher/pageList?requestPage=${pager.firstPage}">首页</a>
         <a class="prev" href="${ctx}/teacher/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="num" href="">${pager.firstPage}</a>
-        <a class="num" href="">${pager.pageCount}</a>
         <a class="next" href="${ctx}/teacher/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-    </div>
+        <a class="prev" href="${ctx}/teacher/pageList?requestPage=${pager.lastPage}">尾页</a>
+      </div>
     </div>
 
   </div>
@@ -130,7 +130,7 @@
     }
 
     function add(){
-        location.href="${ctx}/admin/teacher/edit.jsp";
+        location.href="/teacher/input";
     }
 
       function member_stop(obj,id){

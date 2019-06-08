@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -18,6 +19,7 @@
     <script src="${ctx}/static/js/jquery.min.js"></script>
     <script src="${ctx}/static/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/static/js/xadmin.js"></script>
+    <script type="text/javascript" src="${ctx}/static/My97DatePicker/WdatePicker.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -39,6 +41,20 @@
           <span class="x-red">*</span>
         </div>
       </div>
+
+      <div class="layui-form-item">
+        <label  class="layui-form-label">
+          <span class="x-red">*</span>出生日期
+        </label>
+        <div class="layui-input-inline">
+          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${student.birthDate}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="birthDate" required lay-verify="name"
+                  class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>班级

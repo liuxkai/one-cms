@@ -20,8 +20,8 @@
   </sql>
 
   <select id="getList" resultMap="getListResultMap" parameterType="Types">
-    select * from TYPES where PARENT_CODE =#{id}
-  </select>
+    select * from TYPES where PARENT_CODE =#{parentCode}
+</select>
 
   <select id="getChildrenType" resultType="Types" parameterType="Types">
     select * from TYPES where PARENT_CODE=#{typeCode}

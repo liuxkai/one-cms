@@ -48,7 +48,7 @@
     </div>
     <xblock>
       <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-      <button class="layui-btn" id="add" onclick="location.href='${ctx}/admin/users/edit.jsp'"><i class="layui-icon"></i>添加</button>
+      <button class="layui-btn" id="add" onclick="location.href='/users/input'"><i class="layui-icon"></i>添加</button>
       <span class="x-right" style="line-height:40px">共有数据：${pager.totalCount} 条</span>
     </xblock>
     <table class="layui-table">
@@ -102,10 +102,10 @@
     </table>
     <div class="page">
       <div>
+        <a class="prev" href="${ctx}/users/pageList?requestPage=${pager.firstPage}">首页</a>
         <a class="prev" href="${ctx}/users/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="num" href="">${pager.firstPage}</a>
-        <a class="num" href="">${pager.pageCount}</a>
         <a class="next" href="${ctx}/users/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
+        <a class="prev" href="${ctx}/users/pageList?requestPage=${pager.lastPage}">尾页</a>
       </div>
     </div>
 
@@ -114,20 +114,6 @@
       function edit(id){
           location.href="/users/input?id="+id;
       }
-
-      layui.use('laydate', function(){
-          var laydate = layui.laydate;
-
-          //执行一个laydate实例
-          laydate.render({
-              elem: '#start' //指定元素
-          });
-
-          //执行一个laydate实例
-          laydate.render({
-              elem: '#end' //指定元素
-          });
-      });
 
       /*用户-停用*/
       function member_stop(obj,id){

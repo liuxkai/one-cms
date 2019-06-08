@@ -1,5 +1,6 @@
 package raky.web.admin.types;
 
+import core.controller.CoreController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/types")
-public class TypesController {
+public class TypesController extends CoreController {
     private static final Logger logger = LoggerFactory.getLogger(TypesController.class);
 
     @Autowired
@@ -28,6 +29,13 @@ public class TypesController {
         if(types.getId()!=null){
             typesService.update(types);
             return "redirect:/types/pageList";
+        }
+        if(types.getParentCode()==0){
+            types.setTypeCode((getTypesListByParentCode(types.getParentCode()).size()+1)*10);
+        }else {
+            logger.info("parentCode=="+types.getParentCode());
+            logger.info("parent=="+types.toString());
+            types.setTypeCode(types.getParentCode().intValue()*10+(typesService.getCount(types)+1));
         }
         typesService.insert(types);
         return "redirect:/types/pageList";
@@ -41,13 +49,24 @@ public class TypesController {
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
-    public String getOne(ModelMap model, Types types){
-        logger.info(typesService.getOne(types.getId()).toString());
-        model.addAttribute("type",typesService.getOne(types.getId()));
-        types.setId(0l);
-        model.addAttribute("parentType",typesService.getList(types));
+    public String getOne(ModelMap model, Long id){
+        Types type = typesService.getOne(id);
+        model.addAttribute("type",type);
+        if(type.getParentCode()!=0){
+            List<Types> typesList = typesService.getList(type);
+            model.addAttribute("parentTypeList",getTypesListByParentCode(type.getParentCode()));
+            model.addAttribute("typesList",typesList);
+            return "/types/edit";
+        }
         return "/types/edit";
     }
+    @RequestMapping(value = "/add",method = RequestMethod.GET)
+    public String getType(ModelMap model, Long id){
+        Types type = typesService.getOne(id);
+        model.addAttribute("parentTypeList",getTypesListByParentCode(0l));
+        return "/types/add";
+    }
+
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
         model.addAttribute("type",typesService.getOne(id));
@@ -65,9 +84,10 @@ public class TypesController {
         if (requestPage == null) {
             requestPage = 1;
         }
-        pager.init(requestPage, 2, typesService.getCount(types));
+        pager.init(requestPage, 7, getTypesListByParentCode(0l).size());
         types.setOffset(pager.getOffset());
         types.setLimit(pager.getLimit());
+        types.setParentCode(0l);
         List<Types> typesPageList = typesService.getPageList(types);
         pager.setList(typesPageList);
         model.addAttribute("pager", pager);
@@ -75,4 +95,12 @@ public class TypesController {
         return "/types/list";
 
     }
+    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    public String getTypes(Long parentCode,ModelMap model){
+        List<Types> types = getTypesListByParentCode(20l);
+        logger.info(types.toString());
+        model.addAttribute("types", types);
+        return "/index";
+    }
+
 }

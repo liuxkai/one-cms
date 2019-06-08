@@ -1,5 +1,6 @@
 package raky.web.admin.teacher;
 
+import core.controller.CoreController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import raky.entity.Teacher;
+import raky.entity.Types;
 import raky.service.TeacherService;
 import raky.util.Pager;
 
@@ -16,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
-public class TeacherController {
+public class TeacherController extends CoreController {
     private static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
 
     @Autowired
@@ -42,11 +44,18 @@ public class TeacherController {
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model){
-        model.addAttribute("teacher",teacherService.getOne(id));
+        List<Types> typesList =getTypesListByParentCode(60l);
+        model.addAttribute("typesList",typesList);
+        if(id!=null){
+            model.addAttribute("teacher",teacherService.getOne(id));
+            return "/teacher/edit";
+        }
         return "/teacher/edit";
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
+        List<Types> typesList =getTypesListByParentCode(60l);
+        model.addAttribute("typesList",typesList);
         model.addAttribute("teacher",teacherService.getOne(id));
         return "/teacher/show";
     }

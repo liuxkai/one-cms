@@ -38,6 +38,30 @@
         </div>
       </div>
       <div class="layui-form-item">
+        <div class="layui-inline">
+          <label class="layui-form-label">课程类型</label>
+          <div class="layui-input-inline">
+            <select id="courseType" name="courseType">
+              <option value="">请选择</option>
+              <c:forEach items="${typesList}" var="type">
+                <option value="${type.typeCode}">${type.typeName}</option>
+              </c:forEach>
+            </select>
+          </div>
+        </div>
+      </div>
+      <c:if test="${not empty course}">
+        <div class="layui-form-item">
+          <label  class="layui-form-label">
+            <span class="x-red">*</span>是否删除
+          </label>
+          <div class="layui-col-md2">
+            <input type="radio" name="deleted" value="0" title="已删除" <c:if test="${course.deleted eq 0}">checked</c:if> >
+            <input type="radio" name="deleted" value="1" title="未删除" <c:if test="${course.deleted eq 1}">checked</c:if>>
+          </div>
+        </div>
+      </c:if>
+      <div class="layui-form-item">
         <label for="L_username" class="layui-form-label">
           <span class="x-red">*</span>课程简介
         </label>
@@ -46,34 +70,10 @@
                  autocomplete="off" class="layui-input">
         </div>
       </div>
-      <c:if test="${not empty course}">
-      <div class="layui-form-item">
-        <label  class="layui-form-label">
-          <span class="x-red">*</span>状态
-        </label>
-        <div class="layui-col-md2">
-          <input type="radio" name="deleted" value="0" title="已删除" <c:if test="${course.deleted eq 0}">checked</c:if> >
-          <input type="radio" name="deleted" value="1" title="未删除" <c:if test="${course.deleted eq 1}">checked</c:if>>
-        </div>
-      </div>
-      </c:if>
-      <div class="layui-form-item">
-        <div class="layui-inline">
-          <label class="layui-form-label">课程类型</label>
-          <div class="layui-input-inline">
-            <select id="courseType" name="courseType">
-              <option value="">请选择</option>
-              <c:forEach items="${course.typesList}" var="type">
-                <option value="${type.typeCode}">${type.typeName}</option>
-              </c:forEach>
-            </select>
-          </div>
-        </div>
-      </div>
       <div class="layui-form-item">
         <label class="layui-form-label">
         </label>
-        <button  class="layui-btn" id="add" lay-filter="add" lay-submit="">
+        <button  class="layui-btn" id="add" lay-filter="add" >
           增加
         </button>
       </div>
@@ -84,18 +84,7 @@
     $(function () {
         $("#courseType option[value=${course.courseType}]").prop("selected",true);
     });
-      layui.use(['form','layer'], function(){
-          $ = layui.jquery;
-          var form = layui.form
-              ,layer = layui.layer;
 
-
-          $("#add").click(function () {
-              $("form").submit();
-
-          });
-
-      });
   </script>
   </body>
 </html>

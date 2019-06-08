@@ -42,8 +42,7 @@
           <span class="x-red">*</span>课程简介
         </label>
         <div class="layui-input-inline">
-          <input type="text" id="L_realname" value="${course.courseMemo}" name="courseMemo" required lay-verify="realName"
-                 autocomplete="off" class="layui-input">
+          <input type="text" id="L_realname" value="${course.courseMemo}" name="courseMemo"  class="layui-input">
         </div>
       </div>
       <c:if test="${not empty course}">
@@ -61,12 +60,11 @@
         <div class="layui-inline">
           <label class="layui-form-label">课程类型</label>
           <div class="layui-input-inline">
-            <select id="courseType" name="userType">
-              <option value="">请选择</option>
-              <c:forEach items="${course.typesList}" var="type">
-                <option value="${type.typeCode}">${type.typeName}</option>
-              </c:forEach>
-            </select>
+            <c:forEach items="${typesList}" var="type">
+              <c:if test="${type.typeCode eq course.courseType}">
+                <input type="text" id="" value="${type.typeName} " name="courseName"  class="layui-input">
+              </c:if>
+            </c:forEach>
           </div>
         </div>
       </div>
@@ -74,10 +72,6 @@
     </form>
   </div>
   <script>
-    $(function () {
-        $("#courseType option[value=${course.courseType}]").prop("selected",true);
-    });
-
   </script>
   </body>
 </html>

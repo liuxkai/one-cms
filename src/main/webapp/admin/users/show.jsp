@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -43,6 +44,7 @@
           <input type="text" value="${user.realName}" name="realName"  class="layui-input">
         </div>
       </div>
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>密码
@@ -98,7 +100,7 @@
           <span class="x-red">*</span>最后登录时间
         </label>
         <div class="layui-input-inline">
-          <input type="text" value="${user.lastLoginTime}" name=""  class="layui-input">
+          <input type="text" value="<fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name=""  class="layui-input">
         </div>
       </div>
 
@@ -107,7 +109,7 @@
           <span class="x-red">*</span>添加时间
         </label>
         <div class="layui-input-inline">
-          <input type="text"  value="${user.createTime}" name=""  class="layui-input">
+          <input type="text"  value="<fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name=""  class="layui-input">
         </div>
 
       </div>
@@ -123,13 +125,7 @@
         <div class="layui-inline">
           <label class="layui-form-label">职位</label>
           <div class="layui-input-inline">
-            <select id="positions" name="positions">
-              <option value="">请选择</option>
-              <option value="经理">经理</option>
-              <option value="主管">主管</option>
-              <option value="码农">码农</option>
-              <option value="端水">端水</option>
-            </select>
+              <input type="text"  value="${user.positions}" name="positions" class="layui-input"/>
           </div>
         </div>
       </div>
@@ -138,10 +134,10 @@
         <div class="layui-inline">
           <label class="layui-form-label">用户类型</label>
           <div class="layui-input-inline">
-            <select id="userType" name="userType">
-              <option value="">请选择</option>
-              <c:forEach items="${user.typesList}" var="type">
-                <option value="${type.typeCode}">${type.typeName}</option>
+              <c:forEach items="${typesList1}" var="type">
+                <c:if test="${type.typeCode eq user.userType}">
+                  <input type="text"  value="${type.typeName}" name="courseType" class="layui-input"/>
+                </c:if>
               </c:forEach>
             </select>
           </div>
@@ -172,17 +168,7 @@
     </form>
   </div>
   <script>
-    $(function () {
-        $("#positions option[value=${user.positions}]").prop('selected',true);
-        $("#userType option[value=${course.courseType}]").prop("selected",true);
-    });
-      layui.use(['form','layer'], function(){
-          $ = layui.jquery;
-          var form = layui.form
-              ,layer = layui.layer;
 
-
-      });
   </script>
   </body>
 </html>

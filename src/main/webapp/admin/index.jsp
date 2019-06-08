@@ -131,19 +131,20 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:;">
+                <a href="javascript:void(0);">
                     <i class="iconfont">&#xe6ae;</i>
                     <cite>新闻管理</cite>
                     <i class="iconfont nav_right">&#xe6a7;</i>
                 </a>
                 <ul class="sub-menu">
+                    <c:forEach items="${types}" var="type">
                     <li>
-                        <a _href="${ctx}/news/pageList">
+                        <a _href="${ctx}/news/pageList?newsType=${type.typeName}">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>新闻编辑</cite>
+                            <cite>${type.typeName}</cite>
                         </a>
                     </li >
-
+                    </c:forEach>
                 </ul>
             </li>
         </ul>

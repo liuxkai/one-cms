@@ -20,6 +20,7 @@
     <result column="INFO_STATE" property="infoState" jdbcType="INTEGER" />
     <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
     <result column="DELETED" property="deleted" jdbcType="INTEGER" />
+    <collection property="typesList" ofType="Types" column="NEWS_TYPE" select="getByNewsType" />
   </resultMap>
   <resultMap id="getListResultMap" type="News" extends="BaseResultMap" >
     <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
@@ -37,11 +38,15 @@
   <select id="getList" resultMap="getListResultMap" parameterType="News" >
     select * from NEWS <include refid="condition" />
   </select>
+
+  <select id="getByNewsType" resultType="Types" parameterType="News">
+      select * from TYPES WHERE PARENT_CODE =(select DISTINCT PARENT_CODE from TYPES where TYPE_NAME = #{newsType })
+  </select>
   <select id="getPageList" resultMap="getListResultMap"  parameterType="News">
     select * from NEWS <include refid="condition" />
     limit #{offset}, #{limit}
   </select>
-  <select id="getOne" parameterType="java.lang.Long" resultType="News">
+  <select id="getOne" parameterType="java.lang.Long" resultMap="getListResultMap">
         select * from NEWS where ID =#{id}
     </select>
   <select id="getCount" parameterType="News" resultType="java.lang.Integer"  >
@@ -51,12 +56,9 @@
     delete from NEWS
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="News" >
+  <insert id="insert" parameterType="News" useGeneratedKeys="true" keyProperty="id">
     insert into NEWS
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
       <if test="uuid != null" >
         UUID,
       </if>
@@ -113,9 +115,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="uuid != null" >
         #{uuid,jdbcType=VARCHAR},
       </if>

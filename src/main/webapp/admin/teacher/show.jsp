@@ -59,12 +59,12 @@
             <span class="x-red">*</span>简介
           </label>
             <div class="layui-col-md10">
-              <textarea name="${teacher.memo}" placeholder="" class="layui-textarea"></textarea>
+              <textarea value="${teacher.memo}" class="layui-textarea"></textarea>
             </div>
         </div>
       </div>
 
-        <div class="layui-form-item">
+      <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>出生日期
         </label>
@@ -97,8 +97,8 @@
         <label  class="layui-form-label">
           <span class="x-red">*</span>联系地址
         </label>
-          <div class="layui-input-block">
-            <input type="text" value="${teacher.address}" name="address"  autocomplete="off" class="layui-input">
+          <div class="layui-col-md10">
+            <textarea value="${teacher.address}" class="layui-textarea"></textarea>
           </div>
       </div>
 
@@ -114,15 +114,11 @@
         <div class="layui-inline">
           <label class="layui-form-label">职位</label>
           <div class="layui-input-inline">
-            <select id="positions" name="positions">
-              <option value="">请选择</option>
-              <option value="初中">初中</option>
-              <option value="高中">高中</option>
-              <option value="大专">大专</option>
-              <option value="本科">本科</option>
-              <option value="研究生">研究生</option>
-              <option value="硕士">硕士</option>
-            </select>
+              <c:forEach items="${typesList}" var="type">
+                <c:if test="${type.typeName eq teacher.positions}">
+                  <input type="text" value="${type.typeName}" name="positions"  class="layui-input">
+                </c:if>
+              </c:forEach>
           </div>
         </div>
       </div>
@@ -154,13 +150,6 @@
     $(function () {
         $("#positions option[value=${teacher.positions}]").prop("selected",true);
     });
-      layui.use(['form','layer'], function(){
-          $ = layui.jquery;
-          var form = layui.form
-              ,layer = layui.layer;
-
-
-      });
   </script>
   </body>
 </html>

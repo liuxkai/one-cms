@@ -21,7 +21,6 @@
         <result column="LOCKED" property="locked" jdbcType="INTEGER" />
         <result column="DELETED" property="deleted" jdbcType="INTEGER" />
         <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
-        <collection property="typesList" ofType="Types" column="USER_TYPE" select="getByPid" />
     </resultMap>
     <sql id="condition" >
         <where>
@@ -34,12 +33,6 @@
     <select id="getList" resultMap="getListResultMap" parameterType="Users">
         select * from USERS  <include refid="condition" />
     </select>
-    <select id="getByPid" resultType="Types" parameterType="Users">
-      select * from TYPES WHERE PARENT_CODE =(select DISTINCT PARENT_CODE from TYPES where TYPE_CODE = #{userType})
-	</select>
-    <!--<select id="getList" resultMap="getListResultMap" parameterType="Users">-->
-        <!--select * from USERS <include refid="condition"/>-->
-    <!--</select>-->
     <select id="getPageList" resultMap="getListResultMap"  parameterType="Users">
         select * from USERS <include refid="condition" />
         limit #{offset}, #{limit}

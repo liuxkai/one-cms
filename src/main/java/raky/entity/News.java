@@ -4,6 +4,7 @@ import core.entity.CoreEntity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class News extends CoreEntity {
@@ -44,5 +45,7 @@ public class News extends CoreEntity {
     private Integer deleted;
 
     private String content;
+
+    List<Types> typesList;
 
 }

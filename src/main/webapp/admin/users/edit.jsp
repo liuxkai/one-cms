@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,7 @@
     <script src="${ctx}/static/js/jquery.min.js"></script>
     <script src="${ctx}/static/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/static/js/xadmin.js"></script>
+    <script type="text/javascript" src="${ctx}/static/My97DatePicker/WdatePicker.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -91,12 +93,60 @@
         </div>
       </div>
       <div class="layui-form-item">
+        <label  class="layui-form-label">
+          <span class="x-red">*</span>添加时间
+        </label>
+        <div class="layui-input-inline">
+          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="createTime" required lay-verify="name"
+                 class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label  class="layui-form-label">
+          <span class="x-red">*</span>最后登录时间
+        </label>
+        <div class="layui-input-inline">
+          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="lastLoginTime" required lay-verify="name"
+                 class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label  class="layui-form-label">
+          <span class="x-red">*</span>最后登录IP
+        </label>
+        <div class="layui-input-inline">
+          <input type="text"   value="${user.lastLoginIp}" name="lastLoginIp" required lay-verify="name"
+                 class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label  class="layui-form-label">
+          <span class="x-red">*</span>生日
+        </label>
+        <div class="layui-input-inline">
+          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="birthday" required lay-verify="name"
+                 class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
         <label class="layui-form-label">所属职称：</label>
         <div id="positions" class="layui-input-inline">
-          <input type="radio" name="positions" value="经理" title="经理" >
-          <input type="radio" name="positions" value="主管" title="主管" >
-          <input type="radio" name="positions" value="码农" title="码农">
-          <input type="radio" name="positions" value="端水" title="端水">
+          <c:forEach items="${typesList2}" var="type">
+            <input type="radio" name="positions" value="${type.typeName}" title="${type.typeName}" >
+          </c:forEach>
         </div>
       </div>
       <div class="layui-form-item">
@@ -115,7 +165,7 @@
           <div class="layui-input-inline">
             <select id="userType" name="userType">
               <option value="">请选择</option>
-              <c:forEach items="${user.typesList}" var="type">
+              <c:forEach items="${typesList1}" var="type">
                 <option value="${type.typeCode}">${type.typeName}</option>
               </c:forEach>
             </select>
@@ -133,7 +183,7 @@
   </div>
   <script>
     $(function () {
-        $("#usertype option[value=${user.userType}]").prop("selected",true);
+        $("#userType option[value=${user.userType}]").prop("selected",true);
         $("#positions input[value=${user.positions}]").prop('checked','checked');
         $("#locked option[value=${user.locked}]").prop("selected",true);
     });

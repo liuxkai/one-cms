@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Files;
 import raky.service.FilesService;
 
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.util.List;
 
 @RestController
@@ -17,6 +21,15 @@ import java.util.List;
 public class FilesController {
     private static final Logger logger = LoggerFactory.getLogger(FilesController.class);
 
+    @RequestMapping("/upload")
+    public void upload(@RequestParam("file")MultipartFile file) throws  Exception{
+        String filePath=file.getOriginalFilename();
+        BufferedOutputStream outputStream=new BufferedOutputStream(new FileOutputStream(filePath));
+        outputStream.write(file.getBytes());
+        outputStream.flush();
+        outputStream.close();
+
+    }
     @Autowired
     private FilesService filesService;
 
