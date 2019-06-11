@@ -27,7 +27,10 @@ public class TypesController extends CoreController {
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(Types types){
         if(types.getId()!=null){
+            Long typeCode=(getTypesListByParentCode(types.getParentCode()).size()+1)+types.getParentCode()*10;
+            types.setTypeCode(typeCode.intValue());
             typesService.update(types);
+
             return "redirect:/types/pageList";
         }
         if(types.getParentCode()==0){
@@ -53,16 +56,13 @@ public class TypesController extends CoreController {
         Types type = typesService.getOne(id);
         model.addAttribute("type",type);
         if(type.getParentCode()!=0){
-            List<Types> typesList = typesService.getList(type);
-            model.addAttribute("parentTypeList",getTypesListByParentCode(type.getParentCode()));
-            model.addAttribute("typesList",typesList);
+            model.addAttribute("parentTypeList",getTypesListByParentCode(0l));
             return "/types/edit";
         }
         return "/types/edit";
     }
     @RequestMapping(value = "/add",method = RequestMethod.GET)
-    public String getType(ModelMap model, Long id){
-        Types type = typesService.getOne(id);
+    public String getType(ModelMap model){
         model.addAttribute("parentTypeList",getTypesListByParentCode(0l));
         return "/types/add";
     }
@@ -84,7 +84,7 @@ public class TypesController extends CoreController {
         if (requestPage == null) {
             requestPage = 1;
         }
-        pager.init(requestPage, 7, getTypesListByParentCode(0l).size());
+        pager.init(requestPage, 2, getTypesListByParentCode(0l).size());
         types.setOffset(pager.getOffset());
         types.setLimit(pager.getLimit());
         types.setParentCode(0l);

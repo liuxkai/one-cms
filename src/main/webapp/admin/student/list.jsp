@@ -96,7 +96,7 @@
           <a onclick="member_stop(this,${student.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${student.locked}">启用</a>
           <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/student/detailed?id=${student.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
           <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${student.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
-          <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this)" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
+          <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${student.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
         </td>
 
         </td>
@@ -106,11 +106,10 @@
     </table>
     <div class="page">
       <div>
+        <a class="prev" href="${ctx}/student/pageList?requestPage=${pager.firstPage}">首页</a>
         <a class="prev" href="${ctx}/student/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="num" href="">${pager.firstPage}</a>
-        <span class="current">2</span>
-        <a class="num" href="">${pager.pageCount}</a>
         <a class="next" href="${ctx}/student/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
+        <a class="prev" href="${ctx}/student/pageList?requestPage=${pager.lastPage}">尾页</a>
       </div>
     </div>
 
@@ -122,20 +121,6 @@
       function add(){
           location.href="${ctx}/admin/student/edit.jsp";
       }
-
-      layui.use('laydate', function(){
-          var laydate = layui.laydate;
-
-          //执行一个laydate实例
-          laydate.render({
-              elem: '#start' //指定元素
-          });
-
-          //执行一个laydate实例
-          laydate.render({
-              elem: '#end' //指定元素
-          });
-      });
 
       /*用户-停用*/
       function member_stop(obj,id){

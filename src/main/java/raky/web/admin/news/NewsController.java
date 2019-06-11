@@ -1,6 +1,7 @@
 package raky.web.admin.news;
 
 import core.controller.CoreController;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import raky.entity.Files;
 import raky.entity.News;
 import raky.service.NewsService;
 import raky.util.Pager;
@@ -19,7 +21,9 @@ import raky.util.Pager;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -43,14 +47,31 @@ public class NewsController extends CoreController{
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@RequestParam("file") MultipartFile files[],News news ,HttpServletRequest request){
-        List<String> fileName = upLoad(files, request);
-//        logger.info(fileName);
-//        news.setImagePath(fileName.get(0));
-//        news.setVideoPath(fileName.get(1));
+    public String save(@RequestParam("File") MultipartFile[] newsFile,@RequestParam("file") MultipartFile files[],News news ,HttpServletRequest request){
+        List<Files> list=new ArrayList<>();
+        List<Map<String,String>> filesList = upLoad(files, request);
+        List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
+        for (Map map:newsFilesList){
+            logger.info(map.get("fileName").toString());
+            if(isVideoFile(map.get("fileName").toString())){
+                news.setVideoPath(map.get("savePath").toString());
+            }else{
+                news.setImagePath(map.get("savePath").toString());
+            }
+        }
+        for (Map map:filesList){
+            Files file=new Files();
+            try {
+                BeanUtils.populate(file,map);
+                list.add(file);
+                logger.info(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        news.setFilesList(list);
 
         if (news.getUuid() != null&&news.getUuid()!="") {
-            logger.info(news.toString());
             newsService.update(news);
             return "redirect:/news/pageList";
         }

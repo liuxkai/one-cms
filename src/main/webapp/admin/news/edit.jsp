@@ -15,41 +15,76 @@
     <link rel="stylesheet" href="${ctx}/static/css/font.css">
     <link rel="stylesheet" href="${ctx}/static/css/xadmin.css">
     <link rel="stylesheet" href="${ctx}/static/css/layuiadmin.css">
-    <link rel="stylesheet" href="${ctx}/static/lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../../static/lib/layui/css/layui.css">
     <link href="${ctx}/static/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="../../static/css/plyr.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../../static/css/default.css">
+    <link href="../../static/css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="../../static/js/plyr.js"></script>
     <script type="text/javascript" charset="utf-8" src="../../ueditor/utf8-jsp/ueditor.config.js"></script>
-
     <script type="text/javascript" charset="utf-8" src="../../ueditor/utf8-jsp/ueditor.all.min.js"> </script>
-
     <script type="text/javascript" charset="utf-8" src="../../ueditor/utf8-jsp/lang/zh-cn/zh-cn.js"></script>
-    <link href="${ctx}/static/css/bootstrap-fileinput.css" rel="stylesheet">
+    <%--<link href="${ctx}/static/css/bootstrap-fileinput.css" rel="stylesheet">--%>
+
     <script src="${ctx}/static/js/jquery.min.js"></script>
     <script src="${ctx}/static/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/static/js/xadmin.js"></script>
     <script type="text/javascript" src="${ctx}/static/My97DatePicker/WdatePicker.js"></script>
-    <script src="${ctx}/static/js/bootstrap-fileinput.js"></script>
+    <%--<script src="${ctx}/static/js/bootstrap-fileinput.js"></script>--%>
+    <%--文件上传--%>
+    <script src="../../static/js/fileinput.js" type="text/javascript"></script>
+    <script src="../../static/js/fileinput_locale_zh.js" type="text/javascript"></script>
+    <script src="../../static/js/bootstrap.min.js" type="text/javascript"></script>
+
 
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
-      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <script src="http://libs.useso.com/js/html5shiv/3.7/html5shiv.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../static/js/messages_zh.js"></script>
   </head>
+  <style>
+
+    label.error{
+      background:url(../../static/images/unchecked.gif) no-repeat 10px 3px;
+      padding-left: 30px;
+      font-family:georgia;
+      font-size: 15px;
+      font-style: normal;
+      color: red;
+    }
+
+    label.success{
+      background:url(../../static/images/checked.gif) no-repeat 10px 3px;
+      padding-left: 30px;
+    }
+    .layui-form-label{
+      float:left;
+      display:block;
+      padding:9px 15px;
+      width:200px;
+      font-weight:400;
+      line-height:20px;
+      margin-right: 30px;
+    }
+
+  </style>
   <body>
-  <div class="x-body">
-    <form class="layui-form" method="post" enctype="multipart/form-data" action="/news/save?id=${news.id}&uuid=${news.uuid}">
+  <div class="x-body" style="margin-left: 200px;">
+    <form class="layui-form layui-form-pane" id="newsForm" method="post" enctype="multipart/form-data" action="/news/save?id=${news.id}&uuid=${news.uuid}">
       <div class="layui-form-item">
-        <label  class="layui-form-label">
-          <span class="x-red">*</span>新闻标题
-        </label>
+        <label  class="layui-form-label layui-bg-green">标题</label>
         <div class="layui-input-inline">
-          <input type="text"  value="${news.title}" name="title" class="layui-input">
+          <input type="text" id="file" value="${news.title}" name="title" class="layui-input">
         </div>
       </div>
+
       <div class="layui-form-item">
-        <div class="layui-inline">
-          <label class="layui-form-label">新闻类型</label>
+          <label class="layui-form-label layui-bg-green">类型</label>
           <div class="layui-input-inline">
             <select id="newsType" name="newsType">
               <option value="">请选择</option>
@@ -58,75 +93,57 @@
               </c:forEach>
             </select>
           </div>
-        </div>
       </div>
 
       <div class="layui-form-item" >
-        <label class="layui-form-label">
-          <span class="x-red">*</span>主图路径
-        </label>
-        <div class="fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
-          <div class="fileinput-new thumbnail" style="width: 100px;height: auto;max-height:150px;">
-            <img id='picImg'  style="width: 100%;height: auto;max-height: 140px;" src="${ctx}/static/images/pic/1.png" alt="" />
-          </div>
-          <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-          <div>
-              <span class="btn btn-primary btn-file">
-                  <span class="fileinput-new">选择文件</span>
-                  <span class="fileinput-exists">换一张</span>
-                  <input type="file" value="${news.imagePath}" name="file" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
-              </span>
-            <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
-          </div>
+        <label class="layui-form-label layui-bg-green">主图</label>
+        <div class="layui-input-inline" style="width: 400px;">
+            <input id="file-0a" class="file" name="File" type="file"  data-min-file-count="1">
         </div>
       </div>
 
-      <div class="layui-col-md6" style="margin-bottom: 20px">
+      <div class="layui-col-md8" style="margin-bottom: 20px">
         <div class="layui-card">
-          <label  class="layui-form-label">
-            <span class="x-red">*</span>主图说明
-          </label>
-          <div class="layui-col-md10">
+          <label  class="layui-form-label layui-bg-green">说明</label>
+          <div class="layui-col-md8">
             <textarea name="imageMemo" placeholder=""  class="layui-textarea">${news.imageMemo}</textarea>
           </div>
         </div>
       </div>
 
-        <div class="layui-form-item" >
-            <label class="layui-form-label">
-                <span class="x-red">*</span>视频
-            </label>
-          <div class="fileinput fileinput-new" data-provides="fileinput" >
-            <div class="fileinput-new thumbnail" style="width: 100px;height: auto;max-height:150px;">
-              <img id='picVideo'  style="width: 100%;height: auto;max-height: 140px;" src="${ctx}/static/images/pic/1.png" alt="" />
-            </div>
-            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-            <div>
-              <span class="btn btn-primary btn-file">
-                  <span class="fileinput-new">选择文件</span>
-                  <span class="fileinput-exists">换一张</span>
-                  <input type="file" value="${news.imagePath}"  name="file"  accept=""/>
-              </span>
-              <a href="javascript:;" class="btn btn-warning fileinput-exists" data-dismiss="fileinput">移除</a>
-            </div>
+      <div class="layui-form-item" >
+          <label class="layui-form-label">视频</label>
+          <div class="layui-input-inline" style="width: 400px;">
+              <input class="file" name="File" type="file" data-min-file-count="1">
+          </div>
+      </div>
+
+
+      <c:if test="${not empty news.videoPath}">
+        <div class="layui-form-item">
+          <label  class="layui-form-label">
+            上传视频预览
+          </label>
+          <div  style="margin-right: auto;margin-left:140px;  width: 640px; ">
+            <video poster="vs.png" controls>
+              <source src="${ctx}/${news.videoPath}" type="video/mp4">
+            </video>
           </div>
         </div>
+      </c:if>
 
-
-      <div class="layui-col-md6" style="margin-bottom: 20px">
+      <div class="layui-col-md8" style="margin-bottom: 20px">
         <div class="layui-card">
-          <label  class="layui-form-label">
-            <span class="x-red">*</span>视频说明
-          </label>
-          <div class="layui-col-md10">
-            <textarea name="videoDesc" placeholder="" class="layui-textarea">${news.videoDesc}</textarea>
+          <label  class="layui-form-label">说明</label>
+          <div class="layui-col-md8">
+            <textarea name="videoDesc" class="layui-textarea">${news.videoDesc}</textarea>
           </div>
         </div>
       </div>
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>摘要
+          摘要
         </label>
         <div class="layui-input-inline">
           <input type="text" value="${news.summary}" name="summary"  class="layui-input">
@@ -134,51 +151,60 @@
       </div>
 
       <div class="layui-form-item">
-      <label  class="layui-form-label">
-        <span class="x-red">*</span>新闻内容
-      </label>
-      <div class="layui-input-inline" style="height: 250px;width: 602px;margin-bottom: 60px;">
-        <textarea style="padding: 0px 0px;" id="editor" name="content" class="layui-textarea">${news.content}</textarea>
-      </div>
+        <label  class="layui-form-label">内容</label>
+        <div class="layui-input-inline" style="height: 270px;width: 602px;margin-bottom: 50px;">
+          <textarea style="padding: 0px 0px;" id="editor" name="content" class="layui-textarea">${news.content}</textarea>
+        </div>
       </div>
 
       <div class="layui-form-item">
-        <label  class="layui-form-label">
-          <span class="x-red">*</span>作者
-        </label>
+        <label class="layui-form-label layui-bg-orange">作者</label>
         <div class="layui-input-inline">
           <input type="text" value="${news.author}" name="author"  class="layui-input">
         </div>
       </div>
 
-      <div class="layui-form-item">
-        <label  class="layui-form-label">
-          <span class="x-red">*</span>信息来源
-        </label>
-        <div class="layui-col-md10">
-          <textarea name="infoSource" class="layui-textarea">${news.infoSource}</textarea>
+      <div class="layui-col-md8" style="margin-bottom: 20px">
+        <label  class="layui-form-label layui-bg-orange">来源</label>
+        <div class="layui-col-md8">
+            <textarea name="infoSource" class="layui-textarea">${news.infoSource}</textarea>
         </div>
       </div>
 
+
+      <div class="layui-form-item">
+        <label  class="layui-form-label">附件</label>
+
+        <div class="layui-input-inline" style="width: 800px;">
+            <div class="form-group">
+              <input  type="file" name="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+            </div>
+        </div>
+
+      </div>
+
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>失效时间
+          失效时间
         </label>
         <div class="layui-input-inline">
           <input type="text" value="<fmt:formatDate value='${news.invalidDate}' pattern='yyyy-MM-dd HH:mm:ss'/>" name="invalidDate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" class="layui-input">
         </div>
       </div>
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>发布时间
+          发布时间
         </label>
         <div class="layui-input-inline">
           <input type="text" value="<fmt:formatDate value='${news.publishTime}' pattern='yyyy-MM-dd HH:mm:ss'/>" name="publishTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" class="layui-input">
         </div>
       </div>
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>最后浏览时间
+          最后浏览时间
         </label>
         <div class="layui-input-inline">
           <input type="text" value="<fmt:formatDate value='${news.viewDatetime}' pattern='yyyy-MM-dd HH:mm:ss'/>" name="viewDatetime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" class="layui-input">
@@ -187,7 +213,7 @@
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>浏览次数
+          浏览次数
         </label>
         <div class="layui-input-inline">
           <input type="text" value="${news.viewCount}" name="viewCount"  class="layui-input">
@@ -210,40 +236,147 @@
         </div>
       </div>
       <c:if test="${not empty news.author}">
-      <div class="layui-form-item">
-        <label class="layui-form-label">是否删除</label>
-        <div class="layui-input-inline">
-          <select id="deleted" name="deleted">
-            <option value="">请选择</option>
-            <option value="1">已删除</option>
-            <option value="0">未删除</option>
-          </select>
+        <div class="layui-form-item">
+          <label class="layui-form-label">是否删除</label>
+          <div class="layui-input-inline">
+            <select id="deleted" name="deleted">
+              <option value="">请选择</option>
+              <option value="1">已删除</option>
+              <option value="0">未删除</option>
+            </select>
+          </div>
         </div>
-      </div>
       </c:if>
       <div class="layui-form-item">
-        <label class="layui-form-label">
-        </label>
-        <button  class="layui-btn" id="add" lay-filter="add" >
+        <button style="margin-left: 130px;" class="layui-btn" id="add" lay-filter="add" >
           增加
+        </button>
+        <button id="back" class="layui-btn" style="margin-left: 60px">
+          返回
         </button>
       </div>
     </form>
   </div>
 
   <script>
+      plyr.setup();
+      $("#back").click(function(){
+          history.go(-1);
+      })
+      // var FileInput = function () {
+      //     var oFile = new Object();
+      //
+      //     //初始化fileinput控件（第一次初始化）
+      //     oFile.Init = function(ctrlName, uploadUrl) {
+      //         var control = $('#' + ctrlName);
+      //
+      //         //初始化上传控件的样式
+      //         control.fileinput({
+      //             language: 'zh',                                         //设置语言
+      //             uploadUrl: uploadUrl,                                   //上传的地址
+      //             allowedFileExtensions: ['jpg', 'gif', 'png', 'pdf'],    //接收的文件后缀
+      //             showUpload: true,                                       //是否显示上传按钮
+      //             showCaption: false,                                     //是否显示标题
+      //             browseClass: "btn btn-primary",                         //按钮样式
+      //             //dropZoneEnabled: false,                               //是否显示拖拽区域
+      //             //minImageWidth: 50,                                    //图片的最小宽度
+      //             //minImageHeight: 50,                                   //图片的最小高度
+      //             //maxImageWidth: 1000,                                  //图片的最大宽度
+      //             //maxImageHeight: 1000,                                 //图片的最大高度
+      //             //maxFileSize: 0,                                       //单位为kb，如果为0表示不限制文件大小
+      //             //minFileCount: 0,
+      //             maxFileCount: 10,                                       //表示允许同时上传的最大文件个数
+      //             enctype: 'multipart/form-data',
+      //             validateInitialCount: true,
+      //             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+      //             msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+      //             uploadExtraData: function (previewId, index) {           //传参
+      //                 var data = {
+      //                     "reportGroupId": $('#lbl_groupId').html(),      //此处自定义传参
+      //                 };
+      //                 return data;
+      //             }
+      //         });
+      //     }
+      //     }
+
+      $(".file").fileinput({
+          uploadUrl: '#', // you must set a valid URL here else you will get an error
+          maxFileSize:100000,
+          showUpload:false,
+          allowedFileExtensions : ['jpg','.txt','.jsp', 'png','.java','gif'],
+          overwriteInitial: false,
+          initialPreviewConfig: {"jsp"},
+          actionUpload:'',
+          maxFileSize: 1000,
+          maxFilesNum: 10,
+          maxImageWidth: 50,
+          maxImageHeight: 50,
+          layoutTemplates:{
+              actionUpload:''
+          },
+          //allowedFileTypes: ['image', 'video', 'flash'],
+          slugCallback: function(filename) {
+              return filename.replace('(', '_').replace(']', '_');
+          }
+      });
+
       $(function () {
+          jQuery.validator.addMethod("isPhone", function(value, element) {
+              var length = value.length;
+              var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+              return this.optional(element) || (length == 11 && mobile.test(value));
+          }, "请填写正确的手机号码");
+
+          $("#newsForm").validate({
+
+              errorPlacement:function(error,element){
+                  error.appendTo(element.parent().parent());
+              },
+              ignore: ":hidden:not(select)",
+
+              rules:{
+                  title:{
+                      required:true,
+                      minlength:4
+                  },
+                  summary:{
+                      required:true,
+                      minlength:10,
+                      maxlength:30
+                  },
+                  content:{
+                      required:true,
+                      minlength:10,
+                      maxlength:500
+                  }
+
+              },
+              messages:{
+
+              },
+              errorElement: "label",
+              success: function(label) {
+                  label.text(" ")
+                      .addClass("success");
+              }
+
+          });
+
           $("#infoState option[value=${news.infoState}]").prop("selected",true);
           $("#newsType option[value=${news.newsType}]").prop("selected",true);
           $("#deleted option[value=${news.deleted}]").prop("selected",true);
-
           $("#add").click(function () {
               $("form").submit();
 
           });
+          
       });
-      UE.getEditor('editor',{ initialFrameWidth: null , autoHeightEnabled: false});
+          UE.getEditor('editor',{ initialFrameWidth: null , autoHeightEnabled: false});
+          var i;
+          $("#addFile").click(function () {
 
+          })
 
   </script>
       </body>

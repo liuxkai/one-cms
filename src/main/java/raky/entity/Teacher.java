@@ -4,6 +4,7 @@ import core.entity.CoreEntity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Teacher extends CoreEntity {
@@ -32,4 +33,6 @@ public class Teacher extends CoreEntity {
     private String positions;
 
     private String memo;
+
+    private List<Files> filesList;
 }

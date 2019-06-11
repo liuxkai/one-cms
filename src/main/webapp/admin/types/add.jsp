@@ -97,9 +97,9 @@
         <label class="layui-form-label">是否锁定</label>
         <div class="layui-input-inline">
           <select  name="locked" >
-            <option value="0">请选择</option>
-              <option value="1">正常</option>
-              <option value="2">已锁定</option>
+            <option value="">请选择</option>
+              <option value="0">正常</option>
+              <option value="1">已锁定</option>
           </select>
         </div>
       </div>

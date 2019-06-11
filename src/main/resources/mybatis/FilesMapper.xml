@@ -16,6 +16,8 @@
   <sql id="condition" >
     <where>
       <if test="id != null"> and ID = #{id}</if>
+      <if test="linkId != null"> and LINK_ID= #{linkId}</if>
+      <if test="linkTable != null"> and LINK_TABLE= #{linkTable}</if>
       <if test="fileName != null and fileName !=''"> and `FILE_NAME` like concat('%',#{fileName},'%')</if>
       <if test="fileType != null and fileType !=''"> and `FILE_TYPE` like concat('%',#{fileType},'%')</if>
       <if test="saveName != null and saveName !=''"> and `SAVE_NAME` like concat('%',#{saveName},'%')</if>

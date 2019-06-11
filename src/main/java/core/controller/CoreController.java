@@ -5,7 +5,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Types;
 import raky.service.TypesService;
@@ -15,11 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class CoreController {
@@ -37,10 +37,9 @@ public class CoreController {
 
 
 @ResponseBody
-public List<String> upLoad(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request) {
-        logger.info(files.toString());
-    List<String> list=new ArrayList<>();
-    String uploadPath = request.getSession().getServletContext().getRealPath("static/images/pic");
+public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request) {
+    List<Map<String,String>> list=new ArrayList<>();
+    String uploadPath = request.getSession().getServletContext().getRealPath("static/files/upload/"+getDate());
     File uploadDirectory = new File(uploadPath);
     if (uploadDirectory.exists()) {
         if (!uploadDirectory.isDirectory()) {
@@ -54,13 +53,18 @@ public List<String> upLoad(@RequestParam(value = "file") MultipartFile files[], 
         try {
             for (MultipartFile file : files) {
                 String fileName = file.getOriginalFilename();
-                //判断是否有文件且是否为图片文件
-                if(fileName!=null && !"".equalsIgnoreCase(fileName.trim()) && isImageFile(fileName)) {
+                if(fileName!=null && !"".equalsIgnoreCase(fileName.trim()) && isFile(fileName)) {
                     //创建输出文件对象
-                    String newFileName=UUID.randomUUID().toString()+ getFileType(fileName);
-                    logger.info(newFileName);
-                    list.add(newFileName);
-                    File outFile = new File(uploadPath + "/" + UUID.randomUUID().toString()+ getFileType(fileName));
+                    String saveName=UUID.randomUUID().toString()+ getFileType(fileName);
+                    Map<String,String> map=new HashMap<>();
+                    map.put("fileName",fileName);
+                    logger.info(fileName);
+                    map.put("savePath","static/files/upload/"+getDate()+"/"+saveName);
+                    map.put("saveName",saveName);
+                    map.put("fileSize",(file.getSize()/1024)+"");
+                    map.put("fileType",file.getContentType());
+                    list.add(map);
+                    File outFile = new File(uploadPath + "/" + saveName);
                     //拷贝文件到输出文件对象
                     FileUtils.copyInputStreamToFile(file.getInputStream(), outFile);
 
@@ -84,8 +88,35 @@ public List<String> upLoad(@RequestParam(value = "file") MultipartFile files[], 
     return list;
 }
 
-    private Boolean isImageFile(String fileName) {
-        String[] img_type = new String[]{".jpg", ".jpeg", ".png", ".gif", ".mp4",".flv", ".bmp"};
+//判断文件格式
+    private Boolean isFile(String fileName) {
+        String[] img_type = new String[]{".jpg", ".jpeg", ".png", ".gif",".txt",".jsp" ,".mp4",".flv", ".bmp"};
+        if (fileName == null) {
+            return false;
+        }
+        fileName = fileName.toLowerCase();
+        for (String type : img_type) {
+            if (fileName.endsWith(type)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    protected Boolean isVideoFile(String fileName) {
+        String[] img_type = new String[]{".mp4",".flv"};
+        if (fileName == null) {
+            return false;
+        }
+        fileName = fileName.toLowerCase();
+        for (String type : img_type) {
+            if (fileName.endsWith(type)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    protected Boolean isImagesFile(String fileName) {
+        String[] img_type = new String[]{".jpg",".png",".jpeg",".gif","bmp"};
         if (fileName == null) {
             return false;
         }
@@ -109,6 +140,16 @@ public List<String> upLoad(@RequestParam(value = "file") MultipartFile files[], 
             return fileName.substring(fileName.lastIndexOf("."), fileName.length());
         }
         return "";
+    }
+
+    public String getDate(){
+        Date date = new Date();
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        String str = format.format(date);
+        return  str;
+
     }
 
     protected  List<Types> getTypesListByParentCode(Long parentCode){

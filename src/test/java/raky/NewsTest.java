@@ -6,7 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import raky.entity.Files;
 import raky.entity.News;
+import raky.service.FilesService;
 import raky.service.NewsService;
 
 import javax.annotation.Resource;
@@ -18,7 +20,8 @@ public class NewsTest {
     private final static Logger logger=Logger.getLogger(NewsTest.class);
     @Resource
     private NewsService newsService;
-
+    @Resource
+    private FilesService filesService;
     @Test
     public void getNewstList(){
         newsService.getList(new News()).forEach(System.out::println);
@@ -37,5 +40,11 @@ public class NewsTest {
         news.setDeleted(1);
         int insert = newsService.insert(news);
         logger.info(news.getId());
+    }
+    @Test
+    public void getList(){
+        Files files=new Files();
+        files.setLinkId(5l);
+        filesService.getList(files).forEach(System.out::println);
     }
 }

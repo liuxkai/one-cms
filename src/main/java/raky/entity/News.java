@@ -48,4 +48,6 @@ public class News extends CoreEntity {
 
     List<Types> typesList;
 
+    List<Files> filesList;
+
 }

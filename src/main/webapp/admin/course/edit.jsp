@@ -24,7 +24,25 @@
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../static/js/messages_zh.js"></script>
   </head>
+  <style>
+
+    label.error{
+      background:url(../../static/images/unchecked.gif) no-repeat 10px 3px;
+      padding-left: 30px;
+      font-family:georgia;
+      font-size: 15px;
+      font-style: normal;
+      color: red;
+    }
+
+    label.success{
+      background:url(../../static/images/checked.gif) no-repeat 10px 3px;
+      padding-left: 30px;
+    }
+  </style>
   <body>
   <div class="x-body">
     <form class="layui-form" method="post" action="/course/save?id=${course.id}">

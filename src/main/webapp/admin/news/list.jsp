@@ -21,6 +21,8 @@
     <script src="${ctx}/static/js/jquery.min.js"></script>
     <script src="${ctx}/static/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/static/js/xadmin.js"></script>
+    <script type="text/javascript" src="${ctx}/static/js/xadmin.js"></script>
+    <script type="text/javascript" src="${ctx}/static/My97DatePicker/WdatePicker.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -44,7 +46,7 @@
         <input type="text" name="title" value="${news.title}"  placeholder="请输入新闻标题" autocomplete="off" class="layui-input">
         <input type="text" name="summary" value="${news.summary}"  placeholder="请输入摘要" autocomplete="off" class="layui-input">
         <input type="text" name="author" value="${news.author}"  placeholder="请输入作者" autocomplete="off" class="layui-input">
-        <input type="text" name="publishTime" value="${news.publishTime}"  placeholder="请输入发布时间" autocomplete="off" class="layui-input">
+        <input type="text" name="publishTime" value="<fmt:formatDate value='${news.publishTime}' pattern='yyyy-MM-dd HH:mm:ss'/>" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})"  placeholder="请输入发布时间"  class="layui-input">
         <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
       </form>
     </div>
@@ -84,7 +86,7 @@
         <td>${news.summary}</td>
         <td>${news.infoSource}</td>
         <td>${news.viewCount}</td>
-        <td>${news.publishTime}</td>
+        <td><fmt:formatDate value="${news.publishTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <c:if test="${news.infoState eq  0 }">
             <td class="td-status">
                <span class="layui-btn layui-btn-normal layui-btn-sm">默认</span>
@@ -131,10 +133,10 @@
     </table>
     <div class="page">
       <div>
+        <a class="prev" href="${ctx}/news/pageList?requestPage=${pager.firstPage}">首页</a>
         <a class="prev" href="${ctx}/news/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="num" href="">${pager.firstPage}</a>
-        <a class="num" href="">${pager.pageCount}</a>
         <a class="next" href="${ctx}/news/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
+        <a class="prev" href="${ctx}/news/pageList?requestPage=${pager.lastPage}">尾页</a>
       </div>
     </div>
 
@@ -181,17 +183,6 @@
           });
       }
 
-
-
-      function delAll (argument) {
-
-          var data = tableCheck.getData();
-
-          layer.confirm('确认要删除吗？'+data,function(index){
-              layer.msg('删除成功', {icon: 1});
-              $(".layui-form-checked").not('.header').parents('tr').remove();
-          });
-      }
   </script>
   </body>
 </html>

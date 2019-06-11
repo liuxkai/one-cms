@@ -50,7 +50,7 @@
     where ID = #{id,jdbcType=BIGINT}
   </delete>
 
-  <insert id="insert" parameterType="Student" >
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Student" >
     insert into STUDENT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

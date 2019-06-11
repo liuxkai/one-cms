@@ -21,123 +21,148 @@
     <script src="${ctx}/static/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="${ctx}/static/js/xadmin.js"></script>
     <script type="text/javascript" src="${ctx}/static/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../../static/js/messages_zh.js"></script>
+
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+  <style>
+
+    label.error{
+      background:url(../../static/images/unchecked.gif) no-repeat 10px 3px;
+      padding-left: 30px;
+      font-family:georgia;
+      font-size: 15px;
+      font-style: normal;
+      color: red;
+    }
+
+    label.success{
+      background:url(../../static/images/checked.gif) no-repeat 10px 3px;
+      padding-left: 30px;
+    }
+  </style>
   <body>
   <div class="x-body">
-    <form class="layui-form" method="post" action="/users/save?id=${user.id}">
+    <form class="layui-form" id="userForm" method="post" action="/users/save?id=${user.id}">
       <div class="layui-form-item">
-        <label for="L_email" class="layui-form-label">
+        <label  class="layui-form-label">
           <span class="x-red">*</span>邮箱
         </label>
         <div class="layui-input-inline">
-          <input type="text" id="L_email" value="${user.email}" name="email" required lay-verify="email"
-                 autocomplete="off" class="layui-input">
+          <input type="text" value="${user.email}" name="email"  class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux">
-          <span class="x-red">*</span>将会成为您唯一的登入名
+          <span class="x-red">*</span>
         </div>
       </div>
       <div class="layui-form-item">
-        <label for="L_username" class="layui-form-label">
+        <label class="layui-form-label">
           <span class="x-red">*</span>用户名
         </label>
         <div class="layui-input-inline">
-          <input type="text" id="L_username" value="${user.userName}" name="userName" required lay-verify="userName"
-                 autocomplete="off" class="layui-input">
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label for="L_username" class="layui-form-label">
-          <span class="x-red">*</span>真实姓名
-        </label>
-        <div class="layui-input-inline">
-          <input type="text" id="L_realname" value="${user.realName}" name="realName" required lay-verify="realName"
-                 autocomplete="off" class="layui-input">
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label for="L_username" class="layui-form-label">
-          <span class="x-red">*</span>手机号码
-        </label>
-        <div class="layui-input-inline">
-          <input type="text" id="L_mobile" value="${user.mobile}" name="mobile" required lay-verify="mobile"
-                 autocomplete="off" class="layui-input">
-        </div>
-      </div>
-      <div class="layui-form-item">
-        <label for="L_pass" class="layui-form-label">
-          <span class="x-red">*</span>密码
-        </label>
-        <div class="layui-input-inline">
-          <input type="password" id="L_pass" value="${user.passWord}" name="passWord" required lay-verify="passWord"
+          <input type="text"  value="${user.userName}" name="userName"
                  autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux">
-          6到16个字符
+          <span class="x-red">*</span>
         </div>
       </div>
+
       <div class="layui-form-item">
-        <label for="L_pass" class="layui-form-label">
+        <label class="layui-form-label">
+          <span class="x-red">*</span>真实姓名
+        </label>
+        <div class="layui-input-inline">
+          <input type="text" value="${user.realName}" name="realName"  class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+
+
+      <div class="layui-form-item">
+        <label class="layui-form-label">
+          <span class="x-red">*</span>手机号码
+        </label>
+        <div class="layui-input-inline">
+          <input type="text" value="${user.mobile}" name="mobile"  class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label  class="layui-form-label">
+          <span class="x-red">*</span>密码
+        </label>
+        <div class="layui-input-inline">
+          <input type="password"  value="${user.passWord}" name="passWord"  class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
+      </div>
+
+      <div class="layui-form-item">
+        <label  class="layui-form-label">
           <span class="x-red">*</span>性别
         </label>
-
         <div class="layui-col-md2">
           <input type="radio" name="sex" value="0" title="男" <c:if test="${user.sex eq 0}">checked</c:if> >
           <input type="radio" name="sex" value="1" title="女" <c:if test="${user.sex eq 1}">checked</c:if>>
           <input type="radio" name="sex" value="3" title="中性" disabled>
+          <label for="sex" class="error" style="display: none;"></label>
+        </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
         </div>
       </div>
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>添加时间
         </label>
         <div class="layui-input-inline">
-          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="createTime" required lay-verify="name"
+          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="createTime"
                  class="layui-input">
         </div>
-        <div class="layui-form-mid layui-word-aux">
-          <span class="x-red">*</span>
-        </div>
       </div>
+
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>最后登录时间
         </label>
         <div class="layui-input-inline">
-          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="lastLoginTime" required lay-verify="name"
+          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="lastLoginTime"
                  class="layui-input">
         </div>
-        <div class="layui-form-mid layui-word-aux">
-          <span class="x-red">*</span>
-        </div>
       </div>
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>最后登录IP
         </label>
         <div class="layui-input-inline">
-          <input type="text"   value="${user.lastLoginIp}" name="lastLoginIp" required lay-verify="name"
+          <input type="text"  value="${user.lastLoginIp}" name="lastLoginIp"
                  class="layui-input">
         </div>
-        <div class="layui-form-mid layui-word-aux">
-          <span class="x-red">*</span>
-        </div>
       </div>
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>生日
         </label>
         <div class="layui-input-inline">
-          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="birthday" required lay-verify="name"
-                 class="layui-input">
-        </div>
-        <div class="layui-form-mid layui-word-aux">
-          <span class="x-red">*</span>
+          <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})"
+                 value="<fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="birthday" class="layui-input">
         </div>
       </div>
 
@@ -148,7 +173,11 @@
             <input type="radio" name="positions" value="${type.typeName}" title="${type.typeName}" >
           </c:forEach>
         </div>
+        <div class="layui-form-mid layui-word-aux">
+          <span class="x-red">*</span>
+        </div>
       </div>
+
       <div class="layui-form-item">
         <label class="layui-form-label">是否锁定</label>
         <div class="layui-input-inline">
@@ -159,6 +188,7 @@
           </select>
         </div>
       </div>
+
       <div class="layui-form-item">
         <div class="layui-inline">
           <label class="layui-form-label">用户类型</label>
@@ -166,12 +196,13 @@
             <select id="userType" name="userType">
               <option value="">请选择</option>
               <c:forEach items="${typesList1}" var="type">
-                <option value="${type.typeCode}">${type.typeName}</option>
+                <option name="" value="${type.typeCode}">${type.typeName}</option>
               </c:forEach>
             </select>
           </div>
         </div>
       </div>
+
       <div class="layui-form-item">
         <label class="layui-form-label">
         </label>
@@ -182,23 +213,78 @@
     </form>
   </div>
   <script>
+
     $(function () {
+        jQuery.validator.addMethod("isPhone", function(value, element) {
+            var length = value.length;
+            var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+            return this.optional(element) || (length == 11 && mobile.test(value));
+        }, "请填写正确的手机号码");
+
+        $("#userForm").validate({
+            success: function (error, element) {
+                if (error.text(" ")){
+                    error.addClass("success");
+                }else {
+                    error.removeClass("success");
+                }
+
+            },
+
+            errorPlacement:function(error,element){
+                error.appendTo(element.parent().parent());
+            },
+            ignore: ":hidden:not(select)",
+
+            rules:{
+                email:{
+                    required:true,
+                    email:true
+                },
+                userName:{
+                    required:true,
+                    minlength:3
+                },
+                realName:{
+                    required:true,
+                    minlength:3
+                },
+                mobile:{
+                    required:true,
+                    isPhone:true
+                },
+                passWord:{
+                    required:true,
+                    digits:true,
+                    minlength:6
+                },
+                sex:{
+                    required:true
+                },
+                positions:{
+                    required:true
+                },
+
+            },
+            messages:{
+
+            },
+            // errorElement: "label",
+            // success: function(label) {
+            //     label.text("")
+            //         .addClass("success");
+            // }
+
+        });
         $("#userType option[value=${user.userType}]").prop("selected",true);
         $("#positions input[value=${user.positions}]").prop('checked','checked');
         $("#locked option[value=${user.locked}]").prop("selected",true);
     });
-      layui.use(['form','layer'], function(){
-          $ = layui.jquery;
-          var form = layui.form
-              ,layer = layui.layer;
 
+    $("#add").click(function () {
+        $("form").submit();
 
-          $("#add").click(function () {
-              $("form").submit();
-
-          });
-
-      });
+    });
   </script>
   </body>
 </html>

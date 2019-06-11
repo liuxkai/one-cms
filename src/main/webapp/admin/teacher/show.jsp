@@ -59,7 +59,7 @@
             <span class="x-red">*</span>简介
           </label>
             <div class="layui-col-md10">
-              <textarea value="${teacher.memo}" class="layui-textarea"></textarea>
+              <textarea value="" class="layui-textarea">${teacher.memo}</textarea>
             </div>
         </div>
       </div>

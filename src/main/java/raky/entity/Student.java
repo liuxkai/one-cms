@@ -4,6 +4,7 @@ import core.entity.CoreEntity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class Student extends CoreEntity {
@@ -40,5 +41,7 @@ public class Student extends CoreEntity {
     private Integer locked;
 
     private Integer priority;
+
+    List<Files> filesList;
 
 }

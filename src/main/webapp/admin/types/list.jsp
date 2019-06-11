@@ -41,7 +41,7 @@
     <div class="layui-row">
       <form class="layui-form layui-col-md12 x-so" action="/types/pageList" method="get">
         <input type="text" name="userName" value="${type.typeName}"  placeholder="请输入类型名称"  class="layui-input">
-        <input type="text" name="userName" value="${type.createTime}"  placeholder="请输入添加时间"  class="layui-input">
+        <input type="text" name="userName" value="<fmt:formatDate value='${type.createTime}' pattern='yyyy-MM-dd HH:mm:ss'/>" name="createTime" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})"  placeholder="请输入添加时间"  class="layui-input">
         <button class="layui-btn" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
       </form>
     </div>
@@ -76,7 +76,7 @@
           </c:if>
             ${parentType.typeName}
         </td>
-        <td><input type="text" class="layui-input x-sort" name="order" value="${parentType.typeMemo}"></td>
+        <td>${parentType.typeMemo}</td>
         <c:if test="${parentType.locked eq  1 }">
             <td class="td-status">
             <span class="layui-btn layui-btn-normal layui-btn-sm">正常</span>
@@ -89,7 +89,7 @@
         </c:if>
           <td class="td-manage">
             <a onclick="member_stop(this,${parentType.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${parentType.locked}">启用</a>
-            <button class="layui-btn" id="add" onclick="addParent();"><i class="layui-icon"></i>添加</button>
+            <%--<button class="layui-btn" id="add" onclick="addParent();"><i class="layui-icon"></i>添加</button>--%>
             <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/types/detailed?id=${parentType.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
             <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${parentType.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
             <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${parentType.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
@@ -109,7 +109,7 @@
           </c:if>
           ${firstType.typeName}
         </td>
-        <td><input type="text" class="layui-input x-sort" name="order" value="${firstType.typeMemo}"></td>
+        <td>${firstType.typeMemo}</td>
         <c:if test="${firstType.locked eq  1 }">--%>
           <td class="td-status">
             <span class="layui-btn layui-btn-normal layui-btn-sm">正常</span>
@@ -122,7 +122,7 @@
         </c:if>
         <td class="td-manage">
           <a onclick="member_stop(this,${firstType.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${firstType.locked}">启用</a>
-          <button class="layui-btn" onclick="addChildren(${firstType.id});"><i class="layui-icon"></i>添加</button>
+          <%--<button class="layui-btn" onclick="addChildren(${firstType.id});"><i class="layui-icon"></i>添加</button>--%>
           <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/types/detailed?id=${firstType.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
           <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${firstType.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
           <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${firstType.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
@@ -206,15 +206,6 @@
           });
       }
 
-      function delAll (argument) {
-
-          var data = tableCheck.getData();
-
-          layer.confirm('确认要删除吗？'+data,function(index){
-              layer.msg('删除成功', {icon: 1});
-              $(".layui-form-checked").not('.header').parents('tr').remove();
-          });
-      }
   </script>
   </body>
 </html>

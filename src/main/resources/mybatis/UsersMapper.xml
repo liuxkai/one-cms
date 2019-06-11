@@ -43,7 +43,7 @@
     <select id="getCount" parameterType="Users" resultType="java.lang.Integer"  >
         select count(ID) from USERS <include refid="condition" />
     </select>
-    <insert id="insert" parameterType="Users">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Users">
         insert into USERS
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >

@@ -112,6 +112,18 @@
                             <cite>类型编辑</cite>
                         </a>
                     </li >
+                    <li>
+                        <a _href="${ctx}/admin/types/add.jsp">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加一级分类</cite>
+                        </a>
+                    </li >
+                    <li>
+                        <a _href="${ctx}/types/add">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>添加二级分类</cite>
+                        </a>
+                    </li >
                 </ul>
             </li>
             <li>
@@ -125,6 +137,30 @@
                         <a _href="${ctx}/course/pageList">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>课程编辑</cite>
+
+                        </a>
+                    </li >
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont">&#xe6b8;</i>
+                    <cite>附件管理</cite>
+                    <i class="iconfont nav_right">&#xe6a7;</i>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <a _href="${ctx}/files/pageList">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>附件编辑</cite>
+
+                        </a>
+                    </li >
+
+                    <li>
+                        <a _href="${ctx}/admin/news/load.jsp">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>附件编辑</cite>
 
                         </a>
                     </li >
@@ -147,6 +183,7 @@
                     </c:forEach>
                 </ul>
             </li>
+
         </ul>
     </div>
 </div>
