@@ -21,6 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+
 @Controller
 public class CoreController {
     private static final Logger logger=Logger.getLogger(CoreController.class);
@@ -135,7 +136,7 @@ public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFi
      * @param fileName
      * @return
      */
-    private String getFileType(String fileName) {
+    protected String getFileType(String fileName) {
         if (fileName != null && fileName.indexOf(".") >= 0) {
             return fileName.substring(fileName.lastIndexOf("."), fileName.length());
         }

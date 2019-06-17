@@ -24,6 +24,7 @@ public class Pager<T> {
 	private Integer offset;  // 开始索引 [ 分段取==>起点 ]
 	private Integer limit; // 获取条数 [ 分段取 ==> 终点 ]
 
+	private String url;
 	
 	private List<T> list = new ArrayList<>();  //存储的需要分页的数据
 

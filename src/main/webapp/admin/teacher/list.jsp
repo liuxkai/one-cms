@@ -93,8 +93,8 @@
         </c:if>
         </td>
         <td class="td-manage">
-          <a onclick="member_stop(this,${teacher.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${teacher.locked}">启用</a>
-          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/teacher/detailed?id=${teacher.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
+          <button style="margin-left: 10px" class="layui-btn layui-btn layui-btn-xs" title="${teacher.locked}" onclick="member_stop(this,${teacher.id})" ><i class="layui-icon">&#xe601;</i>启用</button>
+          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/teacher/detailed?id=${teacher.id}')" ><i class="layui-icon">&#xe63c;</i>查看</button>
           <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${teacher.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
           <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${teacher.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
         </td>
@@ -106,10 +106,7 @@
     </table>
     <div class="page">
       <div>
-        <a class="prev" href="${ctx}/teacher/pageList?requestPage=${pager.firstPage}">首页</a>
-        <a class="prev" href="${ctx}/teacher/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="next" href="${ctx}/teacher/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-        <a class="prev" href="${ctx}/teacher/pageList?requestPage=${pager.lastPage}">尾页</a>
+        <jsp:include page="../pager.jsp"></jsp:include>
       </div>
     </div>
 
@@ -141,14 +138,14 @@
                   $(obj).attr('title','0')
                   $(obj).find('i').html('&#xe62f;');
                   $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已锁定');
-                  layer.msg('已锁定!',{icon: 5,time:1000});
+                  layer.msg('已锁定!');
               }else{
                   var value=1;
                   updateAjax(id,value);
                   $(obj).attr('title','1')
                   $(obj).find('i').html('&#xe601;');
                   $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('正常');
-                  layer.msg('正常!',{icon: 5,time:1000});
+                  layer.msg('正常!');
 
               }
 
@@ -156,15 +153,17 @@
       }
       function updateAjax(id,value) {
           $.ajax({
-              "url" : "/teacher/save?id="+id+"&locked="+value,
-              "type" : "POST",
-              "dataType" : "text",
-              "success" : callback,
-              "async" : "false",
+              url: "/teacher/change",
+              type: "POST",
+              data: "id="+id+"&locked="+value,
+              success:function (data) {
+                  if(data=='success'){
+                      layer.msg("成功",{icon:1,time:2000})
+                  }
+
+              },
+              dataType:"text"
           });
-          function callback() {
-              alert("成功");
-          }
       }
 
       function member_del(obj,id){

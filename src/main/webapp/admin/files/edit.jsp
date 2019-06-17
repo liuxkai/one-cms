@@ -53,12 +53,20 @@
       background:url(../../static/images/checked.gif) no-repeat 10px 3px;
       padding-left: 30px;
     }
+    .layui-form-label{
+      float:left;
+      display:block;
+      padding:9px 15px;
+      width:200px;
+      font-weight:400;
+      line-height:20px;
+    }
   </style>
   <body>
-  <div class="x-body">
-    <form class="layui-form" method="post" id="teacherForm" enctype="multipart/form-data" action="/files/save?id=${file.id}">
+  <div class="x-body" style="width: 70%;margin: 0 auto">
+    <form class="layui-form layui-form-pane" method="post" id="teacherForm" enctype="multipart/form-data" action="/files/save?id=${file.id}">
       <div class="layui-form-item">
-        <label  class="layui-form-label">
+        <label  class="layui-form-label layui-bg-green">
           <span class="x-red">*</span>关联表名
         </label>
         <div class="layui-input-inline">
@@ -78,25 +86,10 @@
       <label  class="layui-form-label">
         <span class="x-red">*</span>文件描述
       </label>
-      <div class="layui-input-inline" style="height: 270px;width: 602px;margin-bottom: 30px;">
-
+      <div class="layui-input-inline" style="height: 270px;width: 602px;margin-bottom: 60px;">
         <textarea style="padding: 0px 0px;" id="editor" name="fileMemo" class="layui-textarea">${file.fileMemo}</textarea>
       </div>
 
-
-      <div class="layui-form-item">
-        <div class="layui-inline">
-          <label class="layui-form-label">类型</label>
-          <div class="layui-input-inline">
-            <select id="fileType" name="fileType">
-              <option value="">请选择</option>
-              <c:forEach items="${typesList}" var="type">
-                <option value="${type.typeName}">${type.typeName}</option>
-              </c:forEach>
-            </select>
-          </div>
-        </div>
-      </div>
       <c:if test="${not empty file}">
         <div class="layui-form-item">
           <label class="layui-form-label">是否删除</label>
@@ -122,7 +115,7 @@
           <label  class="layui-form-label">
             <span class="x-red">*</span>原文件名
           </label>
-          <div class="layui-input-inline">
+          <div class="layui-input-block">
             <input type="text" value="${file.fileName}" name="fileName"  class="layui-input">
           </div>
         </div>
@@ -138,16 +131,18 @@
         </div>
         <input type="hidden" value="${file.linkId}" name="linkId">
       </c:if>
-      <div class="layui-form-item">
-        <label class="layui-form-label">
-        </label>
-        <button  class="layui-btn" id="add" lay-filter="add" lay-submit="">
-          增加
-        </button>
+      <div class="layui-form-item"style="margin-left: 100px" >
+        <input type="reset" class="layui-btn" value="重置">
+        <button  class="layui-btn" id="add" lay-filter="add">增加</button>
+        <button id="back" class="layui-btn" >返回</button>
+
       </div>
     </form>
   </div>
   <script type="text/javascript" charset="utf-8">
+      $("#back").click(function(){
+          history.go(-1);
+      })
     $(function () {
         jQuery.validator.addMethod("isPhone", function(value, element) {
             var length = value.length;
@@ -160,8 +155,6 @@
             errorPlacement:function(error,element){
                 error.appendTo(element.parent().parent());
             },
-            ignore: ":hidden:not(select)",
-
             rules:{
                 name:{
                     required:true,
@@ -209,7 +202,6 @@
         });
 
 
-        $("#fileType option[value=${file.fileType}]").prop("selected",true);
         $("#deleted option[value=${file.deleted}]").prop("selected",true);
         $("#add").click(function () {
             $("form").submit();

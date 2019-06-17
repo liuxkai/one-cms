@@ -20,7 +20,7 @@
     <result column="INFO_STATE" property="infoState" jdbcType="INTEGER" />
     <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
     <result column="DELETED" property="deleted" jdbcType="INTEGER" />
-    <collection property="typesList" ofType="Types" column="NEWS_TYPE" select="getByNewsType" />
+    <!--<collection property="typesList" ofType="Types" column="NEWS_TYPE" select="getByNewsType" />-->
   </resultMap>
   <resultMap id="getListResultMap" type="News" extends="BaseResultMap" >
     <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
@@ -39,9 +39,9 @@
     select * from NEWS <include refid="condition" />
   </select>
 
-  <select id="getByNewsType" resultType="Types" parameterType="News">
-      select * from TYPES WHERE PARENT_CODE =(select DISTINCT PARENT_CODE from TYPES where TYPE_NAME = #{newsType })
-  </select>
+  <!--<select id="getByNewsType" resultType="Types" parameterType="News">-->
+      <!--select * from TYPES WHERE PARENT_CODE =(select DISTINCT PARENT_CODE from TYPES where TYPE_NAME = #{newsType })-->
+  <!--</select>-->
   <select id="getPageList" resultMap="getListResultMap"  parameterType="News">
     select * from NEWS <include refid="condition" />
     limit #{offset}, #{limit}
@@ -59,9 +59,7 @@
   <insert id="insert" parameterType="News" useGeneratedKeys="true" keyProperty="id">
     insert into NEWS
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="uuid != null" >
         UUID,
-      </if>
       <if test="newsType != null" >
         NEWS_TYPE,
       </if>
@@ -115,9 +113,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="uuid != null" >
-        #{uuid,jdbcType=VARCHAR},
-      </if>
+
+      MD5(UUID()),
       <if test="newsType != null" >
         #{newsType,jdbcType=VARCHAR},
       </if>

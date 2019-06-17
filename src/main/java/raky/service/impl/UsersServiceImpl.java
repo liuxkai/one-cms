@@ -8,4 +8,5 @@ import raky.service.UsersService;
 @Service
 public class UsersServiceImpl extends CoreServiceImpl<Users> implements UsersService {
 
+
 }

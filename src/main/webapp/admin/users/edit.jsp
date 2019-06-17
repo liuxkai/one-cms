@@ -11,7 +11,7 @@
     <title>欢迎页面-L-admin1.0</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8" />
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="${ctx}/static/css/font.css">
     <link rel="stylesheet" href="${ctx}/static/css/xadmin.css">
@@ -40,18 +40,25 @@
       font-style: normal;
       color: red;
     }
-
     label.success{
       background:url(../../static/images/checked.gif) no-repeat 10px 3px;
       padding-left: 30px;
     }
+    .layui-form-label{
+      float:left;
+      display:block;
+      padding:9px 15px;
+      width:200px;
+      font-weight:400;
+      line-height:20px;
+    }
   </style>
   <body>
-  <div class="x-body">
-    <form class="layui-form" id="userForm" method="post" action="/users/save?id=${user.id}">
+  <div class="x-body" style="width: 50%;margin: 0 auto" >
+    <form class="layui-form layui-form-pane" id="userForm" method="post" action="/users/save?id=${user.id}">
       <div class="layui-form-item">
-        <label  class="layui-form-label">
-          <span class="x-red">*</span>邮箱
+        <label  class="layui-form-label layui-bg-green">
+          邮箱
         </label>
         <div class="layui-input-inline">
           <input type="text" value="${user.email}" name="email"  class="layui-input">
@@ -62,7 +69,7 @@
       </div>
       <div class="layui-form-item">
         <label class="layui-form-label">
-          <span class="x-red">*</span>用户名
+          用户名
         </label>
         <div class="layui-input-inline">
           <input type="text"  value="${user.userName}" name="userName"
@@ -75,7 +82,7 @@
 
       <div class="layui-form-item">
         <label class="layui-form-label">
-          <span class="x-red">*</span>真实姓名
+          真实姓名
         </label>
         <div class="layui-input-inline">
           <input type="text" value="${user.realName}" name="realName"  class="layui-input">
@@ -88,7 +95,7 @@
 
       <div class="layui-form-item">
         <label class="layui-form-label">
-          <span class="x-red">*</span>手机号码
+          手机号码
         </label>
         <div class="layui-input-inline">
           <input type="text" value="${user.mobile}" name="mobile"  class="layui-input">
@@ -100,25 +107,11 @@
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>密码
-        </label>
-        <div class="layui-input-inline">
-          <input type="password"  value="${user.passWord}" name="passWord"  class="layui-input">
-        </div>
-        <div class="layui-form-mid layui-word-aux">
-          <span class="x-red">*</span>
-        </div>
-      </div>
-
-      <div class="layui-form-item">
-        <label  class="layui-form-label">
-          <span class="x-red">*</span>性别
+          性别
         </label>
         <div class="layui-col-md2">
           <input type="radio" name="sex" value="0" title="男" <c:if test="${user.sex eq 0}">checked</c:if> >
           <input type="radio" name="sex" value="1" title="女" <c:if test="${user.sex eq 1}">checked</c:if>>
-          <input type="radio" name="sex" value="3" title="中性" disabled>
-          <label for="sex" class="error" style="display: none;"></label>
         </div>
         <div class="layui-form-mid layui-word-aux">
           <span class="x-red">*</span>
@@ -127,7 +120,7 @@
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>添加时间
+          添加时间
         </label>
         <div class="layui-input-inline">
           <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="createTime"
@@ -138,7 +131,7 @@
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>最后登录时间
+          最后登录时间
         </label>
         <div class="layui-input-inline">
           <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})" value="<fmt:formatDate value="${user.lastLoginTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" name="lastLoginTime"
@@ -148,7 +141,7 @@
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>最后登录IP
+          最后登录IP
         </label>
         <div class="layui-input-inline">
           <input type="text"  value="${user.lastLoginIp}" name="lastLoginIp"
@@ -158,7 +151,7 @@
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
-          <span class="x-red">*</span>生日
+          生日
         </label>
         <div class="layui-input-inline">
           <input type="text"  onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',readOnly:true})"
@@ -168,26 +161,45 @@
 
       <div class="layui-form-item">
         <label class="layui-form-label">所属职称：</label>
-        <div id="positions" class="layui-input-inline">
-          <c:forEach items="${typesList2}" var="type">
-            <input type="radio" name="positions" value="${type.typeName}" title="${type.typeName}" >
-          </c:forEach>
+        <div class="layui-input-inline">
+          <select autocomplete="off"  name="positions">
+            <option value="">请选择</option>
+            <c:forEach items="${typesList2}" var="type">
+              <option value="${type.typeName}" <c:if test="${user.positions eq type.typeName}">selected='selected'</c:if> >${type.typeName}</option>
+            </c:forEach>
+          </select>
         </div>
         <div class="layui-form-mid layui-word-aux">
           <span class="x-red">*</span>
         </div>
       </div>
 
-      <div class="layui-form-item">
-        <label class="layui-form-label">是否锁定</label>
-        <div class="layui-input-inline">
-          <select id="locked" name="locked">
-            <option value="">请选择</option>
-            <option value="0">已锁定</option>
-            <option value="1">正常</option>
-          </select>
+      <c:if test="${ not empty user}">
+        <div class="layui-form-item">
+          <label class="layui-form-label">是否锁定</label>
+          <div class="layui-input-inline">
+            <select id="locked" name="locked">
+              <option value="">请选择</option>
+              <option value="0" <c:if test="${user.locked eq 0 }">selected='selected'</c:if>>已锁定</option>
+              <option value="1" <c:if test="${user.locked eq 1 }">selected='selected'</c:if>>正常</option>
+            </select>
+          </div>
         </div>
-      </div>
+      </c:if>
+
+      <c:if test="${empty user}">
+        <div class="layui-form-item">
+          <label  class="layui-form-label">
+            密码
+          </label>
+          <div class="layui-input-inline">
+            <input type="password"  value="${user.passWord}" name="passWord"  class="layui-input">
+          </div>
+          <div class="layui-form-mid layui-word-aux">
+            <span class="x-red">*</span>
+          </div>
+        </div>
+      </c:if>
 
       <div class="layui-form-item">
         <div class="layui-inline">
@@ -196,23 +208,37 @@
             <select id="userType" name="userType">
               <option value="">请选择</option>
               <c:forEach items="${typesList1}" var="type">
-                <option name="" value="${type.typeCode}">${type.typeName}</option>
+                <option <c:if test="${user.userType eq type.typeCode }">selected='selected'</c:if> value="${type.typeCode}">${type.typeName}</option>
               </c:forEach>
             </select>
           </div>
         </div>
       </div>
-
       <div class="layui-form-item">
-        <label class="layui-form-label">
+        <label  class="layui-form-label">
+          优先级
         </label>
-        <button  class="layui-btn" id="add" lay-filter="add" lay-submit="">
-          增加
-        </button>
+        <div class="layui-input-inline">
+          <input type="text"  value="${user.priority}" name="priority"
+                 class="layui-input">
+        </div>
       </div>
+
+      <div class="layui-form-item"style="margin-left: 100px" >
+        <input type="reset" class="layui-btn" value="重置">
+        <button  class="layui-btn" id="add" lay-filter="add">增加</button>
+        <button id="back" class="layui-btn" >返回</button>
+      </div>
+
+
     </form>
   </div>
   <script>
+
+    $("#back").click(function(){
+        history.go(-1);
+    });
+
 
     $(function () {
         jQuery.validator.addMethod("isPhone", function(value, element) {
@@ -234,7 +260,6 @@
             errorPlacement:function(error,element){
                 error.appendTo(element.parent().parent());
             },
-            ignore: ":hidden:not(select)",
 
             rules:{
                 email:{
@@ -259,26 +284,17 @@
                     minlength:6
                 },
                 sex:{
-                    required:true
+                    required:true,
                 },
                 positions:{
-                    required:true
+                    required:true,
                 },
 
             },
             messages:{
 
-            },
-            // errorElement: "label",
-            // success: function(label) {
-            //     label.text("")
-            //         .addClass("success");
-            // }
-
+            }
         });
-        $("#userType option[value=${user.userType}]").prop("selected",true);
-        $("#positions input[value=${user.positions}]").prop('checked','checked');
-        $("#locked option[value=${user.locked}]").prop("selected",true);
     });
 
     $("#add").click(function () {

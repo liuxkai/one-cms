@@ -1,6 +1,7 @@
 package raky.web.admin.student;
 
 import core.controller.CoreController;
+import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Files;
 import raky.entity.Student;
@@ -34,25 +36,37 @@ public class StudentController extends CoreController {
     @Resource
     private FilesService filesService;
 
-    @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(@RequestParam("file") MultipartFile files[], HttpServletRequest request, Student student){
-        Files file=new Files();
-        List<Files> filesList=new ArrayList<>();
-        List<Map<String,String>> list = upLoad(files, request);
-        for(Map map:list){
-            file.setFileName(map.get("fileName").toString());
-            file.setSaveName(map.get("saveName").toString());
-            file.setSavePath(map.get("savePath").toString());
-            filesList.add(file);
+
+
+    @RequestMapping(value = "/save",method = {RequestMethod.POST,RequestMethod.GET})
+    public String save(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request,Student student ){
+        try {
+            List<Map<String, String>> list = upLoad(files, request);
+            List<Files> filesList=new ArrayList<>();
+            for(Map map:list){
+                Files file=new Files();
+                BeanUtils.populate(file,map);
+                filesList.add(file);
+            }
+                student.setFilesList(filesList);
+        }catch (Exception e) {
+                e.printStackTrace();
         }
-        student.setFilesList(filesList);
-        if(student.getId()!=null){
-            studentService.update(student);
+        if(student.getId()==null){
+            studentService.insert(student);
             return "redirect:/student/pageList";
         }
-        studentService.insert(student);
+        studentService.update(student);
         return "redirect:/student/pageList";
-
+    }
+    @RequestMapping(value = "/change",method = RequestMethod.POST)
+    @ResponseBody
+    public String change(Student student){
+        int result = studentService.update(student);
+        if(result==1){
+            return "success";
+        }
+        return "";
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
@@ -83,15 +97,18 @@ public class StudentController extends CoreController {
         return "/student/show";
     }
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Student student, Integer requestPage) {
-        if (requestPage == null) {
-            requestPage = 1;
+    public String getPageList(ModelMap model, Student student, Integer requestPage,Integer pageSize) {
+        if(requestPage==null){
+            requestPage=1;
+        }if(pageSize==null){
+            pageSize=5;
         }
-        pager.init(requestPage, 2, studentService.getCount(student));
+        pager.init(requestPage, pageSize, studentService.getCount(student));
         student.setOffset(pager.getOffset());
         student.setLimit(pager.getLimit());
         List<Student> studentPageList = studentService.getPageList(student);
         pager.setList(studentPageList);
+        pager.setUrl("/student/pageList");
         model.addAttribute("pager", pager);
         model.addAttribute("student", student);
         return "/student/list";

@@ -47,7 +47,7 @@
     </div>
     <xblock>
       <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-      <button class="layui-btn" id="add" onclick="add()"><i class="layui-icon"></i>添加</button>
+      <%--<button class="layui-btn" id="add" onclick="add()"><i class="layui-icon"></i>添加</button>--%>
       <span class="x-right" style="line-height:40px">共有数据：${pager.totalCount} 条</span>
     </xblock>
     <table class="layui-table">
@@ -103,10 +103,7 @@
     </table>
     <div class="page">
       <div>
-        <a class="prev" href="${ctx}/files/pageList?requestPage=${pager.firstPage}">首页</a>
-        <a class="prev" href="${ctx}/files/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="next" href="${ctx}/files/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-        <a class="prev" href="${ctx}/files/pageList?requestPage=${pager.lastPage}">尾页</a>
+        <jsp:include page="../pager.jsp"></jsp:include>
       </div>
     </div>
 

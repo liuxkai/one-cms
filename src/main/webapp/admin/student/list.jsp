@@ -75,9 +75,12 @@
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
         <td>${studentStatus.count}</td>
-        <td>${student.name} ${ctx}</td>
+        <td>${student.name}</td>
         <td>${student.clazz}</td>
-        <td>${student.sex}</td>
+        <td>
+          <c:if test="${student.sex eq 0}">男</c:if>
+          <c:if test="${student.sex eq 1}">女</c:if>
+        </td>
         <td>${student.salary}</td>
         <td>${student.company}</td>
         <td>${student.school}</td>
@@ -93,8 +96,8 @@
         </c:if>
         </td>
         <td class="td-manage">
-          <a onclick="member_stop(this,${student.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${student.locked}">启用</a>
-          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/student/detailed?id=${student.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
+          <button style="margin-left: 10px" class="layui-btn layui-btn layui-btn-xs" title="${user.locked}" onclick="member_stop(this,${student.id})" ><i class="layui-icon">&#xe601;</i>启用</button>
+          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/student/detailed?id=${student.id}')" ><i class="layui-icon">&#xe63c;</i>查看</button>
           <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${student.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
           <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${student.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
         </td>
@@ -106,10 +109,7 @@
     </table>
     <div class="page">
       <div>
-        <a class="prev" href="${ctx}/student/pageList?requestPage=${pager.firstPage}">首页</a>
-        <a class="prev" href="${ctx}/student/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="next" href="${ctx}/student/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-        <a class="prev" href="${ctx}/student/pageList?requestPage=${pager.lastPage}">尾页</a>
+        <jsp:include page="../pager.jsp"></jsp:include>
       </div>
     </div>
 
@@ -148,17 +148,18 @@
 
       function updateAjax(id,value) {
           $.ajax({
-              "url" : "/student/save?id="+id+"&locked="+value,    //提交URL
-              "type" : "POST",//处理方式
-              "dataType" : "text",//指定返回的数据格式
-              "success" : callback,//执行成功后的回调函数
-              "async" : "false",//是否同步
-          });
-          function callback() {
-              alert("成功");
-          }
-      }
+              url: "/student/change",
+              type: "POST",
+              data: "id="+id+"&locked="+value,
+              success:function (data) {
+                  if(data=='success'){
+                      layer.msg("成功",{icon:1,time:2000})
+                  }
 
+              },
+              dataType:"text"
+          });
+      }
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){

@@ -51,10 +51,18 @@
       background:url(../../static/images/checked.gif) no-repeat 10px 3px;
       padding-left: 30px;
     }
+    .layui-form-label{
+      float:left;
+      display:block;
+      padding:9px 15px;
+      width:200px;
+      font-weight:400;
+      line-height:20px;
+    }
   </style>
   <body>
-  <div class="x-body">
-    <form class="layui-form" method="post" id="teacherForm" enctype="multipart/form-data" action="/teacher/save?id=${teacher.id}">
+  <div class="x-body" style="width: 50%;margin: 0 auto">
+    <form class="layui-form layui-form-pane" method="post" id="teacherForm" enctype="multipart/form-data" action="/teacher/save?id=${teacher.id}">
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>姓名
@@ -92,7 +100,7 @@
       <label  class="layui-form-label">
         <span class="x-red">*</span>简介
       </label>
-      <div class="layui-input-inline" style="height: 270px;width: 602px;margin-bottom: 30px;">
+      <div class="layui-input-inline" style="height: 270px;width: 602px;margin-bottom: 20px;">
 
         <textarea style="padding: 0px 0px;" id="editor" name="content" class="layui-textarea">${teacher.memo}</textarea>
       </div>
@@ -131,10 +139,9 @@
         <label class="layui-form-label">
           <span class="x-red">*</span>性别
         </label>
-        <div class="layui-col-md2">
+        <div class="layui-col-md4">
           <input type="radio" name="sex" value="0" title="男" <c:if test="${teacher.sex eq 0}">checked</c:if> >
           <input type="radio" name="sex" value="1" title="女" <c:if test="${teacher.sex eq 1}">checked</c:if>>
-          <input type="radio" name="sex" value="3" title="中性" disabled>
         </div>
       </div>
 
@@ -145,7 +152,7 @@
             <select id="positions" name="positions">
               <option value="">请选择</option>
               <c:forEach items="${typesList}" var="type">
-                <option value="${type.typeName}">${type.typeName}</option>
+                <option <c:if test="${type.typeName eq teacher.positions }">selected='selected'</c:if> value="${type.typeName}">${teacher.positions}</option>
               </c:forEach>
             </select>
           </div>
@@ -157,35 +164,50 @@
           <div class="layui-input-inline">
             <select id="locked" name="locked">
               <option value="">请选择</option>
-                <option value="1">已锁定</option>
-                <option value="0">正常</option>
+              <option value="0" <c:if test="${teacher.locked eq 0 }">selected='selected'</c:if>>已锁定</option>
+              <option value="1" <c:if test="${teacher.locked eq 1 }">selected='selected'</c:if>>正常</option>
             </select>
           </div>
         </div>
       </c:if>
+      <div class="layui-form-item">
+        <label  class="layui-form-label">
+          优先级
+        </label>
+        <div class="layui-input-inline">
+          <input type="text"  value="${user.priority}" name="priority"
+                 class="layui-input">
+        </div>
+      </div>
 
       <c:if test="${not empty filesList}">
         <div class="layui-form-item">
           <label  class="layui-form-label">
             <span class="x-red">*</span>已传附件
           </label>
-          <div class="layui-input-inline">
+          <div class="layui-input-inline" style="width: 400px">
             <c:forEach items="${filesList}" var="file">
-              <span id="file_${file.id}" style="width: 200px;"><a href="${file.savePath}">${file.saveName}</a><a href="javascript:void (0);" onclick="deleteFile(${file.id})">删除</a></br> </span>
+              <span id="file_${file.id}"><a href="${file.savePath}">${file.saveName}</a><a href="javascript:void (0);" onclick="deleteFile(${file.id})">删除</a></br> </span>
             </c:forEach>
           </div>
         </div>
       </c:if>
-      <div class="layui-form-item">
-        <label class="layui-form-label">
-        </label>
-        <button  class="layui-btn" id="add" lay-filter="add" lay-submit="">
-          增加
-        </button>
+      <div class="layui-form-item"style="margin-left: 100px" >
+        <input type="reset" class="layui-btn" value="重置">
+        <button  class="layui-btn" id="add" lay-filter="add">增加</button>
+        <button id="back" class="layui-btn" >返回</button>
       </div>
     </form>
   </div>
   <script type="text/javascript" charset="utf-8">
+      $("#back").click(function(){
+          history.go(-1);
+      });
+
+      $("#add").click(function () {
+          $("form").submit();
+
+      });
     $(function () {
         jQuery.validator.addMethod("isPhone", function(value, element) {
             var length = value.length;
@@ -198,8 +220,6 @@
             errorPlacement:function(error,element){
                 error.appendTo(element.parent().parent());
             },
-            ignore: ":hidden:not(select)",
-
             rules:{
                 name:{
                     required:true,
@@ -246,13 +266,6 @@
 
         });
 
-
-        $("#positions option[value=${teacher.positions}]").prop("selected",true);
-        $("#locked option[value=${teacher.locked}]").prop("selected",true);
-        $("#add").click(function () {
-            $("form").submit();
-
-        });
     });
     function deleteFile(id) {
         var fla="file_"+id;

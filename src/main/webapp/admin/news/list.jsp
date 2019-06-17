@@ -133,10 +133,7 @@
     </table>
     <div class="page">
       <div>
-        <a class="prev" href="${ctx}/news/pageList?requestPage=${pager.firstPage}">首页</a>
-        <a class="prev" href="${ctx}/news/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="next" href="${ctx}/news/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-        <a class="prev" href="${ctx}/news/pageList?requestPage=${pager.lastPage}">尾页</a>
+        <jsp:include page="../pager.jsp"></jsp:include>
       </div>
     </div>
 
@@ -146,7 +143,7 @@
           location.href="/news/input?id="+id;
       }
       function add(){
-          location.href="/news/input?id=${id}&newsType=${newsType}";
+          location.href="/news/input";
       }
 
 

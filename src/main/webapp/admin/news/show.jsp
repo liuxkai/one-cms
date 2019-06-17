@@ -25,9 +25,19 @@
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+  <style>
+    .layui-form-label{
+      float:left;
+      display:block;
+      padding:9px 15px;
+      width:200px;
+      font-weight:400;
+      line-height:20px;
+    }
+  </style>
   <body>
-  <div class="x-body">
-    <form class="layui-form" >
+  <div class="x-body" style="width: 70%;margin: 0 auto">
+    <form class="layui-form layui-form-pane" >
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>新闻标题
@@ -36,6 +46,17 @@
           <input type="text"  value="${news.title}" name="" class="layui-input">
         </div>
       </div>
+
+      <div class="layui-col-md6">
+        <label  class="layui-form-label">
+          <span class="x-red">*</span>摘要
+        </label>
+        <div class="layui-col-md6">
+          <textarea class="layui-textarea">${news.summary}</textarea>
+        </div>
+      </div>
+
+
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>主图路径
@@ -44,13 +65,13 @@
           <input type="text" value="${news.imagePath}" name=""  class="layui-input">
         </div>
       </div>
-      <div class="layui-col-md6">
+      <div class="layui-form-item">
         <div class="layui-card">
           <label  class="layui-form-label">
             <span class="x-red">*</span>主图说明
           </label>
-          <div class="layui-col-md10">
-            <textarea name="${news.imageMemo}" placeholder="" class="layui-textarea"></textarea>
+          <div class="layui-col-md6">
+            <textarea  class="layui-textarea">${news.imageMemo}</textarea>
           </div>
         </div>
       </div>
@@ -63,32 +84,23 @@
           <input type="text"  value="${news.videoPath}" name=""  class="layui-input">
         </div>
       </div>
-      <div class="layui-col-md6">
+      <div class="layui-form-item">
         <div class="layui-card">
           <label  class="layui-form-label">
             <span class="x-red">*</span>视频说明
           </label>
-          <div class="layui-col-md10">
-            <textarea name="${news.videoDesc}" placeholder="" class="layui-textarea"></textarea>
+          <div class="layui-col-md6">
+            <textarea  class="layui-textarea">${news.videoDesc}</textarea>
           </div>
         </div>
       </div>
 
-      <div class="layui-form-item">
-        <label  class="layui-form-label">
-          <span class="x-red">*</span>摘要
-        </label>
-        <div class="layui-input-inline">
-          <input type="text" value="${news.summary}" name=""  class="layui-input">
-        </div>
-      </div>
-
-      <div class="layui-form-item">
+      <div class="layui-col-md10">
         <label  class="layui-form-label">
           <span class="x-red">*</span>新闻内容
         </label>
         <div class="layui-col-md10">
-          <textarea name="${news.content}" placeholder="" class="layui-textarea"></textarea>
+          <textarea name="content" class="layui-textarea">${news.content}</textarea>
         </div>
       </div>
 
@@ -104,8 +116,8 @@
         <label  class="layui-form-label">
           <span class="x-red">*</span>信息来源
         </label>
-        <div class="layui-input-block">
-          <input type="text" value="${news.infoSource}" name=""  class="layui-input">
+        <div class="layui-col-md6">
+          <textarea name="infoSource" placeholder="" class="layui-textarea">${news.infoSource}</textarea>
         </div>
       </div>
 
@@ -181,9 +193,6 @@
     </form>
   </div>
   <script>
-    $(function () {
-        <%--$("#usertype option[value=${new.education}]").prop("selected",true);--%>
-    });
   </script>
   </body>
 </html>

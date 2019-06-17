@@ -55,20 +55,20 @@
         <th>
           <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
         </th>
-        <th>ID</th>
+        <th>序号</th>
         <th>添加时间</th>
         <th>类型名称</th>
         <th>类型说明</th>
         <th>状态</th>
         <th>操作</th>
       </tr>
-    <c:forEach items="${pager.list}" var="parentType">
+    <c:forEach items="${pager.list}" varStatus="typesStatus" var="parentType">
       <tbody class="x-cate">
       <tr cate-id='${parentType.typeCode}' fid='${parentType.parentCode}' >
         <td>
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
-        <td>${parentType.id}</td>
+        <td>${typesStatus.count}</td>
         <td><fmt:formatDate value="${parentType.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <td>
           <c:if test="${not empty parentType.children}">
@@ -88,19 +88,18 @@
             </td>
         </c:if>
           <td class="td-manage">
-            <a onclick="member_stop(this,${parentType.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${parentType.locked}">启用</a>
-            <%--<button class="layui-btn" id="add" onclick="addParent();"><i class="layui-icon"></i>添加</button>--%>
-            <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/types/detailed?id=${parentType.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
+            <button style="margin-left: 10px" class="layui-btn layui-btn layui-btn-xs" title="${parentType.locked}" onclick="member_stop(this,${parentType.id})" ><i class="layui-icon">&#xe601;</i>启用</button>
+            <button class="layui-btn layui-btn-warm layui-btn-xs" title="" onclick="x_admin_show('查看','${ctx}/types/detailed?id=${parentType.id}')" ><i class="layui-icon">&#xe63c;</i>查看</button>
             <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${parentType.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
             <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${parentType.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
           </td>
       </tr>
-    <c:forEach items="${parentType.children}" var="firstType">
+    <c:forEach items="${parentType.children}" varStatus="typesStatus" var="firstType">
       <tr cate-id='${firstType.typeCode}' fid='${firstType.parentCode}' >
         <td>
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
-        <td>${firstType.id}</td>
+        <td>${typesStatus.count}</td>
         <td><fmt:formatDate value="${firstType.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
         <td>
           &nbsp;&nbsp;&nbsp;&nbsp;
@@ -110,7 +109,7 @@
           ${firstType.typeName}
         </td>
         <td>${firstType.typeMemo}</td>
-        <c:if test="${firstType.locked eq  1 }">--%>
+        <c:if test="${firstType.locked eq  1 }">
           <td class="td-status">
             <span class="layui-btn layui-btn-normal layui-btn-sm">正常</span>
           </td>
@@ -121,9 +120,8 @@
           </td>
         </c:if>
         <td class="td-manage">
-          <a onclick="member_stop(this,${firstType.id})"  class="layui-btn layui-btn-sm layui-btn-primary" title="${firstType.locked}">启用</a>
-          <%--<button class="layui-btn" onclick="addChildren(${firstType.id});"><i class="layui-icon"></i>添加</button>--%>
-          <button class="layui-btn layui-btn-warm layui-btn-xs"  onclick="x_admin_show('查看','${ctx}/types/detailed?id=${firstType.id}')" ><i class="layui-icon">&#xe642;</i>查看</button>
+          <button style="margin-left: 10px" class="layui-btn layui-btn layui-btn-xs" title="${firstType.locked}" onclick="member_stop(this,${firstType.id})" ><i class="layui-icon">&#xe601;</i>启用</button>
+          <button class="layui-btn layui-btn-warm layui-btn-xs" title="" onclick="x_admin_show('查看','${ctx}/types/detailed?id=${firstType.id}')" ><i class="layui-icon">&#xe63c;</i>查看</button>
           <button class="layui-btn layui-btn layui-btn-xs" onclick="edit(${firstType.id})" ><i class="layui-icon">&#xe642;</i>编辑</button>
           <button class="layui-btn-danger layui-btn layui-btn-xs"  onclick="member_del(this,${firstType.id})" href="javascript:void(0);" ><i class="layui-icon">&#xe640;</i>删除</button>
         </td>
@@ -134,10 +132,7 @@
     </table>
     <div class="page">
       <div>
-        <a class="prev" href="${ctx}/types/pageList?requestPage=${pager.firstPage}">首页</a>
-        <a class="prev" href="${ctx}/types/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="next" href="${ctx}/types/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-        <a class="prev" href="${ctx}/types/pageList?requestPage=${pager.lastPage}">尾页</a>
+        <jsp:include page="../pager.jsp"></jsp:include>
       </div>
     </div>
 
@@ -174,18 +169,20 @@
 
           });
       }
-      function updateAjax(id,value) {
-          $.ajax({
-              "url" : "/types/save?id="+id+"&locked="+value,
-              "type" : "POST",
-              "dataType" : "text",
-              "success" : callback,
-              "async" : "false",
-          });
-          function callback() {
-              alert("成功");
-          }
-      }
+    function updateAjax(id,value) {
+        $.ajax({
+            url: "/types/change",
+            type: "POST",
+            data: "id="+id+"&locked="+value,
+            success:function (data) {
+                if(data=='success'){
+                    layer.msg("成功",{icon:1,time:2000})
+                }
+
+            },
+            dataType:"text"
+        });
+    }
 
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){

@@ -43,12 +43,20 @@
       background:url(../../static/images/checked.gif) no-repeat 10px 3px;
       padding-left: 30px;
     }
+    .layui-form-label{
+      float:left;
+      display:block;
+      padding:9px 15px;
+      width:200px;
+      font-weight:400;
+      line-height:20px;
+    }
   </style>
   <body>
-  <div class="x-body">
-    <form class="layui-form" method="post" id="studentForm" enctype="multipart/form-data" action="/student/save?id=${student.id}">
+  <div class="x-body" style="width: 50%;margin: 0 auto">
+    <form class="layui-form layui-form-pane" method="post" id="studentForm" enctype="multipart/form-data" action="/student/save?id=${student.id}">
       <div class="layui-form-item">
-        <label  class="layui-form-label">
+        <label  class="layui-form-label layui-bg-green">
           <span class="x-red">*</span>姓名
         </label>
         <div class="layui-input-inline">
@@ -161,10 +169,9 @@
           <span class="x-red">*</span>性别
         </label>
 
-        <div class="layui-col-md2">
+        <div class="layui-col-md4">
           <input type="radio" name="sex" value="0" title="男" <c:if test="${student.sex eq 0}">checked</c:if> >
           <input type="radio" name="sex" value="1" title="女" <c:if test="${student.sex eq 1}">checked</c:if>>
-          <input type="radio" name="sex" value="2" title="中性" disabled>
         </div>
       </div>
       <div class="layui-form-item">
@@ -183,6 +190,18 @@
           </div>
         </div>
       </div>
+      <c:if test="${ not empty student}">
+        <div class="layui-form-item">
+          <label class="layui-form-label">是否锁定</label>
+          <div class="layui-input-inline">
+            <select id="locked" name="locked">
+              <option value="">请选择</option>
+              <option value="0" <c:if test="${student.locked eq 0 }">selected='selected'</c:if>>已锁定</option>
+              <option value="1" <c:if test="${student.locked eq 1 }">selected='selected'</c:if>>正常</option>
+            </select>
+          </div>
+        </div>
+      </c:if>
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>附件上传
@@ -198,21 +217,26 @@
             </label>
             <div class="layui-input-inline">
               <c:forEach items="${filesList}" var="file">
-                <span id="file_${file.id}" style="width: 200px;"><a href="${file.savePath}">${file.saveName}</a><a href="javascript:void (0);" onclick="deleteFile(${file.id})">删除</a></br> </span>
+                <span id="file_${file.id}"><a href="${file.savePath}">${file.saveName}</a><a href="javascript:void (0);" onclick="deleteFile(${file.id})">删除</a></br> </span>
               </c:forEach>
             </div>
           </div>
       </c:if>
-      <div class="layui-form-item">
-        <label class="layui-form-label">
-        </label>
-        <button  class="layui-btn" id="add" lay-filter="add" lay-submit="">
-          增加
-        </button>
+
+      <div class="layui-form-item"style="margin-left: 100px" >
+        <input type="reset" class="layui-btn" value="重置">
+        <button  class="layui-btn" id="add" lay-filter="add">增加</button>
+        <button id="back" class="layui-btn" >返回</button>
+
       </div>
+
     </form>
   </div>
   <script>
+
+    $("#back").click(function(){
+        history.go(-1);
+    })
     $(function () {
         jQuery.validator.addMethod("isPhone", function(value, element) {
             var length = value.length;
@@ -220,81 +244,80 @@
             return this.optional(element) || (length == 11 && mobile.test(value));
         }, "请填写正确的手机号码");
 
-        $("#studentForm").validate({
+    $("#studentForm").validate({
 
-            errorPlacement:function(error,element){
-                error.appendTo(element.parent().parent());
+        errorPlacement:function(error,element){
+            error.appendTo(element.parent().parent());
+        },
+        rules:{
+            name:{
+                required:true,
+                minlength:3
             },
-            ignore: ":hidden:not(select)",
-
-            rules:{
-                name:{
-                    required:true,
-                    minlength:3
-                },
-                birthDate:{
-                    required:true,
-                    date:true
-                },
-                clazz:{
-                    required:true,
-                },
-                company:{
-                    required:true,
-                    minlength:3
-                },
-                salary:{
-                    required:true,
-                    digits:true
-                },
-                school:{
-                    required:true,
-                    minlength:3
-                },
-                contactWay:{
-                    required:true,
-                    isPhone:true
-                },
-                contactWay:{
-                    required:true,
-                    isPhone:true
-                },
-                content:{
-                    required:true,
-                    maxlength:100
-                },
-                onlineContact:{
-                    required:true,
-                    email:true,
-                },
-                email:{
-                    required:true,
-                    email:true,
-                },
-                address:{
-                    required:true,
-                    minlength:10
-                }
-
+            birthDate:{
+                required:true,
+                date:true
             },
-            messages:{
-
+            clazz:{
+                required:true,
             },
-            errorElement: "label",
-            success: function(label) {
-                label.text(" ")
-                    .addClass("success");
+            company:{
+                required:true,
+                minlength:3
+            },
+            salary:{
+                required:true,
+                digits:true
+            },
+            school:{
+                required:true,
+                minlength:3
+            },
+            contactWay:{
+                required:true,
+                isPhone:true
+            },
+            contactWay:{
+                required:true,
+                isPhone:true
+            },
+            content:{
+                required:true,
+                maxlength:100
+            },
+            onlineContact:{
+                required:true,
+                email:true,
+            },
+            email:{
+                required:true,
+                email:true,
+            },
+            address:{
+                required:true,
+                minlength:10
             }
 
-        });
+        },
+        messages:{
 
-        $("#education option[value=${student.education}]").prop("selected",true);
-        $("#locked option[value=${student.locked}]").prop("selected",true);
+        },
+        errorElement: "label",
+        success: function(label) {
+            label.text(" ")
+                .addClass("success");
+        }
+
     });
+
+    $("#education option[value=${student.education}]").prop("selected",true);
+    });
+
     $("#add").click(function () {
         $("form").submit();
 
     });
+    //异步删除附件
     function deleteFile(id) {
         var fla="file_"+id;
         alert(fla);
@@ -307,7 +330,7 @@
             "async" : "false",//是否同步
         });
         function callback() {
-            alert("成功");
+            layer.msg('已删除!',{icon:1,time:1000});
 
         }
     }

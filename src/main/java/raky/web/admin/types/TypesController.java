@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import raky.entity.Types;
 import raky.service.TypesService;
 import raky.util.Pager;
@@ -27,7 +28,7 @@ public class TypesController extends CoreController {
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(Types types){
         if(types.getId()!=null){
-            Long typeCode=(getTypesListByParentCode(types.getParentCode()).size()+1)+types.getParentCode()*10;
+            Long typeCode=((getTypesListByParentCode(types.getParentCode()).size()+1)*3)+types.getParentCode()*10;
             types.setTypeCode(typeCode.intValue());
             typesService.update(types);
 
@@ -38,7 +39,7 @@ public class TypesController extends CoreController {
         }else {
             logger.info("parentCode=="+types.getParentCode());
             logger.info("parent=="+types.toString());
-            types.setTypeCode(types.getParentCode().intValue()*10+(typesService.getCount(types)+1));
+            types.setTypeCode(types.getParentCode().intValue()*10+((typesService.getCount(types)+1))*3);
         }
         typesService.insert(types);
         return "redirect:/types/pageList";
@@ -49,6 +50,16 @@ public class TypesController extends CoreController {
     public String delete(Long id){
         typesService.delete(id);
         return "redirect:/types/list";
+    }
+
+    @RequestMapping(value = "/change",method = RequestMethod.POST)
+    @ResponseBody
+    public String change(Types types){
+        int result = typesService.update(types);
+        if(result==1){
+            return "success";
+        }
+        return "";
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
@@ -80,16 +91,19 @@ public class TypesController extends CoreController {
         return "/types/list";
     }
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Types types, Integer requestPage) {
-        if (requestPage == null) {
-            requestPage = 1;
+    public String getPageList(ModelMap model, Types types, Integer requestPage,Integer pageSize) {
+        if(requestPage==null){
+            requestPage=1;
+        }if(pageSize==null){
+            pageSize=5;
         }
-        pager.init(requestPage, 2, getTypesListByParentCode(0l).size());
+        pager.init(requestPage, pageSize, getTypesListByParentCode(0l).size());
         types.setOffset(pager.getOffset());
         types.setLimit(pager.getLimit());
         types.setParentCode(0l);
         List<Types> typesPageList = typesService.getPageList(types);
         pager.setList(typesPageList);
+        pager.setUrl("/types/pageList");
         model.addAttribute("pager", pager);
         model.addAttribute("types", types);
         return "/types/list";

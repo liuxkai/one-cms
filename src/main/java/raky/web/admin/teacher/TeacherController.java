@@ -1,6 +1,7 @@
 package raky.web.admin.teacher;
 
 import core.controller.CoreController;
+import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Files;
 import raky.entity.Teacher;
@@ -34,19 +36,21 @@ public class TeacherController extends CoreController {
     private TeacherService teacherService;
     @Resource
     private Pager<Teacher> pager;
+
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     public String save(@RequestParam("file") MultipartFile files[], HttpServletRequest request, Teacher teacher){
-        Files file=new Files();
         List<Files> filesList=new ArrayList<>();
         List<Map<String,String>> list = upLoad(files, request);
-        for (Map map:list){
-            file.setFileName(map.get("fileName").toString());
-            file.setSaveName(map.get("saveName").toString());
-            file.setSavePath(map.get("savePath").toString());
-            filesList.add(file);
+        for (Map<String,String> map:list){
+            try {
+                Files file=new Files();
+                BeanUtils.populate(file,map);
+                filesList.add(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         teacher.setFilesList(filesList);
-        logger.info(list.toString());
         if(teacher.getId()!=null){
             teacherService.update(teacher);
             return "redirect:/teacher/pageList";
@@ -54,6 +58,17 @@ public class TeacherController extends CoreController {
         teacherService.insert(teacher);
         return "redirect:/teacher/pageList";
 
+    }
+
+    @RequestMapping(value = "/change",method = RequestMethod.POST)
+    @ResponseBody
+    public String change(Teacher teacher){
+        logger.info(teacher.toString());
+        int result = teacherService.update(teacher);
+        if(result==1){
+            return "success";
+        }
+        return "";
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
@@ -90,15 +105,18 @@ public class TeacherController extends CoreController {
         return "/teacher/list";
     }
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Teacher teacher, Integer requestPage) {
-        if (requestPage == null) {
-            requestPage = 1;
+    public String getPageList(ModelMap model, Teacher teacher, Integer requestPage,Integer pageSize) {
+        if(requestPage==null){
+            requestPage=1;
+        }if(pageSize==null){
+            pageSize=5;
         }
-        pager.init(requestPage, 2, teacherService.getCount(teacher));
+        pager.init(requestPage, pageSize, teacherService.getCount(teacher));
         teacher.setOffset(pager.getOffset());
         teacher.setLimit(pager.getLimit());
         List<Teacher> teacherPageList = teacherService.getPageList(teacher);
         pager.setList(teacherPageList);
+        pager.setUrl("/teacher/pageList");
         model.addAttribute("pager", pager);
         model.addAttribute("course", teacher);
         return "/teacher/list";

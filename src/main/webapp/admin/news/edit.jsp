@@ -106,7 +106,7 @@
         <div class="layui-card">
           <label  class="layui-form-label layui-bg-green">说明</label>
           <div class="layui-col-md8">
-            <textarea name="imageMemo" placeholder=""  class="layui-textarea">${news.imageMemo}</textarea>
+            <textarea name="imageMemo" class="layui-textarea">${news.imageMemo}</textarea>
           </div>
         </div>
       </div>
@@ -182,7 +182,18 @@
         </div>
 
       </div>
-
+      <c:if test="${not empty filesList}">
+        <div class="layui-form-item">
+          <label  class="layui-form-label">
+            <span class="x-red">*</span>已传附件
+          </label>
+          <div class="layui-input-inline" style="width: 500px">
+            <c:forEach items="${filesList}" var="file">
+              <span id="file_${file.id}"><a href="${file.savePath}">${file.saveName}</a><a href="javascript:void (0);" onclick="deleteFile(${file.id})">删除</a></br> </span>
+            </c:forEach>
+          </div>
+        </div>
+      </c:if>
 
       <div class="layui-form-item">
         <label  class="layui-form-label">
@@ -248,7 +259,7 @@
         </div>
       </c:if>
       <div class="layui-form-item">
-        <button style="margin-left: 130px;" class="layui-btn" id="add" lay-filter="add" >
+        <button style="margin-left: 150px;" class="layui-btn" id="add" lay-filter="add" >
           增加
         </button>
         <button id="back" class="layui-btn" style="margin-left: 60px">
@@ -263,42 +274,7 @@
       $("#back").click(function(){
           history.go(-1);
       })
-      // var FileInput = function () {
-      //     var oFile = new Object();
-      //
-      //     //初始化fileinput控件（第一次初始化）
-      //     oFile.Init = function(ctrlName, uploadUrl) {
-      //         var control = $('#' + ctrlName);
-      //
-      //         //初始化上传控件的样式
-      //         control.fileinput({
-      //             language: 'zh',                                         //设置语言
-      //             uploadUrl: uploadUrl,                                   //上传的地址
-      //             allowedFileExtensions: ['jpg', 'gif', 'png', 'pdf'],    //接收的文件后缀
-      //             showUpload: true,                                       //是否显示上传按钮
-      //             showCaption: false,                                     //是否显示标题
-      //             browseClass: "btn btn-primary",                         //按钮样式
-      //             //dropZoneEnabled: false,                               //是否显示拖拽区域
-      //             //minImageWidth: 50,                                    //图片的最小宽度
-      //             //minImageHeight: 50,                                   //图片的最小高度
-      //             //maxImageWidth: 1000,                                  //图片的最大宽度
-      //             //maxImageHeight: 1000,                                 //图片的最大高度
-      //             //maxFileSize: 0,                                       //单位为kb，如果为0表示不限制文件大小
-      //             //minFileCount: 0,
-      //             maxFileCount: 10,                                       //表示允许同时上传的最大文件个数
-      //             enctype: 'multipart/form-data',
-      //             validateInitialCount: true,
-      //             previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
-      //             msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
-      //             uploadExtraData: function (previewId, index) {           //传参
-      //                 var data = {
-      //                     "reportGroupId": $('#lbl_groupId').html(),      //此处自定义传参
-      //                 };
-      //                 return data;
-      //             }
-      //         });
-      //     }
-      //     }
+
 
       $(".file").fileinput({
           uploadUrl: '#', // you must set a valid URL here else you will get an error
@@ -306,7 +282,6 @@
           showUpload:false,
           allowedFileExtensions : ['jpg','.txt','.jsp', 'png','.java','gif'],
           overwriteInitial: false,
-          initialPreviewConfig: {"jsp"},
           actionUpload:'',
           maxFileSize: 1000,
           maxFilesNum: 10,
@@ -315,10 +290,9 @@
           layoutTemplates:{
               actionUpload:''
           },
-          //allowedFileTypes: ['image', 'video', 'flash'],
           slugCallback: function(filename) {
               return filename.replace('(', '_').replace(']', '_');
-          }
+          },
       });
 
       $(function () {
@@ -333,8 +307,6 @@
               errorPlacement:function(error,element){
                   error.appendTo(element.parent().parent());
               },
-              ignore: ":hidden:not(select)",
-
               rules:{
                   title:{
                       required:true,
@@ -372,6 +344,23 @@
           });
           
       });
+      //异步删除附件
+      function deleteFile(id) {
+          var fla="file_"+id;
+          alert(fla);
+          $("#"+fla).remove();
+          $.ajax({
+              "url" : "/files/delete?id="+id,   //提交URL
+              "type" : "GET",//处理方式
+              "dataType" : "text",//指定返回的数据格式
+              "success" : callback,//执行成功后的回调函数
+              "async" : "false",//是否同步
+          });
+          function callback() {
+              layer.msg('已删除!',{icon:1,time:1000});
+
+          }
+      }
           UE.getEditor('editor',{ initialFrameWidth: null , autoHeightEnabled: false});
           var i;
           $("#addFile").click(function () {

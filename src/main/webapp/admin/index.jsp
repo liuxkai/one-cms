@@ -56,16 +56,16 @@
 <div class="left-nav">
     <div id="side-nav">
         <ul id="nav">
-            <li >
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6eb;</i>
-                    <cite>主页</cite>
-                    <i class="iconfont nav_right">&#xe6a7;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li><a _href="html/welcome.html"><i class="iconfont">&#xe6a7;</i><cite>控制台</cite></a></li >
-                </ul>
-            </li>
+            <%--<li >--%>
+                <%--<a href="javascript:;">--%>
+                    <%--<i class="iconfont">&#xe6eb;</i>--%>
+                    <%--<cite>主页</cite>--%>
+                    <%--<i class="iconfont nav_right">&#xe6a7;</i>--%>
+                <%--</a>--%>
+                <%--<ul class="sub-menu">--%>
+                    <%--<li><a _href="html/welcome.html"><i class="iconfont">&#xe6a7;</i><cite>控制台</cite></a></li >--%>
+                <%--</ul>--%>
+            <%--</li>--%>
             <li >
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6e4;</i>
@@ -151,14 +151,6 @@
                 <ul class="sub-menu">
                     <li>
                         <a _href="${ctx}/files/pageList">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>附件编辑</cite>
-
-                        </a>
-                    </li >
-
-                    <li>
-                        <a _href="${ctx}/admin/news/load.jsp">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>附件编辑</cite>
 

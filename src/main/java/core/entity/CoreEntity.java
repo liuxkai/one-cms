@@ -1,6 +1,6 @@
 package core.entity;
 
-import lombok.*;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -12,5 +12,9 @@ public class CoreEntity implements Serializable {
 	private Map<String,Object> map = new HashMap<>();
     private int offset;    
     private int limit;
+
+    private String startTime;
+
+    private String endTime;
 
 }

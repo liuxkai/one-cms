@@ -57,7 +57,7 @@
         ID,
       </if>
       <if test="name != null" >
-        NAME,
+        `NAME`,
       </if>
       <if test="clazz != null" >
         CLAZZ,
@@ -163,7 +163,7 @@
     update STUDENT
     <set >
       <if test="name != null" >
-        NAME = #{name,jdbcType=VARCHAR},
+        `NAME` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="clazz != null" >
         CLAZZ = #{clazz,jdbcType=VARCHAR},

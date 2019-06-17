@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Files;
 import raky.entity.News;
+import raky.service.FilesService;
 import raky.service.NewsService;
 import raky.util.Pager;
 
@@ -24,7 +25,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/news")
@@ -36,6 +36,8 @@ public class NewsController extends CoreController{
 
     @Resource
     private Pager<News> pager;
+    @Resource
+    private FilesService filesService;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -64,7 +66,6 @@ public class NewsController extends CoreController{
             try {
                 BeanUtils.populate(file,map);
                 list.add(file);
-                logger.info(file);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -72,10 +73,10 @@ public class NewsController extends CoreController{
         news.setFilesList(list);
 
         if (news.getUuid() != null&&news.getUuid()!="") {
+            logger.info(news.getId());
             newsService.update(news);
             return "redirect:/news/pageList";
         }
-        news.setUuid(UUID.randomUUID().toString());
         newsService.insert(news);
         return "redirect:/news/pageList";
 
@@ -88,14 +89,16 @@ public class NewsController extends CoreController{
     }
 
     @RequestMapping(value = "/input", method = RequestMethod.GET)
-    public String getOne(News news, ModelMap model) {
-        if(news.getNewsType()!=null){
-            model.addAttribute("newsType", newsService.getOne(news.getId()).getTypesList());
-            model.addAttribute("news",news);
+    public String getOne(Long id, ModelMap model) {
+        Files files=new Files();
+        files.setLinkId(id);
+        files.setLinkTable("新闻管理表");
+        model.addAttribute("filesList",filesService.getList(files));
+        model.addAttribute("newsType", getTypesListByParentCode(20l));
+        if(id!=null){
+            model.addAttribute("news",newsService.getOne(id));
             return "/news/edit";
         }
-        model.addAttribute("news", newsService.getOne(news.getId()));
-        model.addAttribute("newsType", newsService.getOne(news.getId()).getTypesList());
         return "/news/edit";
     }
 
@@ -113,15 +116,18 @@ public class NewsController extends CoreController{
     }
 
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, News news, Integer requestPage) {
-        if (requestPage == null) {
-            requestPage = 1;
+    public String getPageList(ModelMap model, News news, Integer requestPage,Integer pageSize) {
+        if(requestPage==null){
+            requestPage=1;
+        }if(pageSize==null){
+            pageSize=5;
         }
-        pager.init(requestPage, 2, newsService.getCount(news));
+        pager.init(requestPage, pageSize, newsService.getCount(news));
         news.setOffset(pager.getOffset());
         news.setLimit(pager.getLimit());
         List<News> newsPageList = newsService.getPageList(news);
         pager.setList(newsPageList);
+        pager.setUrl("/news/pageList");
         model.addAttribute("pager", pager);
         model.addAttribute("news", news);
         return "/news/list";

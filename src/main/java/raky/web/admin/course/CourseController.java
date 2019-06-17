@@ -56,6 +56,7 @@ public class CourseController extends CoreController {
     public String getDetailed(Long id,ModelMap model){
         List<Types> typesList =getTypesListByParentCode(40l);
         model.addAttribute("course",courseService.getOne(id));
+        model.addAttribute("typesList",typesList);
         return "/course/show";
     }
 
@@ -67,15 +68,19 @@ public class CourseController extends CoreController {
     }
 
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Course course, Integer requestPage) {
-        if (requestPage == null) {
-            requestPage = 1;
+    public String getPageList(ModelMap model, Course course, Integer requestPage,Integer pageSize) {
+        if(requestPage==null){
+            requestPage=1;
+        }if(pageSize==null){
+            pageSize=5;
         }
-        pager.init(requestPage, 2, courseService.getCount(course));
+        pager.init(requestPage, pageSize, courseService.getCount(course));
         course.setOffset(pager.getOffset());
         course.setLimit(pager.getLimit());
         List<Course> coursePageList = courseService.getPageList(course);
         pager.setList(coursePageList);
+        pager.setUrl("/course/pageList");
+        model.addAttribute("typesList",getTypesListByParentCode(40l));
         model.addAttribute("pager", pager);
         model.addAttribute("course", course);
         return "/course/list";

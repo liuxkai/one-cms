@@ -84,15 +84,18 @@ public class FilesController extends CoreController {
         return "/files/show";
     }
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Files file, Integer requestPage) {
-        if (requestPage == null) {
-            requestPage = 1;
+    public String getPageList(ModelMap model, Files file, Integer requestPage,Integer pageSize) {
+        if(requestPage==null){
+            requestPage=1;
+        }if(pageSize==null){
+            pageSize=5;
         }
-        pager.init(requestPage, 2, filesService.getCount(file));
+        pager.init(requestPage, pageSize, filesService.getCount(file));
         file.setOffset(pager.getOffset());
         file.setLimit(pager.getLimit());
         List<Files> filesPageList = filesService.getPageList(file);
         pager.setList(filesPageList);
+        pager.setUrl("/files/pageList");
         model.addAttribute("pager", pager);
         model.addAttribute("file", file);
         return "/files/list";

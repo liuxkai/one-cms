@@ -27,14 +27,17 @@
             <if test="id != null"> and ID = #{id}</if>
             <if test="userName != null and userName !=''"> and `USER_NAME` like concat('%',#{userName},'%')</if>
             <if test="age != null and age !=''"> and AGE like concat('%',#{age},'%')</if>
-            <if test="lastLoginTime != null and lastLoginTime !=''"> and LAST_LOGIN_TIME like concat('%',#{lastLoginTime},'%')</if>
+            <if test="lastLoginTime != null"> and LAST_LOGIN_TIME like concat('%',#{lastLoginTime},'%')</if>
+            <if test="createTime != null"> and CREATE_TIME like concat('%',#{createTime},'%')</if>
+            <if test="startTime != null  and startTime !=''  "> and CREATE_TIME &gt; #{startTime}  </if>
+            <if test="endTime != null and endTime !='' "> and CREATE_TIME &lt;  #{endTime}  </if>
         </where>
     </sql>
     <select id="getList" resultMap="getListResultMap" parameterType="Users">
         select * from USERS  <include refid="condition" />
     </select>
     <select id="getPageList" resultMap="getListResultMap"  parameterType="Users">
-        select * from USERS <include refid="condition" />
+        select * from USERS  <include refid="condition" /> order by PRIORITY desc
         limit #{offset}, #{limit}
     </select>
     <select id="getOne" parameterType="java.lang.Long" resultMap="getListResultMap">

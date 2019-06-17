@@ -62,7 +62,7 @@
             <select id="courseType" name="courseType">
               <option value="">请选择</option>
               <c:forEach items="${typesList}" var="type">
-                <option value="${type.typeCode}">${type.typeName}</option>
+                <option value="${type.typeCode}" <c:if test="${type.typeCode eq course.courseType }">selected='selected'</c:if>>${type.typeName}</option>
               </c:forEach>
             </select>
           </div>
@@ -99,9 +99,6 @@
     </form>
   </div>
   <script>
-    $(function () {
-        $("#courseType option[value=${course.courseType}]").prop("selected",true);
-    });
 
   </script>
   </body>

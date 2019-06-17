@@ -37,8 +37,12 @@ public class StudentServiceImpl extends CoreServiceImpl<Student> implements Stud
     public  int update(Student student){
         int update = studentMapper.update(student);
         List<Files> filesList=student.getFilesList();
-        for (Files files:filesList){
-            filesMapper.update(files);
+        if(filesList!=null){
+            for (Files files:filesList){
+                files.setLinkTable("学生管理表");
+                files.setLinkId(student.getId());
+                filesMapper.insert(files);
+            }
         }
         return update;
     }

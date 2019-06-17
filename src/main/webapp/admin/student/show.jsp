@@ -24,9 +24,19 @@
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+  <style>
+    .layui-form-label{
+      float:left;
+      display:block;
+      padding:9px 15px;
+      width:200px;
+      font-weight:400;
+      line-height:20px;
+    }
+  </style>
   <body>
-  <div class="x-body">
-    <form class="layui-form" >
+  <div class="x-body" style="width: 50%;margin: 0 auto">
+    <form class="layui-form layui-form-pane" >
       <div class="layui-form-item">
         <label  class="layui-form-label">
           <span class="x-red">*</span>姓名
@@ -136,15 +146,7 @@
         <div class="layui-inline">
           <label class="layui-form-label">学历</label>
           <div class="layui-input-inline">
-            <select id="education" name="education">
-              <option value="">请选择</option>
-              <option value="0">初中</option>
-              <option value="1">高中</option>
-              <option value="2">大专</option>
-              <option value="3">本科</option>
-              <option value="4">研究生</option>
-              <option value="5">硕士</option>
-            </select>
+            <input type="text"  value="${student.education}" class="layui-input"/>
           </div>
         </div>
       </div>
@@ -173,16 +175,6 @@
     </form>
   </div>
   <script>
-    $(function () {
-        $("#education option[value=${student.education}]").prop("selected",true);
-    });
-      layui.use(['form','layer'], function(){
-          $ = layui.jquery;
-          var form = layui.form
-              ,layer = layui.layer;
-
-
-      });
   </script>
   </body>
 </html>

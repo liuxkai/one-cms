@@ -72,7 +72,13 @@
           <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
         </td>
         <td>${courseStatus.count}</td>
-        <td>${course.courseType}</td>
+        <td>
+            <c:forEach items="${typesList}" var="type">
+              <c:if test="${type.typeCode eq course.courseType}">
+                ${type.typeName}
+              </c:if>
+            </c:forEach>
+        </td>
         <td>${course.courseName}</td>
         <td>${course.courseMemo}</td>
         <c:if test="${course.deleted eq  0 }">
@@ -99,11 +105,7 @@
     </table>
     <div class="page">
       <div>
-          <a class="prev" href="${ctx}/course/pageList?requestPage=${pager.firstPage}">首页</a>
-        <a class="prev" href="${ctx}/course/pageList?requestPage=${pager.previousPage}">&lt;&lt;</a>
-        <a class="next" href="${ctx}/course/pageList?requestPage=${pager.nextPage}">&gt;&gt;</a>
-          <a class="prev" href="${ctx}/course/pageList?requestPage=${pager.lastPage}">尾页</a>
-
+        <jsp:include page="../pager.jsp"></jsp:include>
       </div>
     </div>
 
