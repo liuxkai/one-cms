@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Types;
 import raky.entity.Users;
@@ -20,11 +21,13 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
-@Controller
-@RequestMapping("/users")
+@RestController
+@RequestMapping("/admin/users")
 public class UsersController extends CoreController {
 
     private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
@@ -74,11 +77,15 @@ public class UsersController extends CoreController {
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
-    public String getList(ModelMap model){
+    public Map<String,Object> getList(){
+        Map<String, Object> dataMap = new HashMap<>();
         List<Users> usersList = usersService.getList(new Users());
-        model.addAttribute("usersList",usersList);
-        return "/users/list";
+        dataMap.put("code",0);
+        dataMap.put("msg","success");
+        dataMap.put("data",usersList);
+        return dataMap;
     }
+
     @RequestMapping(value = "/pageList",method = RequestMethod.GET)
     public String getPageList(ModelMap model,Users users,Integer requestPage,Integer pageSize,String aroundTime){
         if(aroundTime!=null&&aroundTime.contains("/")){
