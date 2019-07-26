@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <title>登录页</title>
     <link rel="stylesheet" href="${ctx }/static/lib/layui/css/layui.css" type="text/css">
-    <script src="${ctx }/static/js/jquery-1.10.2min.js" type="text/javascript"></script>
+    <script src="${ctx }/static/js/jquery.min.js" type="text/javascript"></script>
     <script src="${ctx}/static/lib/layui/layui.js" type="text/javascript"></script>
 </head>
 <style>
