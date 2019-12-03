@@ -38,6 +38,7 @@ public class StudentController extends CoreController {
 
 
 
+
     @RequestMapping(value = "/save",method = {RequestMethod.POST,RequestMethod.GET})
     public String save(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request,Student student ){
         try {
