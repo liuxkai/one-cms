@@ -101,7 +101,7 @@
 </body>
 
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
-<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.all.js}"></script>
 <script th:src="@{/static/layui/2.5.4/lay/modules/laydate.js}" type="text/javascript" charset="utf-8"></script>
 
 <script>
@@ -147,7 +147,7 @@
         });
         table.render({
             elem: '#text'
-            , url: ''
+            ,url: "/student/pageList"
             ,page:true
             ,limit:5
             ,method:"post"
@@ -161,25 +161,24 @@
                     "data":res.data.list
                 };
             }
-            , cols: [
-                [ //表头
+            , cols: [ [ //表头
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: 'ID', width: 80 }
-                , {field: 'productNum', title: '产品编号', width: 120}
-                , {field:  "productName", title: '产品名称', width: 120, sort: true, totalRow: true}
-                , {field:  "cityName", title: '出发城市', width: 120, sort: true, totalRow: true}
-                , {field:  "departureTime", title: '出发时间', width: 120, sort: true, totalRow: true ,templet:function (d) {
-                        return util.toDateString(d.departuretime, "yyyy-MM-dd HH:mm:ss");
-                    }}
-                , {field:  "productPrice", title: '产品价格(元)', width: 120, sort: true, totalRow: true}
-                , {field:  "upload", title: '头像', width: 120, sort: true, totalRow: true ,templet:function (d) {
-                        return '<img src='${pageContext.request.contextPath}+d.upload+' height="20"/>';
-                    }}
-                , {field:  "productsStatus", title: '状态', width: 120, sort: true, templet:'#productsStatusS'}
-                , {field:  "productDesc", title: '产品描述', width: 120, sort: true, totalRow: true}
+                , {field: 'name', title: '姓名', width: 120}
+                , {field:  "clazz", title: '班级', width: 120, sort: true, totalRow: true}
+                , {field:  "sex", title: '性别', width: 120, sort: true, totalRow: true}
+                , {field:  "company", title: '公司', width: 120, sort: true, totalRow: true }
+                , {field:  "salary", title: '薪资(元)', width: 120, sort: true, totalRow: true}
+                , {field:  "birthDate", title: '出生日期', width: 120, sort: true, totalRow: true }
+                , {field:  "education", title: '学历', width: 120, sort: true, templet:'#productsStatusS'}
+                , {field:  "major", title: '专业', width: 120, sort: true, totalRow: true}
+                , {field:  "school", title: '毕业学校', width: 120, sort: true, totalRow: true}
+                , {field:  "contactWay", title: '手机号', width: 120, sort: true, totalRow: true}
+                , {field:  "email", title: '邮箱', width: 120, sort: true, totalRow: true}
+                , {field:  "onlineContact", title: '在线联系方式', width: 120, sort: true, totalRow: true}
+                , {field:  "address", title: '联系地址', width: 120, sort: true, totalRow: true}
                 , {fixed: 'right', width: 200, align: 'center', toolbar: '#barDemo'}
-            ]
-            ]
+            ]]
 
             ,id: 'text'
 

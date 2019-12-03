@@ -33,7 +33,24 @@
   </sql>
 
   <select id="getList" resultMap="getListResultMap" parameterType="Student">
-    select * from STUDENT <include refid="condition"/>
+    select * from STUDENT
+    <if test="id != null"> and ID = #{id}</if>
+    <if test="name != null and name !=''"> and `NAME` like concat('%',#{name},'%')</if>
+    <if test="clazz != null and clazz !=''"> and `CLAZZ` like concat('%',#{clazz},'%')</if>
+    <if test="company != null and company !=''"> and `COMPANY` like concat('%',#{company},'%')</if>
+    <if test="salary != null and salary !=''"> and `SALARY` like concat('%',#{salary},'%')</if>
+    <if test="major != null and major !=''"> and `MAJOR` like concat('%',#{major},'%')</if>
+    <if test="sex != null" > and SEX = #{sex,jdbcType=INTEGER} </if>
+    <if test="birthDate != null" > and BIRTH_DATE = #{birthDate,jdbcType=DATE} </if>
+    <if test="education != null" > and EDUCATION = #{education,jdbcType=INTEGER}</if>
+    <if test="school != null" >and SCHOOL = #{school,jdbcType=VARCHAR}</if>
+    <if test="contactWay != null" >andCONTACT_WAY = #{contactWay,jdbcType=VARCHAR} </if>
+    <if test="email != null" >and EMAIL = #{email,jdbcType=VARCHAR} </if>
+    <if test="onlineContact != null" > and ONLINE_CONTACT = #{onlineContact,jdbcType=VARCHAR}</if>
+    <if test="address != null" > and ADDRESS = #{address,jdbcType=VARCHAR}</if>
+    <if test="deleted != null" >  and DELETED = #{deleted,jdbcType=INTEGER}</if>
+    <if test="locked != null" > and LOCKED = #{locked,jdbcType=INTEGER} </if>
+    <if test="priority != null" > and PRIORITY = #{priority,jdbcType=INTEGER} </if>
   </select>
   <select id="getPageList" resultMap="getListResultMap"  parameterType="Student">
     select * from STUDENT <include refid="condition" />
@@ -162,54 +179,22 @@
   <update id="update" parameterType="Student" >
     update STUDENT
     <set >
-      <if test="name != null" >
-        `NAME` = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="clazz != null" >
-        CLAZZ = #{clazz,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        SEX = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="company != null" >
-        COMPANY = #{company,jdbcType=VARCHAR},
-      </if>
-      <if test="salary != null" >
-        SALARY = #{salary,jdbcType=VARCHAR},
-      </if>
-      <if test="birthDate != null" >
-        BIRTH_DATE = #{birthDate,jdbcType=DATE},
-      </if>
-      <if test="education != null" >
-        EDUCATION = #{education,jdbcType=INTEGER},
-      </if>
-      <if test="major != null" >
-        MAJOR = #{major,jdbcType=INTEGER},
-      </if>
-      <if test="school != null" >
-        SCHOOL = #{school,jdbcType=VARCHAR},
-      </if>
-      <if test="contactWay != null" >
-        CONTACT_WAY = #{contactWay,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        EMAIL = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="onlineContact != null" >
-        ONLINE_CONTACT = #{onlineContact,jdbcType=VARCHAR},
-      </if>
-      <if test="address != null" >
-        ADDRESS = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="deleted != null" >
-        DELETED = #{deleted,jdbcType=INTEGER},
-      </if>
-      <if test="locked != null" >
-        LOCKED = #{locked,jdbcType=INTEGER},
-      </if>
-      <if test="priority != null" >
-        PRIORITY = #{priority,jdbcType=INTEGER},
-      </if>
+      <if test="name != null" > `NAME` = #{name,jdbcType=VARCHAR}, </if>
+      <if test="clazz != null" > CLAZZ = #{clazz,jdbcType=VARCHAR}, </if>
+      <if test="sex != null" > SEX = #{sex,jdbcType=INTEGER}, </if>
+      <if test="company != null" > COMPANY = #{company,jdbcType=VARCHAR}, </if>
+      <if test="salary != null" >SALARY = #{salary,jdbcType=VARCHAR},</if>
+      <if test="birthDate != null" >  BIRTH_DATE = #{birthDate,jdbcType=DATE}, </if>
+      <if test="education != null" >  EDUCATION = #{education,jdbcType=INTEGER}, </if>
+      <if test="major != null" > MAJOR = #{major,jdbcType=INTEGER}, </if>
+      <if test="school != null" > SCHOOL = #{school,jdbcType=VARCHAR}, </if>
+      <if test="contactWay != null" >CONTACT_WAY = #{contactWay,jdbcType=VARCHAR},  </if>
+      <if test="email != null" > EMAIL = #{email,jdbcType=VARCHAR}, </if>
+      <if test="onlineContact != null" > ONLINE_CONTACT = #{onlineContact,jdbcType=VARCHAR},  </if>
+      <if test="address != null" > ADDRESS = #{address,jdbcType=VARCHAR}, </if>
+      <if test="deleted != null" > DELETED = #{deleted,jdbcType=INTEGER}, </if>
+      <if test="locked != null" > LOCKED = #{locked,jdbcType=INTEGER},  </if>
+      <if test="priority != null" > PRIORITY = #{priority,jdbcType=INTEGER}, </if>
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>

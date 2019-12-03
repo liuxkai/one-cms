@@ -1,9 +1,9 @@
 {
 	"contentManagement": [
 		{
-			"title": "文章列表",
+			"title": "学生列表",
 			"icon": "icon-text",
-			"href": "page/news/newsList.html",
+			"href": "/skip/main3",
 			"spread": false
 		},
 		{

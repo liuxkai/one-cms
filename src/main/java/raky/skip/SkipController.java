@@ -14,9 +14,14 @@ public class SkipController {
     }
 
     @RequestMapping(value = "/main2")
-    public String stu(){
+    public String welcome(){
+        return "html/welcome.html";
+    }
+    @RequestMapping(value = "/main3")
+    public String student(){
         return "html/student.html";
     }
+
 
 
 }

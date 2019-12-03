@@ -10,7 +10,10 @@ import java.util.Map;
 public class CoreEntity implements Serializable {
 	private static final long serialVersionUID = 9092861050511346225L;
 	private Map<String,Object> map = new HashMap<>();
-    private int offset;    
+    private int offset;
+
+    //layui获取分页的参数
+    private int page;
     private int limit;
 
     private String startTime;

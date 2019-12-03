@@ -1,5 +1,7 @@
 package raky.web.admin.student;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import core.controller.CoreController;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
@@ -7,20 +9,19 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Files;
 import raky.entity.Student;
 import raky.service.FilesService;
 import raky.service.StudentService;
+import raky.util.LayuiUtil;
 import raky.util.Pager;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -97,22 +98,42 @@ public class StudentController extends CoreController {
         model.addAttribute("student",studentService.getOne(id));
         return "/student/show";
     }
-    @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Student student, Integer requestPage,Integer pageSize) {
-        if(requestPage==null){
-            requestPage=1;
-        }if(pageSize==null){
-            pageSize=5;
-        }
-        pager.init(requestPage, pageSize, studentService.getCount(student));
-        student.setOffset(pager.getOffset());
-        student.setLimit(pager.getLimit());
-        List<Student> studentPageList = studentService.getPageList(student);
-        pager.setList(studentPageList);
-        pager.setUrl("/student/pageList");
-        model.addAttribute("pager", pager);
-        model.addAttribute("student", student);
-        return "/student/list";
+
+//    @RequestMapping(value = "/pageList", method = RequestMethod.GET)
+//    public String getPageList(ModelMap model, Student student, Integer requestPage,Integer pageSize) {
+//        if(requestPage==null){
+//            requestPage=1;
+//        }if(pageSize==null){
+//            pageSize=5;
+//        }
+//        pager.init(requestPage, pageSize, studentService.getCount(student));
+//        student.setOffset(pager.getOffset());
+//        student.setLimit(pager.getLimit());
+//        List<Student> studentPageList = studentService.getPageList(student);
+//        pager.setList(studentPageList);
+//        pager.setUrl("/student/pageList");
+//        model.addAttribute("pager", pager);
+//        model.addAttribute("student", student);
+//
+//        return "/student/list";
+//
+//    }
+    @RequestMapping(value = "/pageList", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> getPageList(Student student) {
+        PageHelper.startPage(student.getPage(),student.getLimit());
+        List<Student> list = studentService.getList(student);
+
+        PageInfo<Student> pageInfo = new PageInfo<>(list);
+        Map<String, Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("msg","");
+        map.put("data",pageInfo);
+        return map;
 
     }
+
+
+
+
 }

@@ -46,4 +46,9 @@ public class StudentServiceImpl extends CoreServiceImpl<Student> implements Stud
         }
         return update;
     }
+
+    public List<Student> getList(Student student){
+        return studentMapper.getList(student);
+    }
+
 }
