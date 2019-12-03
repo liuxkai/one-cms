@@ -22,6 +22,11 @@ public class SkipController {
         return "html/student.html";
     }
 
+    @RequestMapping(value = "/courseList")
+    public String courseList(){
+        return "course/list.html";
+    }
+
 
 
 }

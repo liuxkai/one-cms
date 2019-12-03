@@ -8,13 +8,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import raky.entity.Course;
 import raky.entity.Types;
 import raky.service.CourseService;
 import raky.util.Pager;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/course")
 public class CourseController extends CoreController {
@@ -61,10 +65,16 @@ public class CourseController extends CoreController {
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String getList(ModelMap model) {
+    @ResponseBody
+    public Map<String,Object> getList(ModelMap model) {
         List<Course> courseList = courseService.getList(new Course());
         model.addAttribute("courseList", courseList);
-        return "/course/list";
+        Map<String, Object> map = new HashMap<>();
+        map.put("code",0);
+        map.put("msg","");
+        map.put("data",courseList);
+//        map.put("")
+        return map;
     }
 
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
