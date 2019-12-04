@@ -33,6 +33,7 @@ public class SkipController extends CoreController {
     public String welcome(){
         return "html/welcome.html";
     }
+
     @RequestMapping(value = "/main3")
     public String student(){
         return "html/student.html";

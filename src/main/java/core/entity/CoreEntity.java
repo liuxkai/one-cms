@@ -12,9 +12,10 @@ public class CoreEntity implements Serializable {
 	private Map<String,Object> map = new HashMap<>();
     private int offset;
 
-    //layui获取分页的参数
-    private int page;
+
     private int limit;
+    //多个字段使用此参数模糊查询
+    private String condition;
 
     private String startTime;
 

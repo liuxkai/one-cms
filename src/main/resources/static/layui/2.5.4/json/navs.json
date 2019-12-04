@@ -1,10 +1,25 @@
 {
 	"contentManagement": [
 		{
-			"title": "学生列表",
-			"icon": "icon-text",
-			"href": "/skip/main3",
-			"spread": false
+			"title": "用户列表",
+			"icon": "&#xe634;",
+			"href": "",
+			"spread": false,
+			"children": [
+				{
+					"title": "学生管理",
+					"icon": "&#xe61c;",
+					"href": "/skip/main3",
+					"spread": false
+				},
+				{
+					"title": "教师管理",
+					"icon": "&#xe609;",
+					"href": "page/login/login.html",
+					"spread": false
+
+				}
+			]
 		},
 		{
 			"title": "课程管理",
