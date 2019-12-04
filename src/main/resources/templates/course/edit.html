@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>课程编辑</title>
+    <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all" />
+    <style>
+        .top{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">课程类型:</label>
+                <div class="layui-input-inline">
+                    <!--需要些类型代码-->
+                    <select class="layui-input top" name="courseType">
+                        <option value="40" th:selected="${course?.courseType}">--请选择--</option>
+                        <option  th:each="c:${typesList}"  value="40" th:text="${c.typeName}">普通课程</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">课程名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="courseName" class="layui-input" th:value="${course?.courseName}"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">课程简介:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="courseMemo" class="layui-input" th:value="${course?.courseMemo}"/>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button lay-submit lay-filter="insert" class="layui-btn layui-btn-normal">添加</button>
+                    <button lay-submit lay-filter="update" class="layui-btn layui-btn-normal">修改</button>
+                </div>
+            </div>
+        </form>
+</body>
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
+<script type="text/javascript">
+        layui.use(['element','form'], function() {
+        var element = layui.element, //元素操作
+        form = layui.form //滑块
+        // 操作对象
+        var form = layui.form;
+        var $ = layui.jquery;
+        form.on('submit(insert)',function (data) {
+            console.log(data.field);
+            $.ajax({
+                    url:'/course/save',
+                    data:data.field,     //经测试通过可以传过去两个字段名
+                    dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
+                    type:'post',
+                    success:function (data) {
+                        if (data == '1'){
+                        //location.href = "index.jsp";
+                        layer.msg('添加成功');
+                        }else{
+                        //location.href = "login.jsp";
+                        layer.msg('添加失败');
+                        }
+                    }
+                })
+                return false;
+            })
+
+            form.on('submit(update)',function (data) {
+            console.log(data.field);
+            $.ajax({
+                    url:'/course/save',
+                    data:data.field,     //经测试通过可以传过去两个字段名
+                    dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
+                    type:'post',
+                    success:function (data) {
+                        if (data == '1'){
+                        layer.msg('修改成功');
+                        //location.href = "index.jsp";
+                        }else{
+                        layer.msg('修改失败');
+                        //location.href = "login.jsp";
+                        }
+                    }
+                })
+                return false;
+            })
+
+
+        });
+</script>
+
+</html>
