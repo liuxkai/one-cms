@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CoreServiceImpl<T> implements CoreService<T> {
 
-	@Autowired
+	@Autowired(required = false)
 	private CoreMapper<T> coreMapper;
 
 	@Override
@@ -50,6 +50,11 @@ public class CoreServiceImpl<T> implements CoreService<T> {
 	@Override
 	public List<T> getPageList(T t) {
 		return coreMapper.getPageList(t);
+	}
+
+	@Override
+	public T findOne(T t) {
+		return coreMapper.findOne(t);
 	}
 
 }

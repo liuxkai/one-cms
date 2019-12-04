@@ -223,5 +223,7 @@
     <delete id="delete" parameterType="java.lang.Long">
       delete from USERS where ID=#{id}
     </delete>
-
+    <select id="findOne" parameterType="Users" resultMap="getListResultMap">
+        select * from USERS where USER_NAME = #{userName} and PASS_WORD = #{passWord}
+    </select>
 </mapper>

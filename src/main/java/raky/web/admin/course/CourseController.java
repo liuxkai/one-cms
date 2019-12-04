@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,9 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import raky.entity.Course;
 import raky.entity.Types;
 import raky.service.CourseService;
+import raky.util.LayuiUtil;
 import raky.util.Pager;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,13 +34,15 @@ public class CourseController extends CoreController {
     private Pager<Course> pager;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseBody
     public String save(Course course) {
+        System.out.println(course+"================");
         if (course.getId() != null) {
             courseService.update(course);
-            return "redirect:/course/pageList";
+            return "1";
         }
         courseService.insert(course);
-        return "redirect:/course/pageList";
+        return "1";
 
     }
 
@@ -52,9 +58,8 @@ public class CourseController extends CoreController {
         model.addAttribute("typesList",typesList);
         if(id!=null){
             model.addAttribute("course", courseService.getOne(id));
-            return "/course/edit";
         }
-        return "/course/edit";
+        return "/course/edit.html";
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
@@ -66,34 +71,32 @@ public class CourseController extends CoreController {
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> getList(ModelMap model) {
+    public Map<String,Object> getList(Integer page, Integer limit,HttpServletRequest request) {
+//        ServletContext context = request.getServletContext();
+//        Integer page = (Integer) context.getAttribute("page");
+//        Integer limit = (Integer) context.getAttribute("limit");
+        System.out.println(page+"==========CourseController============"+limit);
         List<Course> courseList = courseService.getList(new Course());
-        model.addAttribute("courseList", courseList);
+        int count = courseService.getCount(new Course());
         Map<String, Object> map = new HashMap<>();
         map.put("code",0);
         map.put("msg","");
         map.put("data",courseList);
-//        map.put("")
+        map.put("count", count);
         return map;
     }
 
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Course course, Integer requestPage,Integer pageSize) {
-        if(requestPage==null){
-            requestPage=1;
-        }if(pageSize==null){
-            pageSize=5;
-        }
-        pager.init(requestPage, pageSize, courseService.getCount(course));
+    @ResponseBody
+    public LayuiUtil<Course> getPageList(ModelMap model, Course course, Integer page, Integer limit) {
+        pager.init(page, limit, courseService.getCount(course));
         course.setOffset(pager.getOffset());
         course.setLimit(pager.getLimit());
         List<Course> coursePageList = courseService.getPageList(course);
-        pager.setList(coursePageList);
-        pager.setUrl("/course/pageList");
-        model.addAttribute("typesList",getTypesListByParentCode(40l));
-        model.addAttribute("pager", pager);
+        LayuiUtil layui = LayuiUtil.<Course>builder().data(coursePageList).msg("").code(0).count(Long.valueOf(courseService.getCount(course))).build();
+        model.addAttribute("typesList",getTypesListByParentCode(40L));
         model.addAttribute("course", course);
-        return "/course/list";
+        return layui;
 
     }
 }

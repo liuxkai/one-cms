@@ -17,5 +17,6 @@ public interface CoreService<T> {
 	List<T> getList(T t);
 
 	List<T> getPageList(T t);
-	
+
+	T findOne(T t);
 }

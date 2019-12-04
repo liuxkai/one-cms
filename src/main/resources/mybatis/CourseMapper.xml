@@ -17,7 +17,7 @@
     </where>
   </sql>
   <select id="getList" resultMap="getListResultMap" parameterType="java.lang.Long" >
-    select * from COURSE <include refid="condition" />
+    select * from COURSE <include refid="condition"/>
   </select>
 
   <select id="getPageList" resultMap="getListResultMap"  parameterType="Course">
