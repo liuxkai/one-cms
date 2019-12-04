@@ -1,7 +1,6 @@
 package raky.web.admin.student;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+
 import core.controller.CoreController;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
@@ -118,19 +117,15 @@ public class StudentController extends CoreController {
 //        return "/student/list";
 //
 //    }
-    @RequestMapping(value = "/pageList", method = RequestMethod.POST)
+    @RequestMapping(value = "/pageList", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> getPageList(Student student) {
-        PageHelper.startPage(student.getPage(),student.getLimit());
-        List<Student> list = studentService.getList(student);
-
-        PageInfo<Student> pageInfo = new PageInfo<>(list);
-        Map<String, Object> map = new HashMap<>();
-        map.put("code",0);
-        map.put("msg","");
-        map.put("data",pageInfo);
-        return map;
-
+    public LayuiUtil<Student> getPageList(Student student, Integer page, Integer limit) {
+        pager.init(page, limit, studentService.getCount(student));
+        student.setOffset(pager.getOffset());
+        student.setLimit(pager.getLimit());
+        List<Student> studentPageList = studentService.getPageList(student);
+        LayuiUtil<Student> build = LayuiUtil.<Student>builder().code(0).msg("").count(Long.valueOf(studentService.getCount(student))).data(studentPageList).build();
+        return build;
     }
 
 

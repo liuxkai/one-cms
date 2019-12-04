@@ -44,12 +44,6 @@
             <artifactId>nekohtml</artifactId>
             <version>1.9.21</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.1.10</version>
-        </dependency>
 
 
         <dependency>
