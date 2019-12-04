@@ -21,13 +21,13 @@ public class TeacherServiceImpl extends CoreServiceImpl<Teacher> implements Teac
 
     public int insert(Teacher teacher){
         int update = teacherMapper.insert(teacher);
-        Long id = teacher.getId();
-        List<Files> filesList=teacher.getFilesList();
-        for (Files files:filesList){
-            files.setLinkId(id);
-            files.setLinkTable("教师管理表");
-            filesMapper.insert(files);
-        }
+//        Long id = teacher.getId();
+//        List<Files> filesList=teacher.getFilesList();
+//        for (Files files:filesList){
+//            files.setLinkId(id);
+//            files.setLinkTable("教师管理表");
+//            filesMapper.insert(files);
+//        }
 
 
 

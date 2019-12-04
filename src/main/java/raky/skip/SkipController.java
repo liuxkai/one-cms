@@ -25,7 +25,6 @@ public class SkipController extends CoreController {
     public String index(HttpServletRequest request,Model model){
         Users onlinerUser = (Users)request.getSession().getAttribute("OnlinerUser");
         model.addAttribute("onlinerUser",onlinerUser);
-
         return "html/main";
     }
 
@@ -44,7 +43,6 @@ public class SkipController extends CoreController {
         return "html/editor.html";
     }
 
-
     @RequestMapping(value = "/courseList")
     public String courseList(ModelMap model){
         List<Types> typesList =getTypesListByParentCode(40l);
@@ -57,6 +55,15 @@ public class SkipController extends CoreController {
         return "course/list.html";
     }
 
-
+    @RequestMapping(value = "/teacherList")
+    public String teacherList(ModelMap model){
+        List<Types> typesList =getTypesListByParentCode(60l);
+        //集合去重
+        List<Types> unique = typesList.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Types::getTypeName))), ArrayList::new)
+        );
+        model.addAttribute("typesList",unique);
+        return "teacher/list.html"; }
 
 }

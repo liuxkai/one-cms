@@ -15,7 +15,7 @@
 				{
 					"title": "教师管理",
 					"icon": "&#xe609;",
-					"href": "page/login/login.html",
+					"href": "/skip/teacherList",
 					"spread": false
 
 				}
