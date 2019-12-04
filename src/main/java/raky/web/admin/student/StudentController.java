@@ -20,7 +20,7 @@ import raky.util.Pager;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -36,7 +36,13 @@ public class StudentController extends CoreController {
     @Resource
     private FilesService filesService;
 
-
+    @RequestMapping(value = "/insert", method = RequestMethod.GET)
+    public String insert(Long id, ModelMap model,Student student) {
+        if(id!=null){
+            model.addAttribute("student", studentService.getOne(id));
+        }
+        return "/html/editor.html";
+    }
 
 
     @RequestMapping(value = "/save",method = {RequestMethod.POST,RequestMethod.GET})

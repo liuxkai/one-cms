@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>学生编辑</title>
+    <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all" />
+
+</head>
+<body>
+
+<form class="layui-form" >
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="name" th:value="${student?.name}"/>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">班级</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="clazz" th:value="${student?.clazz}"/>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <input type="radio" name="sex" title="男" value="1" th:attr="checked=${student?.sex == 1 ? 'checked' : ' '}" />
+            <input type="radio" name="sex" title="女" value="0" th:attr="checked=${student?.sex == 0 ? 'checked' : ' '}" />
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">公司</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="company" th:value="${student?.company}"/>
+        </div>
+    </div>
+    <br>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">薪资</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="salary" th:value="${student?.salary}"/>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">毕业学校</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="school" th:value="${student?.school}"/>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">学历</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="education" th:value="${student?.education}"/>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button lay-submit lay-filter="insert" class="layui-btn layui-btn-normal">添加</button>
+            <button lay-submit lay-filter="update" class="layui-btn layui-btn-normal">修改</button>
+
+        </div>
+    </div>
+
+</form>
+</body>
+
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.all.js}"></script>
+<script>
+    layui.use(['form','layer','layedit','laydate','upload'],function(){
+        var form = layui.form,
+            laypage = layui.laypage,
+            upload = layui.upload,
+            layedit = layui.layedit,
+            laydate = layui.laydate,
+            $ = layui.jquery;
+
+        form.verify({
+            content : function(val){
+                if(val == ''){
+                    return "不能为空";
+                }
+            }
+        })
+
+
+    })
+</script>
+
+
+</html>

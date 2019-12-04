@@ -31,6 +31,12 @@ public class SkipController {
         return "html/student.html";
     }
 
+    @RequestMapping(value = "/editor")
+    public String editor(){
+        return "html/editor.html";
+    }
+
+
     @RequestMapping(value = "/courseList")
     public String courseList(){
         return "course/list.html";
