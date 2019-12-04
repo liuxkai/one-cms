@@ -19,9 +19,8 @@ import raky.util.Pager;
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/course")
@@ -35,27 +34,44 @@ public class CourseController extends CoreController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(Course course) {
-        System.out.println(course+"================");
+    public int save(Course course) {
         if (course.getId() != null) {
-            courseService.update(course);
-            return "1";
+            int update = courseService.update(course);
+            return update;
         }
-        courseService.insert(course);
-        return "1";
+        int insert = courseService.insert(course);
+        return insert;
 
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @ResponseBody
     public String delete(Long id) {
         courseService.delete(id);
-        return "redirect:/course/list";
+        return "1";
+    }
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteAll(String arrayId) {
+        String[] split = arrayId.substring(1,arrayId.length()-1).split(",");
+        List<Long> someId = new ArrayList<>();
+        for (int i = 0; i < split.length; i++) {
+            someId.add(Long.valueOf(split[i]));
+        }
+        courseService.deleteAll(someId);
+        return "1";
     }
 
     @RequestMapping(value = "/input", method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model) {
-        List<Types> typesList =getTypesListByParentCode(40l);
-        model.addAttribute("typesList",typesList);
+        List<Types> typesList =getTypesListByParentCode(40L);
+        //集合去重
+        List<Types> unique = typesList.stream().collect(
+                Collectors.collectingAndThen(
+                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Types::getTypeName))), ArrayList::new)
+        );
+        model.addAttribute("typesList",unique);
         if(id!=null){
             model.addAttribute("course", courseService.getOne(id));
         }
@@ -72,10 +88,6 @@ public class CourseController extends CoreController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> getList(Integer page, Integer limit,HttpServletRequest request) {
-//        ServletContext context = request.getServletContext();
-//        Integer page = (Integer) context.getAttribute("page");
-//        Integer limit = (Integer) context.getAttribute("limit");
-        System.out.println(page+"==========CourseController============"+limit);
         List<Course> courseList = courseService.getList(new Course());
         int count = courseService.getCount(new Course());
         Map<String, Object> map = new HashMap<>();
@@ -88,14 +100,20 @@ public class CourseController extends CoreController {
 
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
     @ResponseBody
-    public LayuiUtil<Course> getPageList(ModelMap model, Course course, Integer page, Integer limit) {
+    public LayuiUtil<Course> getPageList(Course course, Integer page, Integer limit) {
+        if(page==null){
+            page=1;
+        }if(limit==null){
+            limit=10;
+        }
+        course.setCourseType((course.getCourseType() != null && course.getCourseType() != 0) ? course.getCourseType() : null);
+        course.setCourseName((course.getCourseName() != null && !course.getCourseName().equals("")) ? course.getCourseName() : null);
+        System.out.println(course);
         pager.init(page, limit, courseService.getCount(course));
         course.setOffset(pager.getOffset());
         course.setLimit(pager.getLimit());
         List<Course> coursePageList = courseService.getPageList(course);
-        LayuiUtil layui = LayuiUtil.<Course>builder().data(coursePageList).msg("").code(0).count(Long.valueOf(courseService.getCount(course))).build();
-        model.addAttribute("typesList",getTypesListByParentCode(40L));
-        model.addAttribute("course", course);
+        LayuiUtil layui = LayuiUtil.<Course>builder().data(coursePageList).msg("课程信息").code(0).count(Long.valueOf(courseService.getCount(course))).build();
         return layui;
 
     }

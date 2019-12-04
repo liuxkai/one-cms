@@ -34,6 +34,14 @@
     delete from COURSE
     where ID = #{id,jdbcType=BIGINT}
   </delete>
+
+  <delete id="deleteAll" parameterType="java.util.List" >
+    delete from COURSE where ID in
+    <foreach collection="list" item="ids" open="(" close=")" separator=",">
+      #{ids,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
+
   <insert id="insert" parameterType="Course" >
     insert into COURSE
     <trim prefix="(" suffix=")" suffixOverrides="," >

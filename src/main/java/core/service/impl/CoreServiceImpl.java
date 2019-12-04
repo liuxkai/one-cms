@@ -7,6 +7,7 @@ import core.service.CoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.expression.Ids;
 
 @Service
 public class CoreServiceImpl<T> implements CoreService<T> {
@@ -30,6 +31,11 @@ public class CoreServiceImpl<T> implements CoreService<T> {
     @Transactional
 	public int delete(Long id) {
 		return coreMapper.delete(id);
+	}
+
+	@Override
+	public int deleteAll(List<Long> ids) {
+		return coreMapper.deleteAll(ids);
 	}
 
 	@Override

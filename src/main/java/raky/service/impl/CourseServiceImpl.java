@@ -10,5 +10,7 @@ import javax.annotation.Resource;
 
 @Service
 public class CourseServiceImpl extends CoreServiceImpl<Course> implements CourseService {
+
+
 }
 

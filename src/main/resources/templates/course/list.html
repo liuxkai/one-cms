@@ -18,32 +18,32 @@
     </style>
 </head>
 <body>
-
-<div class="layui-form">
-    <div class="layui-form-item top">
-        <label class="layui-form-label">课程类型:</label>
-        <div class="layui-input-inline">
-            <select class="layui-input">
-                <option>--请选择--</option>
-                <option  th:each="c:${typesList}"  th:value="${c.id}" th:text="${c.typeName}">普通课程</option>
-            </select>
+<form class="layui-form" action="/course/pageList">
+    <div class="layui-form">
+        <div class="layui-form-item top">
+            <label class="layui-form-label">课程类型:</label>
+            <div class="layui-input-inline">
+                <select class="layui-input" name="courseType" id="courseType">
+                    <option value="0">--请选择--</option>
+                    <option  th:each="c:${typesList}"  th:value="${c.typeCode}" th:text="${c.typeName}">普通课程</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item top">
+            <label class="layui-form-label">搜索课程:</label>
+            <div class="layui-input-inline">
+                <input type="text" class="layui-input" name="courseName" id="courseName"/>
+            </div>
+        </div>
+        <div class="layui-form-item top1">
+            <div class="layui-input-block">
+                <div lay-submit lay-filter="query" id="query" class="layui-btn layui-btn-normal">查询</div>
+            </div>
         </div>
     </div>
-    <div class="layui-form-item top">
-        <label class="layui-form-label">搜索课程:</label>
-        <div class="layui-input-inline">
-            <input type="text" class="layui-input"/>
-        </div>
-    </div>
-    <div class="layui-form-item top1">
-        <div class="layui-input-block">
-            <button type="submit" class="layui-btn layui-btn-normal">查询</button>
-        </div>
-    </div>
-</div>
+</form>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
@@ -55,7 +55,7 @@
         version: '1574611511008' //为了更新 js 缓存，可忽略
     });
 
-    layui.use(['laydate', 'laypage', 'layer', 'table', 'upload', 'element', 'slider'], function(){
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'upload', 'element', 'slider','form'], function(){
         var laydate = layui.laydate //日期
             ,laypage = layui.laypage //分页
             ,layer = layui.layer //弹层
@@ -63,6 +63,8 @@
             ,upload = layui.upload //上传
             ,element = layui.element //元素操作
             ,slider = layui.slider //滑块
+            ,form = layui.form //滑块
+        var $ = layui.jquery;
 
         //监听Tab切换
         element.on('tab(demo)', function(data){
@@ -72,7 +74,7 @@
         });
 
         //执行一个 table 实例
-    var coursetable =table.render({
+        var coursetable =table.render({
             elem: '#demo'
             ,height: 420
             ,url: '/course/pageList' //数据接口
@@ -82,15 +84,26 @@
             ,cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
-                    ,{field: 'courseName', title: '课程名称', width:80}
+                    ,{field: 'courseName', title: '课程名称', width:200}
                     ,{field: 'courseType', title: '课程类型', width: 90, sort: true, totalRow: true}
-                    ,{field: 'courseMemo', title: '课程介绍', width:80, sort: true}
+                    ,{field: 'courseMemo', title: '课程介绍', width:200, sort: true}
                     ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
             ]
             ]
         });
 
-    console.log(coursetable);
+        $('#query').click(function () {
+            var courseType = $('#courseType').val();
+            var courseName = $('#courseName').val();
+            coursetable.reload({
+                url: '/course/pageList',
+                where:{
+                    courseType : courseType,
+                    courseName : courseName,
+                }
+            });
+        });
+
         //监听头工具栏事件
         table.on('toolbar(test)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id)
@@ -119,7 +132,7 @@
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        layer.open({
+                    layer.open({
                             //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                             type:2,
                             title:"修改课程",
@@ -137,10 +150,32 @@
                     }
                     break;
                 case 'delete':
-                    if(data.length === 0){
+                    if (data.length === 0) {
                         layer.msg('请选择一行');
                     } else {
-                        layer.msg('删除');
+                        layer.confirm('确定删除全部吗?', {btn: ['确定删除', '取消']}, function (index) {
+                            var arrayId = new Array();
+                            data.forEach((item,index,data) => {
+                                arrayId[index] = item.id;
+                            });
+                            var result = $.ajax({
+                                url : '/course/deleteAll',
+                                data: {arrayId:JSON.stringify(arrayId)},
+                                dateType:'json',
+                                //强调内容类型
+                                contentType:'application/json;charsetset=UTF-8',
+                                async : false,   //同步请求
+                            });
+                            if(result.responseText == '1'){
+                                layer.msg("删除成功");
+                                coursetable.reload({
+                                    url: '/course/pageList',
+                                });
+                            }else{
+                                console.log(result.responseText);
+                                layer.msg("删除失败");
+                            }
+                        });
                     }
                     break;
             };
@@ -153,13 +188,42 @@
             if(layEvent === 'detail'){
                 layer.msg('查看操作');
             } else if(layEvent === 'del'){
-                layer.confirm('真的删除行么', function(index){
-                    obj.del(); //删除对应行（tr）的DOM结构
-                    layer.close(index);
-                    //向服务端发送删除指令
+                layer.confirm('确定删除吗?', {btn: ['确定删除', '取消']}, function (index) {
+                    var result = $.ajax({
+                        url : '/course/delete',
+                        data: {id:data.id},
+                        dateType:'json',
+                        //强调内容类型
+                        contentType:'application/json;charsetset=UTF-8',
+                        async : false,   //同步请求
+                    });
+                    if(result.responseText == '1'){
+                        layer.msg("删除成功");
+                        coursetable.reload({
+                            url: '/course/pageList',
+                        });
+                    }else{
+                        console.log(result.responseText);
+                        layer.msg("删除失败");
+                    }
                 });
             } else if(layEvent === 'edit'){
-                layer.msg('编辑操作');
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type:2,
+                    title:"修改课程",
+                    shade: 0.5,//遮罩
+                    shadeClose:true,
+                    btn: ['关闭'],
+                    area: ['70%','70%'],
+                    content:'/course/input?id='+data.id,
+                    end:function(){  //层销毁后触发的回调。数据表格重载
+                        coursetable.reload({
+                            url: '/course/pageList',
+                        });
+                    }
+                });
+
             }
         });
 
@@ -184,13 +248,6 @@
                 console.log(res)
             }
         });
-
-        //滑块
-        var sliderInst = slider.render({
-            elem: '#sliderDemo'
-            ,input: true //输入框
-        });
-
     });
 </script>
 </html>
