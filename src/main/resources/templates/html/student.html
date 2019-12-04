@@ -12,30 +12,8 @@
 
 <body>
 <div id="header">
-    <div class="layui-btn-group demoTable">
-        <button class="layui-btn" data-type="add">添加</button>
-    </div>
-    <div class="demoTable">
-        书名搜索：
-        <div class="layui-inline">
-            <input class="layui-input" name="bookName" id="demoReload" >
-        </div>
-        发行数量搜索：
-        <div class="layui-inline">
-            <input class="layui-input" name="start" id="start" >
-            到
-            <input class="layui-input" name="end" id="end">
-        </div>
-        <br>
-        时间搜索：
-        <div class="layui-inline">
-            <input class="layui-input" name="starttime" id="starttime" >
-            到
-            <input class="layui-input" name="endtime" id="endtime" >
-        </div>
-        <button class="layui-btn" data-type="reload">搜索</button>
-    </div>
-    <table class="layui-hide" id="text" lay-filter="test"></table>
+
+    <table class="layui-hide" id="demo" lay-filter="test"></table>
 
     <script type="text/html" id="barDemo">
         <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
