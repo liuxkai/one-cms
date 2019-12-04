@@ -18,4 +18,6 @@ public interface CoreMapper<T> {
     List<T> getList(T t);
 
     List<T> getPageList(T t);
+    /*通过用户名和密码登录*/
+    T findOne(T t);
 }
