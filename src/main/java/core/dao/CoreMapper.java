@@ -11,6 +11,8 @@ public interface CoreMapper<T> {
 
     int delete(Long id);
 
+    int deleteAll(List<Long> id);
+
     T getOne(Long id);
 
     int getCount(T t);

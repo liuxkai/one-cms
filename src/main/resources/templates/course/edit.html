@@ -17,9 +17,11 @@
                 <div class="layui-input-inline">
                     <!--需要些类型代码-->
                     <select class="layui-input top" name="courseType">
-                        <option value="40" th:selected="${course?.courseType}">--请选择--</option>
-                        <option  th:each="c:${typesList}"  value="40" th:text="${c.typeName}">普通课程</option>
+                        <option>--请选择--</option>
+                        <option  th:each="c:${typesList}"  th:value="${c.typeCode}" th:text="${c.typeName}" th:selected="${course?.courseType != c.typeCode}?null:${course?.courseType}">普通课程</option>
                     </select>
+                    <!--修改课程时回显得课程id-->
+                    <input type="hidden" name="id" th:value="${course?.id}"/>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -36,8 +38,7 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button lay-submit lay-filter="insert" class="layui-btn layui-btn-normal">添加</button>
-                    <button lay-submit lay-filter="update" class="layui-btn layui-btn-normal">修改</button>
+                    <button lay-submit lay-filter="submit" class="layui-btn layui-btn-normal">提交</button>
                 </div>
             </div>
         </form>
@@ -51,7 +52,7 @@
         // 操作对象
         var form = layui.form;
         var $ = layui.jquery;
-        form.on('submit(insert)',function (data) {
+        form.on('submit(submit)',function (data) {
             console.log(data.field);
             $.ajax({
                     url:'/course/save',
@@ -61,36 +62,15 @@
                     success:function (data) {
                         if (data == '1'){
                         //location.href = "index.jsp";
-                        layer.msg('添加成功');
+                        layer.msg('编辑成功');
                         }else{
                         //location.href = "login.jsp";
-                        layer.msg('添加失败');
+                        layer.msg('编辑失败');
                         }
                     }
                 })
                 return false;
             })
-
-            form.on('submit(update)',function (data) {
-            console.log(data.field);
-            $.ajax({
-                    url:'/course/save',
-                    data:data.field,     //经测试通过可以传过去两个字段名
-                    dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
-                    type:'post',
-                    success:function (data) {
-                        if (data == '1'){
-                        layer.msg('修改成功');
-                        //location.href = "index.jsp";
-                        }else{
-                        layer.msg('修改失败');
-                        //location.href = "login.jsp";
-                        }
-                    }
-                })
-                return false;
-            })
-
 
         });
 </script>

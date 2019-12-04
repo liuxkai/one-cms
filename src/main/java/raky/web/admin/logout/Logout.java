@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("logout")
 public class Logout {
     @RequestMapping("out")
-    public String logout(HttpServletRequest request){}
+    public String logout(HttpServletRequest request){
+        return "";
+    }
 
 }

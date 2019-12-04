@@ -5,4 +5,5 @@ import raky.entity.Course;
 
 public interface CourseMapper extends CoreMapper<Course> {
 
+
 }
