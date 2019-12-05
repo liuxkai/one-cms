@@ -14,6 +14,7 @@ public class CoreEntity implements Serializable {
 
 
     private int limit;
+
     //多个字段使用此参数模糊查询
     private String condition;
 
