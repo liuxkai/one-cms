@@ -65,12 +65,12 @@ layui.use(['form','jquery',"layer"],function() {
             type : 1,
             content : '<div class="admin-header-lock" id="lock-box">'+
                             '<div class="admin-header-lock-img"><img src="images/face.jpg" class="userAvatar"/></div>'+
-                            '<div class="admin-header-lock-name" id="lockUserName">驊驊龔頾</div>'+
+                            '<div class="admin-header-lock-name" id="lockUserName">北大青鸟</div>'+
                             '<div class="input_btn">'+
                                 '<input type="password" class="admin-header-lock-input layui-input" autocomplete="off" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />'+
                                 '<button class="layui-btn" id="unlock">解锁</button>'+
                             '</div>'+
-                            '<p>请输入“123456”，否则不会解锁成功哦！！！</p>'+
+                            '<p>请输入密码，否则不会解锁成功哦！！！</p>'+
                         '</div>',
             closeBtn : 0,
             shade : 0.9,

@@ -36,7 +36,7 @@
         </div>
         <div class="layui-form-item top1">
             <div class="layui-input-block">
-                <div lay-submit lay-filter="query" id="query" class="layui-btn layui-btn-normal">查询</div>
+                <div lay-submit lay-filter="query" id="query" class="layui-btn">查询</div>
             </div>
         </div>
     </div>
@@ -123,8 +123,7 @@
                         title:"添加教师",
                         shade: 0.5,//遮罩
                         shadeClose:true,
-                        btn: ['关闭'],
-                        area: ['70%','70%'],
+                        area: ['40%','90%'],
                         content:'/teacher/input',
                         end:function(){  //层销毁后触发的回调。数据表格重载
                             coursetable.reload({
@@ -145,8 +144,7 @@
                             title:"修改教师",
                             shade: 0.5,//遮罩
                             shadeClose:true,
-                            btn: ['关闭'],
-                            area: ['70%','70%'],
+                            area: ['40%','90%'],
                             content:'/teacher/input?id='+checkStatus.data[0].id,
                             end:function(){  //层销毁后触发的回调。数据表格重载
                                 coursetable.reload({
