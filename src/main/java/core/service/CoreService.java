@@ -5,6 +5,7 @@ import java.util.List;
 public interface CoreService<T> {
 
 	int insert(T t);
+	int save(T t);
 
 	int update(T t);
 

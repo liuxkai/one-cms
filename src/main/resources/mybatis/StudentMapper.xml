@@ -196,4 +196,116 @@
     </set>
     where ID = #{id,jdbcType=BIGINT}
   </update>
+
+  <insert id="save"  parameterType="Student" >
+    insert into STUDENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        `NAME`,
+      </if>
+      <if test="clazz != null" >
+        CLAZZ,
+      </if>
+      <if test="sex != null" >
+        SEX,
+      </if>
+      <if test="company != null" >
+        COMPANY,
+      </if>
+      <if test="salary != null" >
+        SALARY,
+      </if>
+      <if test="birthDate != null" >
+        BIRTH_DATE,
+      </if>
+      <if test="education != null" >
+        EDUCATION,
+      </if>
+      <if test="major != null" >
+        MAJOR,
+      </if>
+      <if test="school != null" >
+        SCHOOL,
+      </if>
+      <if test="contactWay != null" >
+        CONTACT_WAY,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="onlineContact != null" >
+        ONLINE_CONTACT,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="deleted != null" >
+        DELETED,
+      </if>
+      <if test="locked != null" >
+        LOCKED,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="clazz != null" >
+        #{clazz,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null" >
+        #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="education != null" >
+        #{education,jdbcType=INTEGER},
+      </if>
+      <if test="major != null" >
+        #{major,jdbcType=INTEGER},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="contactWay != null" >
+        #{contactWay,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineContact != null" >
+        #{onlineContact,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+      </if>
+      <if test="locked != null" >
+        #{locked,jdbcType=INTEGER},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+
 </mapper>

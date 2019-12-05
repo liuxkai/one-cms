@@ -1,6 +1,7 @@
 package raky.entity;
 
 import core.entity.CoreEntity;
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Date;

@@ -44,6 +44,17 @@ public class StudentController extends CoreController {
         return "/html/editor.html";
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public String update(@RequestBody  Student student) {
+        if(student.getId()!=null){
+            int update = studentService.update(student);
+            return String.valueOf(update);
+        }
+        int insert = studentService.save(student);  // 由于没有头像上传，所以添加save方法保存 insert需要上传图片
+        return String.valueOf(insert) ;
+    }
+
 
     @RequestMapping(value = "/save",method = {RequestMethod.POST,RequestMethod.GET})
     public String save(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request,Student student ){
@@ -77,9 +88,10 @@ public class StudentController extends CoreController {
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
-    public String delete(Long id){
-        studentService.delete(id);
-        return "redirect:/student/list";
+    public String delete(Student student){
+        student.setDeleted(1);
+        int update = studentService.update(student);  // 实现假删除
+        return String.valueOf(update);
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)

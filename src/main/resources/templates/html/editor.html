@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <title>学生编辑</title>
     <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all" />
-
+    <style>
+        #header{
+            width: 500px;
+        }
+    </style>
 </head>
 <body>
-
+<div id="header">
 <form class="layui-form" >
+    <input type="hidden" name="id" th:value="${student?.id}" />
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
@@ -26,8 +31,8 @@
     <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-block">
-            <input type="radio" name="sex" title="男" value="1" th:attr="checked=${student?.sex == 1 ? 'checked' : ' '}" />
-            <input type="radio" name="sex" title="女" value="0" th:attr="checked=${student?.sex == 0 ? 'checked' : ' '}" />
+            <input type="radio" name="sex" title="男" value="1" th:attr="checked=${student?.sex == 1?true : false}" />
+            <input type="radio" name="sex" title="女" value="0" th:attr="checked=${student?.sex == 0?true : false}" />
         </div>
     </div>
     <br>
@@ -62,13 +67,13 @@
     <br>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button lay-submit lay-filter="insert" class="layui-btn layui-btn-normal">添加</button>
-            <button lay-submit lay-filter="update" class="layui-btn layui-btn-normal">修改</button>
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="textAction">立即提交</button>
 
         </div>
     </div>
 
 </form>
+</div>
 </body>
 
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
@@ -83,13 +88,67 @@
             $ = layui.jquery;
 
         form.verify({
+            productNum: function (value) {
+                if (value == '') {
+                    return '不能为空';
+                }
+            },
             content : function(val){
                 if(val == ''){
                     return "不能为空";
                 }
             }
         })
+        form.on('submit(demo1)',function (data) {
+            $.ajax({
+                url:'/student/update',
+                type:'post',
+                dataType: "json",
+                contentType:"application/json;charset=UTF-8",
+                data:JSON.stringify(data.field),
+                success: function(a){
+                    if(a = 1){
+                        layer.msg("编辑成功");
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                         parent.layer.close(index);
+                    }else {
+                        layer.msg("编辑失败")
+                    }
+                }
+            })
+            return false;
+        })
 
+        //普通图片上传 , 留下上传文件的接口 添加上传按钮和返回图片地址的隐藏域  异步上传
+        // var uploadInst = upload.render({
+        //     elem: '#test2'
+        //     , url: ''
+        //     , field: 'upload' //上传文件的name
+        //     //上传前的回调
+        //
+        //     , choose: function (obj) {
+        //         //预读本地文件示例，不支持ie8
+        //         obj.preview(function (index, file, result) {
+        //             $('#demo3').attr('src', result); //图片链接（base64） // 上传前回显
+        //         });
+        //     }
+        //     , done: function (res,index,upload) {
+        //         if (res.code > 0){
+        //             return layer.msg("上传失败")
+        //         }else{
+        //             $('#hidden').val(res.data)  // 上传之后将图片地址存隐藏域
+        //         }
+        //
+        //     }
+        //     , error: function (res, index) {
+        //
+        //         alert("上传失败");
+        //         //演示失败状态，并实现重传
+        //         layer.closeAll('loading');
+        //
+        //     }
+        // });
+        //
 
     })
 </script>
