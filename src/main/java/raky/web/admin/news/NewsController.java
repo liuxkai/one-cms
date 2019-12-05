@@ -8,23 +8,19 @@ import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import raky.entity.Files;
-import raky.entity.News;
+import raky.entity.*;
 import raky.service.FilesService;
 import raky.service.NewsService;
+import raky.util.LayuiUtil;
 import raky.util.Pager;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/news")
@@ -49,63 +45,84 @@ public class NewsController extends CoreController{
 
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String save(@RequestParam("File") MultipartFile[] newsFile,@RequestParam("file") MultipartFile files[],News news ,HttpServletRequest request){
-        List<Files> list=new ArrayList<>();
-        List<Map<String,String>> filesList = upLoad(files, request);
-        List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
-        for (Map map:newsFilesList){
-            logger.info(map.get("fileName").toString());
-            if(isVideoFile(map.get("fileName").toString())){
-                news.setVideoPath(map.get("savePath").toString());
-            }else{
-                news.setImagePath(map.get("savePath").toString());
-            }
-        }
-        for (Map map:filesList){
-            Files file=new Files();
-            try {
-                BeanUtils.populate(file,map);
-                list.add(file);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        news.setFilesList(list);
-
-        if (news.getUuid() != null&&news.getUuid()!="") {
+    @ResponseBody
+    public int save(News news){
+//        @RequestParam("File") MultipartFile[] newsFile,@RequestParam("file") MultipartFile files[],         ,HttpServletRequest request
+//        List<Files> list=new ArrayList<>();
+//        List<Map<String,String>> filesList = upLoad(files, request);
+//        List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
+//        for (Map map:newsFilesList){
+//            logger.info(map.get("fileName").toString());
+//            if(isVideoFile(map.get("fileName").toString())){
+//                news.setVideoPath(map.get("savePath").toString());
+//            }else{
+//                news.setImagePath(map.get("savePath").toString());
+//            }
+//        }
+//        for (Map map:filesList){
+//            Files file=new Files();
+//            try {
+//                BeanUtils.populate(file,map);
+//                list.add(file);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        news.setFilesList(list);
+        if(news.getViewCount() == null){ news.setViewCount(0);}
+        if(news.getInfoState() == null){ news.setInfoState(0);}
+        if(news.getPriority() == null){ news.setPriority(0);}
+        if(news.getDeleted() == null){ news.setDeleted(0);}  //0是未删除,1是删除
+        if (news.getUuid() != null && news.getUuid() != "") {
             logger.info(news.getId());
-            newsService.update(news);
-            return "redirect:/news/pageList";
+            int update = newsService.update(news);
+            return update;
         }
-        newsService.insert(news);
-        return "redirect:/news/pageList";
+        news.setUuid(UUID.randomUUID().toString());
+        int insert = newsService.insert(news);
+        return insert;
 
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @ResponseBody
     public String delete(Long id) {
         newsService.delete(id);
-        return "redirect:/news/pageList";
+        return "1";
+    }
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteAll(String arrayId) {
+        String[] split = arrayId.substring(1,arrayId.length()-1).split(",");
+        List<Long> someId = new ArrayList<>();
+        for (int i = 0; i < split.length; i++) {
+            someId.add(Long.valueOf(split[i]));
+        }
+        newsService.deleteAll(someId);
+        return "1";
     }
 
     @RequestMapping(value = "/input", method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model) {
-        Files files=new Files();
-        files.setLinkId(id);
-        files.setLinkTable("新闻管理表");
-        model.addAttribute("filesList",filesService.getList(files));
-        model.addAttribute("newsType", getTypesListByParentCode(20l));
+//        Files files=new Files();
+//        files.setLinkId(id);
+//        files.setLinkTable("新闻管理表");
+//        model.addAttribute("filesList",filesService.getList(files));
+        model.addAttribute("typesList", getTypesListByParentCode(20l));
         if(id!=null){
             model.addAttribute("news",newsService.getOne(id));
-            return "/news/edit";
+            return "/news/edit.html";
         }
-        return "/news/edit";
+        return "/news/edit.html";
     }
 
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
+        List<Types> typesList =getTypesListByParentCode(20L);
+        model.addAttribute("typesList",typesList);
         model.addAttribute("news",newsService.getOne(id));
-        return "/news/show";
+        return "/news/show.html";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -116,21 +133,21 @@ public class NewsController extends CoreController{
     }
 
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, News news, Integer requestPage,Integer pageSize) {
-        if(requestPage==null){
-            requestPage=1;
-        }if(pageSize==null){
-            pageSize=5;
+    @ResponseBody
+    public LayuiUtil<News> getPageList(News news, Integer page, Integer limit) {
+        if(page==null){
+            page=1;
+        }if(limit==null){
+            limit=10;
         }
-        pager.init(requestPage, pageSize, newsService.getCount(news));
+        news.setNewsType((news.getNewsType() != null && !news.getNewsType().equals("")) ? news.getNewsType() : null);
+        news.setTitle((news.getTitle() != null && !news.getTitle().equals("")) ? news.getTitle() : null);
+
+        pager.init(page, limit, newsService.getCount(news));
         news.setOffset(pager.getOffset());
         news.setLimit(pager.getLimit());
         List<News> newsPageList = newsService.getPageList(news);
-        pager.setList(newsPageList);
-        pager.setUrl("/news/pageList");
-        model.addAttribute("pager", pager);
-        model.addAttribute("news", news);
-        return "/news/list";
-
+        LayuiUtil layui = LayuiUtil.<News>builder().data(newsPageList).msg("新闻信息").code(0).count(Long.valueOf(newsService.getCount(news))).build();
+        return layui;
     }
 }

@@ -18,30 +18,25 @@
     </style>
 </head>
 <body>
+<blockquote class="layui-elem-quote quoteBox">
     <div class="layui-form">
-        <div class="layui-form-item top">
-            <label class="layui-form-label">课程类型:</label>
-            <div class="layui-input-inline">
-                <select class="layui-input" name="courseType" id="courseType">
-                    <option value="0">--请选择--</option>
-                    <option  th:each="c:${typesList}"  th:value="${c.typeCode}" th:text="${c.typeName}">普通课程</option>
-                </select>
-            </div>
+        <div class="layui-inline">
+            <select name="courseType" id="courseType">
+                <option value="">选择课程类型</option>
+                <option  th:each="c:${typesList}"  th:value="${c.typeCode}" th:text="${c.typeName}">普通课程</option>
+            </select>
         </div>
-        <div class="layui-form-item top">
-            <label class="layui-form-label">搜索课程:</label>
+        <div class="layui-inline">
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="courseName" id="courseName"/>
+                <input type="text" class="layui-input" name="courseName" id="courseName"  placeholder="搜索课程"/>
             </div>
-        </div>
-        <div class="layui-form-item top1">
-            <div class="layui-input-block">
-                <div lay-submit lay-filter="query" id="query" class="layui-btn layui-btn-normal">查询</div>
-            </div>
+            <div lay-submit lay-filter="query" id="query" class="layui-btn">查询</div>
         </div>
     </div>
+</blockquote>
 <table class="layui-hide" id="demo" lay-filter="test"></table>
 <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">详情</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
@@ -72,7 +67,6 @@
         //执行一个 table 实例
         var coursetable =table.render({
             elem: '#demo'
-            ,height: 420
             ,url: '/course/pageList' //数据接口
             ,title: '课程表'
             ,page: true //开启分页
@@ -80,9 +74,11 @@
             ,cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
-                    ,{field: 'courseName', title: '课程名称', width:200}
-                    ,{field: 'courseType', title: '课程类型', width: 90, sort: true, totalRow: true}
-                    ,{field: 'courseMemo', title: '课程介绍', width:200, sort: true}
+                    ,{type: 'numbers', title: '序号'}
+                    ,{field: 'courseName', title: '课程名称', width:200, align:'center'}
+                    ,{field: 'courseType', title: '课程类型', width: 90, align:'center', totalRow: true,
+                    templet:function (data) { return typeToStr(data.courseType);}}
+                    ,{field: 'courseMemo', title: '课程介绍', width:200, align:'center'}
                     ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
                 ]
             ]
@@ -112,8 +108,7 @@
                         title:"添加课程",
                         shade: 0.5,//遮罩
                         shadeClose:true,
-                        btn: ['关闭'],
-                        area: ['70%','70%'],
+                        area: ['40%','90%'],
                         content:'/course/input',
                         end:function(){  //层销毁后触发的回调。数据表格重载
                             coursetable.reload({
@@ -134,8 +129,7 @@
                             title:"修改课程",
                             shade: 0.5,//遮罩
                             shadeClose:true,
-                            btn: ['关闭'],
-                            area: ['70%','70%'],
+                            area: ['40%','90%'],
                             content:'/course/input?id='+checkStatus.data[0].id,
                             end:function(){  //层销毁后触发的回调。数据表格重载
                                 coursetable.reload({
@@ -182,7 +176,15 @@
             var data = obj.data //获得当前行数据
                 ,layEvent = obj.event; //获得 lay-event 对应的值
             if(layEvent === 'detail'){
-                layer.msg('查看操作');
+                layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type:2,
+                    title:"查看课程",
+                    shade: 0.5,//遮罩
+                    shadeClose:true,
+                    area: ['100%','100%'],
+                    content:'/course/detailed?id='+data.id,
+                });
             } else if(layEvent === 'del'){
                 layer.confirm('确定删除吗?', {btn: ['确定删除', '取消']}, function (index) {
                     var result = $.ajax({
@@ -210,7 +212,6 @@
                     title:"修改课程",
                     shade: 0.5,//遮罩
                     shadeClose:true,
-                    btn: ['关闭'],
                     area: ['70%','70%'],
                     content:'/course/input?id='+data.id,
                     end:function(){  //层销毁后触发的回调。数据表格重载
@@ -245,5 +246,19 @@
             }
         });
     });
+
+    //课程类型字符串化
+    function typeToStr(type){
+        if(type === 403){
+            return "java";
+        }else if(type === 406){
+            return "UI";
+        }else if(type === 409){
+            return "大数据";
+        }else if(type === 412){
+            return "javascript";
+        }
+        return "无类型";
+    }
 </script>
 </html>

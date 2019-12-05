@@ -5,7 +5,9 @@
     <title>学生编辑</title>
     <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all" />
     <style>
+
         #header{
+            top: 30px;
             width: 500px;
         }
     </style>
@@ -17,14 +19,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="name" th:value="${student?.name}"/>
+            <input type="text" class="layui-input" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"  autocomplete="off" name="name" th:value="${student?.name}"/>
         </div>
     </div>
     <br>
     <div class="layui-form-item">
         <label class="layui-form-label">班级</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="clazz" th:value="${student?.clazz}"/>
+            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="班级不能为空" autocomplete="off" name="clazz" th:value="${student?.clazz}"/>
         </div>
     </div>
     <br>
@@ -39,7 +41,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">公司</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="company" th:value="${student?.company}"/>
+            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="公司不能为空" autocomplete="off" name="company" th:value="${student?.company}"/>
         </div>
     </div>
     <br>
@@ -47,14 +49,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">薪资</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="salary" th:value="${student?.salary}"/>
+            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="薪资不能为空" autocomplete="off" name="salary" th:value="${student?.salary}"/>
         </div>
     </div>
     <br>
     <div class="layui-form-item">
         <label class="layui-form-label">毕业学校</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="school" th:value="${student?.school}"/>
+            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="学校不能为空" autocomplete="off" name="school" th:value="${student?.school}"/>
         </div>
     </div>
     <br>
@@ -62,14 +64,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">手机号</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="contactWay" th:value="${student?.contactWay}"/>
+            <input type="text" class="layui-input" lay-verify="required|contactWay" autocomplete="off" name="contactWay" th:value="${student?.contactWay}"/>
         </div>
     </div>
     <br>
     <div class="layui-form-item">
         <label class="layui-form-label">联系地址</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="productNum" autocomplete="off" name="address" th:value="${student?.address}"/>
+            <input type="text" class="layui-input" lay-verify="required" lay-reqtext="地址不能为空"autocomplete="off" name="address" th:value="${student?.address}"/>
         </div>
     </div>
     <br>

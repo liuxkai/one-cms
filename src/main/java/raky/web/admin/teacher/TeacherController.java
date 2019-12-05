@@ -23,9 +23,8 @@ import raky.util.Pager;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/teacher")
@@ -80,9 +79,22 @@ public class TeacherController extends CoreController {
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @ResponseBody
     public String delete(Long id){
         teacherService.delete(id);
-        return "redirect:/teacher/list";
+        return "1";
+    }
+
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteAll(String arrayId) {
+        String[] split = arrayId.substring(1,arrayId.length()-1).split(",");
+        List<Long> someId = new ArrayList<>();
+        for (int i = 0; i < split.length; i++) {
+            someId.add(Long.valueOf(split[i]));
+        }
+        teacherService.deleteAll(someId);
+        return "1";
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
@@ -104,7 +116,7 @@ public class TeacherController extends CoreController {
         List<Types> typesList =getTypesListByParentCode(60l);
         model.addAttribute("typesList",typesList);
         model.addAttribute("teacher",teacherService.getOne(id));
-        return "/teacher/show";
+        return "/teacher/show.html";
     }
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String getList(ModelMap model){
