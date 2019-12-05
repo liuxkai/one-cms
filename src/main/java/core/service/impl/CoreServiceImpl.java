@@ -22,6 +22,11 @@ public class CoreServiceImpl<T> implements CoreService<T> {
 	}
 
 	@Override
+	public int save(T t) {
+		return coreMapper.save(t);
+	}
+
+	@Override
     @Transactional
 	public int update(T t) {
 		return coreMapper.update(t);
