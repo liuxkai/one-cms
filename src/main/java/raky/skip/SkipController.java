@@ -43,6 +43,11 @@ public class SkipController extends CoreController {
         return "html/editor.html";
     }
 
+    @RequestMapping(value = "/userList")
+    public String userList(){
+        return "users/user.html";
+    }
+
     @RequestMapping(value = "/courseList")
     public String courseList(ModelMap model){
         List<Types> typesList =getTypesListByParentCode(40l);

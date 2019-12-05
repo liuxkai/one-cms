@@ -18,6 +18,12 @@
 					"href": "/skip/teacherList",
 					"spread": false
 
+				},
+				{
+					"title": "用户中心",
+					"icon": "&#xe612;",
+					"href": "/skip/userList",
+					"spread": false
 				}
 			]
 		},
@@ -27,12 +33,7 @@
 			"href": "/skip/courseList",
 			"spread": false
 		},
-		{
-			"title": "用户中心",
-			"icon": "&#xe612;",
-			"href": "/skip/userList",
-			"spread": false
-		},
+
 		{
 			"title": "其他页面",
 			"icon": "&#xe630;",
