@@ -121,17 +121,15 @@
                         shadeClose: true,
                         area: ['70%', '70%'],
                         content: '/login/add',
-                        /*end:function(){  //层销毁后触发的回调。数据表格重载
-                            userTable.reload({
-                                url:'/admin/users/pageList',
-                            });
-                        }*/
-                        yes: function (index, layero) {
+                        end:function(){  //层销毁后触发的回调。数据表格重载
+                            location.reload();
+                        }
+                        /*yes: function (index, layero) {
                             userTable.reload({
                                 url: '/admin/users/pageList',
                             });
                             layer.close(index); //如果设定了yes回调，需进行手工关闭
-                        }
+                        }*/
                     });
                     break;
 
@@ -150,19 +148,12 @@
                             area: ['70%', '70%'],
                             content: '/login/update?id=' + checkStatus.data[0].id,
 
-                            /* end:function(){  //层销毁后触发的回调。数据表格重载
+                             end:function(){  //层销毁后触发的回调。数据表格重载
                                  userTable.reload({
                                      url: '/admin/users/pageList',
-
                                  });
-                             }*/
-                            success: function (index) {
+                             }
 
-                                userTable.reload({
-                                    url: '/admin/users/pageList',
-
-                                });
-                            }
                         });
                     }
                     break;
@@ -202,19 +193,14 @@
                     area: ['70%', '70%'],
                     content: '/login/update?id='+data.id,
 
-                    /* end:function(){  //层销毁后触发的回调。数据表格重载
+                     end:function(){  //层销毁后触发的回调。数据表格重载
                          userTable.reload({
                              url: '/admin/users/pageList',
 
                          });
-                     }*/
-                    success: function (index) {
+                     }
 
-                        userTable.reload({
-                            url: '/admin/users/pageList',
 
-                        });
-                    }
                 });
 
             }

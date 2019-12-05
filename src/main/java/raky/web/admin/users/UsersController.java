@@ -37,14 +37,15 @@ public class UsersController extends CoreController {
 
     @RequestMapping(value = "/save" )
     public String save(@RequestBody Users users){
-
+        int result ;
         if(users.getId()!=null){
-            usersService.update(users);
-            return "redirect:/users/pageList";
+           result =  usersService.update(users);
+            return String.valueOf(result);
         }
         users.setCreateTime(new Date());
-        usersService.insert(users);
-        return "redirect:/users/pageList";
+        result = usersService.insert(users);
+
+        return String.valueOf(result);
 
     }
 
