@@ -5,11 +5,9 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Types;
 import raky.entity.Users;
@@ -24,7 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-@RestController
+@Controller
 @RequestMapping("/admin/users")
 public class UsersController extends CoreController {
 
@@ -36,6 +34,7 @@ public class UsersController extends CoreController {
     private Pager<Users> pager;
 
     @RequestMapping(value = "/save" )
+    @ResponseBody
     public String save(@RequestBody Users users){
         int result ;
         if(users.getId()!=null){
@@ -50,6 +49,7 @@ public class UsersController extends CoreController {
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @ResponseBody
     public String delete(Long id){
         System.out.println(id);
         usersService.delete(id);
@@ -57,6 +57,7 @@ public class UsersController extends CoreController {
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
+    @ResponseBody
     public String getOne(Long id, ModelMap model){
         List<Types> typesList1 =getTypesListByParentCode(10L);
         List<Types> typesList2 =getTypesListByParentCode(60L);
@@ -68,20 +69,20 @@ public class UsersController extends CoreController {
         }
         return "/users/edit";
     }
-    @RequestMapping(value = "/detailed",method = RequestMethod.POST)
+    @RequestMapping(value = "/detailed",method = {RequestMethod.POST,RequestMethod.GET})
     public String getDetailed(Long id,ModelMap model){
+        System.out.println(id);
         List<Types> typesList1 =getTypesListByParentCode(10L);
         List<Types> typesList2 =getTypesListByParentCode(60L);
-        for (Types types:typesList1){
-            System.out.println(types);
-        }
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",usersService.getOne(id));
-        return "/html/UserAdd";
+
+        return "/users/detail";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
+    @ResponseBody
     public Map<String,Object> getList(){
         Map<String, Object> dataMap = new HashMap<>();
         List<Users> usersList = usersService.getList(new Users());
@@ -92,6 +93,7 @@ public class UsersController extends CoreController {
     }
 
     @RequestMapping(value = "/pageList",method = RequestMethod.GET)
+    @ResponseBody
     public LayuiUtil getPageList(ModelMap model, Users users, Integer page, Integer limit){
        /* if(aroundTime!=null&&aroundTime.contains("/")){
             String[] split = aroundTime.split("-");
@@ -125,6 +127,7 @@ public class UsersController extends CoreController {
     }
 
     @RequestMapping(value = "/upload")
+    @ResponseBody
     public String  upload(MultipartFile  file,HttpServletRequest request) throws IOException {
         String filename = file.getOriginalFilename();
         String uploadPath = request.getSession().getServletContext().getRealPath("static/files/upload/"+getDate());

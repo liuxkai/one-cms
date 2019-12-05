@@ -94,4 +94,5 @@ public class LoginController extends CoreController {
         model.addAttribute("user",user);
         return "users/UserAdd";
     }
+
 }
