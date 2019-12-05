@@ -15,40 +15,52 @@
 <style>
 	#bgdiv {
 		width: 400px;
-		height: 360px;
-		margin: 200px auto;
-	}
-	body {
+		height: 320px;
+		margin: 230px auto;
 
+	}
+	#header{
+		position: relative;
+		left: 100px;
+	}
+	#info{
+		position: relative;
+		left: 100px;
+	}
+	body{
+		background-image: url("static/images/1.jpg");
+		background-size: contain;
 	}
 </style>
 <body class="loginBody">
 
 <div id="bgdiv">
 <form class="layui-form"  id="formid" action="login/UserLogin" method="post">
-
-		<div class="layui-form-item input-item">
+		<div id="header">
+		<div class="layui-form-item input-item" style="width: 240px">
 			<label for="userName">用户名</label>
-			<input type="text" name="userName" placeholder="请输入用户名" autocomplete="off" id="username" class="layui-input" lay-verify="required">
+			<input type="text" name="userName" placeholder="请输入用户名" autocomplete="off" id="username" class="layui-input" lay-verify="required" width="200px">
 		</div>
-		<div class="layui-form-item input-item">
+		<div class="layui-form-item input-item" style="width: 240px">
 			<label for="password">密码</label>
-			<input type="password" name="passWord" placeholder="请输入密码" autocomplete="off" id="password" class="layui-input" lay-verify="required">
+			<input type="password" name="passWord" placeholder="请输入密码" autocomplete="off" id="password" class="layui-input" lay-verify="required" width="200px">
 		</div>
-		<div class="layui-form-item input-item" id="imgCode">
+		<div class="layui-form-item input-item" id="imgCode" style="width: 240px">
 			<label for="code">验证码</label>
-			<input type="text" name="vrifyCode" placeholder="请输入验证码" autocomplete="off" id="code" class="layui-input">
+			<input type="text" name="vrifyCode" placeholder="请输入验证码" autocomplete="off" id="code" class="layui-input" width="300px">
 			<img alt="验证码" onclick="this.src='defaultKaptcha?d='+new Date()*1"
-				 src="defaultKaptcha">
+				 src="defaultKaptcha" style="height: 32px">
 		</div>
-		<div class="layui-form-item">
+		</div>
+	<div id="info"><!--/*@thymesVar id="info" type=""*/-->
+		<span style="color: red" th:text="${#servletContext.getAttribute('info')}"></span></div>
+		<div class="layui-form-item" style="height: 200px">
 			<div class="layui-input-block">
-				<button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="textAction">立即提交</button>
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				<button type="submit" class="layui-btn layui-btn-sm" lay-submit=""  lay-filter="demo1" id="textAction">登录</button>
+				<button type="reset" class="layui-btn layui-btn-sm">重置</button>
 			</div>
 		</div>
-	<div><!--/*@thymesVar id="info" type=""*/-->
-	<span th:text="${#servletContext.getAttribute('info')}"></span></div>
+
 	</form>
 <div>
 </body>

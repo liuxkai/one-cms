@@ -53,8 +53,14 @@
     select count(ID) from NEWS <include refid="condition" />
   </select>
   <delete id="delete" parameterType="java.lang.Long" >
-    delete from NEWS
+    update NEWS set DELETED = 0
     where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteAll" parameterType="java.util.List" >
+    update NEWS set DELETED = 0 where ID in
+    <foreach collection="list" item="ids" open="(" close=")" separator=",">
+      #{ids,jdbcType=VARCHAR}
+    </foreach>
   </delete>
   <insert id="insert" parameterType="News" useGeneratedKeys="true" keyProperty="id">
     insert into NEWS
