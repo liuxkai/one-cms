@@ -98,6 +98,7 @@ public class UsersController extends CoreController {
             users.setEndTime(split[1]);
         }*/
         System.out.println(users.getDeleted());
+        System.out.println(users.getCondition());
         if(page==null){
             page=1;
         }if(limit==null){

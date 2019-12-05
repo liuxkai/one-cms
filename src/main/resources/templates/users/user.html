@@ -16,8 +16,7 @@
         <form class="layui-form">
             <div class="layui-inline">
                 <select name="deleted" id="deleted" >
-                    <option value="">全部</option>
-                    <option value="0">未删除</option>
+                    <option value="">选择删除的</option>
                     <option value="1">已删除</option>
                 </select>
             </div>
@@ -80,7 +79,7 @@
                 {type: 'checkbox', fixed: 'left', align: 'center'}
                 , {field: 'id', title: 'ID', fixed: 'left', unresize: true, sort: true, align: 'center'}
                 , {field: 'userName', title: '用户名', edit: 'text', align: 'center'}
-                , {field: 'userType', title: '用户类型', edit: 'text', sort: true, align: 'center'}
+                , {field: 'userType', title: '用户类型', edit: 'text', sort: true, align: 'center',templet:'#type'}
                 , {
                     field: 'sex', title: '性别', align: 'center', templet: function (res) {
                         return res.sex == 1 ? '男' : '女'
@@ -120,7 +119,6 @@
                         title: "添加用户",
                         shade: 0.5,//遮罩
                         shadeClose: true,
-                        btn: ['关闭'],
                         area: ['70%', '70%'],
                         content: '/login/add',
                         /*end:function(){  //层销毁后触发的回调。数据表格重载
@@ -149,7 +147,6 @@
                             title: "修改课程",
                             shade: 0.5,//遮罩
                             shadeClose: true,
-                            btn: ['关闭'],
                             area: ['70%', '70%'],
                             content: '/login/update?id=' + checkStatus.data[0].id,
 
@@ -196,7 +193,30 @@
                     })
                 });
             } else if (layEvent === 'edit') {
-                layer.msg('编辑操作');
+                var minindex = layer.open({
+                    //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
+                    type: 2,
+                    title: "修改课程",
+                    shade: 0.5,//遮罩
+                    shadeClose: true,
+                    area: ['70%', '70%'],
+                    content: '/login/update?id='+data.id,
+
+                    /* end:function(){  //层销毁后触发的回调。数据表格重载
+                         userTable.reload({
+                             url: '/admin/users/pageList',
+
+                         });
+                     }*/
+                    success: function (index) {
+
+                        userTable.reload({
+                            url: '/admin/users/pageList',
+
+                        });
+                    }
+                });
+
             }
         });
 
@@ -250,7 +270,7 @@
         var $ = layui.$, active = {
             reload: function(){
                 //执行重载
-                table.reload('testReload', {
+                table.reload('demo', {
                     page: {
                         curr: 1 //重新从第 1 页开始
                     }
@@ -279,5 +299,11 @@
             active[type] ? active[type].call(this) : '';
         });
     });
+</script>
+<script type="text/html" id="type">
+    {{# if(d.userType == 103){}}
+    <span>{{ '学生类型' }}</span>
+    {{# } else { }}
+    <span>{{ '教师类型' }}</span> {{#  }}}
 </script>
 </html>

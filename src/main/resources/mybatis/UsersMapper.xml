@@ -24,6 +24,7 @@
     </resultMap>
     <sql id="condition" >
         <where>
+            <if test="condition != null and condition != '' "> and concat(`USER_NAME`,`AGE`,`POSITIONS`,`SEX`) like concat('%',#{condition},'%')  </if>
             <if test="id != null"> and ID = #{id}</if>
             <if test="userName != null and userName !=''"> and USER_NAME like concat('%',#{userName},'%')</if>
             <if test="age != null and age !=''"> and AGE like concat('%',#{age},'%')</if>
