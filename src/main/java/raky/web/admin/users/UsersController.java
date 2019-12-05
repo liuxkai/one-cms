@@ -5,8 +5,8 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Types;
 import raky.entity.Users;
 import raky.service.UsersService;
+import raky.util.LayuiUtil;
 import raky.util.Pager;
 
 import javax.annotation.Resource;
@@ -21,10 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @RequestMapping("/admin/users")
@@ -38,26 +36,29 @@ public class UsersController extends CoreController {
     private Pager<Users> pager;
 
     @RequestMapping(value = "/save" )
-    public String save(Users users){
+    public String save(@RequestBody Users users){
+
         if(users.getId()!=null){
             usersService.update(users);
             return "redirect:/users/pageList";
         }
+        users.setCreateTime(new Date());
         usersService.insert(users);
         return "redirect:/users/pageList";
 
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public String delete(Long id){
+        System.out.println(id);
         usersService.delete(id);
         return "redirect:/users/list";
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model){
-        List<Types> typesList1 =getTypesListByParentCode(10l);
-        List<Types> typesList2 =getTypesListByParentCode(60l);
+        List<Types> typesList1 =getTypesListByParentCode(10L);
+        List<Types> typesList2 =getTypesListByParentCode(60L);
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         if(id!=null){
@@ -66,14 +67,17 @@ public class UsersController extends CoreController {
         }
         return "/users/edit";
     }
-    @RequestMapping(value = "/detailed",method = RequestMethod.GET)
+    @RequestMapping(value = "/detailed",method = RequestMethod.POST)
     public String getDetailed(Long id,ModelMap model){
-        List<Types> typesList1 =getTypesListByParentCode(10l);
-        List<Types> typesList2 =getTypesListByParentCode(60l);
+        List<Types> typesList1 =getTypesListByParentCode(10L);
+        List<Types> typesList2 =getTypesListByParentCode(60L);
+        for (Types types:typesList1){
+            System.out.println(types);
+        }
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",usersService.getOne(id));
-        return "/users/show";
+        return "/html/UserAdd";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
@@ -87,27 +91,35 @@ public class UsersController extends CoreController {
     }
 
     @RequestMapping(value = "/pageList",method = RequestMethod.GET)
-    public String getPageList(ModelMap model,Users users,Integer requestPage,Integer pageSize,String aroundTime){
-        if(aroundTime!=null&&aroundTime.contains("/")){
+    public LayuiUtil getPageList(ModelMap model, Users users, Integer page, Integer limit){
+       /* if(aroundTime!=null&&aroundTime.contains("/")){
             String[] split = aroundTime.split("-");
-                users.setStartTime(split[0]);
-                users.setEndTime(split[1]);
+            users.setStartTime(split[0]);
+            users.setEndTime(split[1]);
+        }*/
+        System.out.println(users.getDeleted());
+        if(page==null){
+            page=1;
+        }if(limit==null){
+            limit=5;
         }
-        if(requestPage==null){
-            requestPage=1;
-        }if(pageSize==null){
-            pageSize=5;
-        }
-        pager.init(requestPage,pageSize,usersService.getCount(users));
+        pager.init(page,limit,usersService.getCount(users));
         users.setOffset(pager.getOffset());
         users.setLimit(pager.getLimit());
         List<Users> usersPageList = usersService.getPageList(users);
-        pager.setList(usersPageList);
+        /*pager.setList(usersPageList);
         pager.setUrl("/users/pageList");
         model.addAttribute("pager",pager);
         model.addAttribute("users",users);
         model.addAttribute("aroundTime",aroundTime);
-        return "/users/list";
+        return "/users/list";*/
+        LayuiUtil layuiUtil = LayuiUtil.<Users>builder().data(usersPageList).msg("").code(0).count(Long.valueOf(usersService.getCount(users))).build();
+        List<Types> typesList1 =getTypesListByParentCode(10L);
+        List<Types> typesList2 =getTypesListByParentCode(60L);
+        model.addAttribute("typesList1",typesList1);
+        model.addAttribute("typesList2",typesList2);
+        model.addAttribute("user",users);
+        return layuiUtil;
     }
 
     @RequestMapping(value = "/upload")
