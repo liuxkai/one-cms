@@ -108,7 +108,6 @@ public class CourseController extends CoreController {
         }
         course.setCourseType((course.getCourseType() != null && course.getCourseType() != 0) ? course.getCourseType() : null);
         course.setCourseName((course.getCourseName() != null && !course.getCourseName().equals("")) ? course.getCourseName() : null);
-        System.out.println(course);
         pager.init(page, limit, courseService.getCount(course));
         course.setOffset(pager.getOffset());
         course.setLimit(pager.getLimit());

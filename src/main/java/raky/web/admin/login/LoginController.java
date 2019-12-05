@@ -1,22 +1,23 @@
 package raky.web.admin.login;
 
+import core.controller.CoreController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import raky.entity.Types;
 import raky.entity.Users;
 import raky.service.UsersService;
 import raky.util.GetIp;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("login")
-public class LoginController {
+public class LoginController extends CoreController {
     @Autowired
     private UsersService usersService;
 
@@ -66,7 +67,31 @@ public class LoginController {
     }
     @RequestMapping("list")
     public String getList(){
-        return "html/user";
+        return "users/user";
     }
 
+    @RequestMapping("save")
+    public String getList1(){
+        return "users/UserAdd";
+    }
+    @RequestMapping("add")
+    public String add(ModelMap model){
+        System.out.println("********");
+        List<Types> typesList1 =getTypesListByParentCode(10L);
+        List<Types> typesList2 =getTypesListByParentCode(60L);
+        model.addAttribute("typesList1",typesList1);
+        model.addAttribute("typesList2",typesList2);
+        return "users/UserAdd";
+    }
+    @RequestMapping("update")
+    public String update(ModelMap model,Long id){
+        System.out.println(id);
+        Users user = usersService.getOne(id);
+        List<Types> typesList1 =getTypesListByParentCode(10L);
+        List<Types> typesList2 =getTypesListByParentCode(60L);
+        model.addAttribute("typesList1",typesList1);
+        model.addAttribute("typesList2",typesList2);
+        model.addAttribute("user",user);
+        return "users/UserAdd";
+    }
 }

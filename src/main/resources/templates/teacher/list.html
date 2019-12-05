@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>课程管理页面</title>
+    <title>教师管理页面</title>
     <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all" />
     <style>
         .top{
@@ -20,18 +20,18 @@
 <body>
     <div class="layui-form">
         <div class="layui-form-item top">
-            <label class="layui-form-label">课程类型:</label>
+            <label class="layui-form-label">职称类型:</label>
             <div class="layui-input-inline">
-                <select class="layui-input" name="courseType" id="courseType">
+                <select class="layui-input" name="positions" id="positions">
                     <option value="0">--请选择--</option>
-                    <option  th:each="c:${typesList}"  th:value="${c.typeCode}" th:text="${c.typeName}">普通课程</option>
+                    <option  th:each="c:${typesList}"  th:value="${c.typeName}" th:text="${c.typeName}">普通类型</option>
                 </select>
             </div>
         </div>
         <div class="layui-form-item top">
-            <label class="layui-form-label">搜索课程:</label>
+            <label class="layui-form-label">搜索教师:</label>
             <div class="layui-input-inline">
-                <input type="text" class="layui-input" name="courseName" id="courseName"/>
+                <input type="text" class="layui-input" name="name" id="teacherName"/>
             </div>
         </div>
         <div class="layui-form-item top1">
@@ -73,29 +73,40 @@
         var coursetable =table.render({
             elem: '#demo'
             ,height: 420
-            ,url: '/course/pageList' //数据接口
-            ,title: '课程表'
+            ,url: '/teacher/pageList' //数据接口
+            ,title: '教师表'
             ,page: true //开启分页
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
             ,cols: [
                 [ //表头
                     {type: 'checkbox', fixed: 'left'}
-                    ,{field: 'courseName', title: '课程名称', width:200}
-                    ,{field: 'courseType', title: '课程类型', width: 90, sort: true, totalRow: true}
-                    ,{field: 'courseMemo', title: '课程介绍', width:200, sort: true}
+                    ,{field: 'name', title: '姓名', width:200}
+                    ,{field: 'sex', title: '性别', width: 90, sort: true, totalRow: true,
+                    templet:function (data) { return sexToStr(data.sex);}}
+                    ,{field: 'birthDate', title: '出生日期', width:200, sort: true, totalRow: true,
+                    templet:function (data) { return dateToStr(data.birthDate);}}
+                    ,{field: 'contactWay', title: '联系方式', width: 90, sort: true, totalRow: true}
+                    ,{field: 'email', title: '邮件', width:200, sort: true, totalRow: true}
+                    ,{field: 'onlineContact', title: '在线联系方式', width: 90, sort: true, totalRow: true}
+                    ,{field: 'address', title: '联系地址', width: 90, sort: true, totalRow: true}
+                    ,{field: 'deleted', title: '是否删除', width:200, sort: true, totalRow: true,
+                    templet:function (data) { return statusToStr(data.deleted);}}
+                    ,{field: 'locked', title: '是否锁定', width: 90, sort: true, totalRow: true,
+                    templet:function (data) { return lockedToStr(data.locked);}}
+                    ,{field: 'positions', title: '职位', width:200, sort: true, totalRow: true}
                     ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
-                ]
+            ]
             ]
         });
 
         $('#query').click(function () {
-            var courseType = $('#courseType').val();
-            var courseName = $('#courseName').val();
+            var positions = $('#positions').val();
+            var teacherName = $('#teacherName').val();
             coursetable.reload({
-                url: '/course/pageList',
+                url: '/teacher/pageList',
                 where:{
-                    courseType : courseType,
-                    courseName : courseName,
+                    positions : positions,
+                    teacherName : teacherName,
                 }
             });
         });
@@ -109,15 +120,15 @@
                     layer.open({
                         //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                         type:2,
-                        title:"添加课程",
+                        title:"添加教师",
                         shade: 0.5,//遮罩
                         shadeClose:true,
                         btn: ['关闭'],
                         area: ['70%','70%'],
-                        content:'/course/input',
+                        content:'/teacher/input',
                         end:function(){  //层销毁后触发的回调。数据表格重载
                             coursetable.reload({
-                                url:'/course/pageList',
+                                url:'/teacher/pageList',
                             });
                         }
                     });
@@ -128,18 +139,18 @@
                     } else if (data.length > 1) {
                         layer.msg('只能同时编辑一个');
                     } else {
-                        layer.open({
+                    layer.open({
                             //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                             type:2,
-                            title:"修改课程",
+                            title:"修改教师",
                             shade: 0.5,//遮罩
                             shadeClose:true,
                             btn: ['关闭'],
                             area: ['70%','70%'],
-                            content:'/course/input?id='+checkStatus.data[0].id,
+                            content:'/teacher/input?id='+checkStatus.data[0].id,
                             end:function(){  //层销毁后触发的回调。数据表格重载
                                 coursetable.reload({
-                                    url: '/course/pageList',
+                                    url: '/teacher/pageList',
                                 });
                             }
                         });
@@ -155,7 +166,7 @@
                                 arrayId[index] = item.id;
                             });
                             var result = $.ajax({
-                                url : '/course/deleteAll',
+                                url : '/teacher/teacherAll',
                                 data: {arrayId:JSON.stringify(arrayId)},
                                 dateType:'json',
                                 //强调内容类型
@@ -165,7 +176,7 @@
                             if(result.responseText == '1'){
                                 layer.msg("删除成功");
                                 coursetable.reload({
-                                    url: '/course/pageList',
+                                    url: '/teacher/pageList',
                                 });
                             }else{
                                 console.log(result.responseText);
@@ -186,7 +197,7 @@
             } else if(layEvent === 'del'){
                 layer.confirm('确定删除吗?', {btn: ['确定删除', '取消']}, function (index) {
                     var result = $.ajax({
-                        url : '/course/delete',
+                        url : '/teacher/delete',
                         data: {id:data.id},
                         dateType:'json',
                         //强调内容类型
@@ -196,7 +207,7 @@
                     if(result.responseText == '1'){
                         layer.msg("删除成功");
                         coursetable.reload({
-                            url: '/course/pageList',
+                            url: '/teacher/pageList',
                         });
                     }else{
                         console.log(result.responseText);
@@ -207,15 +218,15 @@
                 layer.open({
                     //layer提供了5种层类型。可传入的值有：0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）
                     type:2,
-                    title:"修改课程",
+                    title:"修改教师",
                     shade: 0.5,//遮罩
                     shadeClose:true,
                     btn: ['关闭'],
                     area: ['70%','70%'],
-                    content:'/course/input?id='+data.id,
+                    content:'/teacher/input?id='+data.id,
                     end:function(){  //层销毁后触发的回调。数据表格重载
                         coursetable.reload({
-                            url: '/course/pageList',
+                            url: '/teacher/pageList',
                         });
                     }
                 });
@@ -245,5 +256,57 @@
             }
         });
     });
+
+
+
+    //处理后台传过来的性别，1为男，0为女
+    function sexToStr(sex) {
+        if(sex === '1'){
+            return "男";
+        }
+        return "女";
+    }
+    //时间传进来获取时间戳进行处理后返回输出
+    function dateToStr(lastLoginTim) {
+        //console.log(lastLoginTim);
+        if(lastLoginTim == null){
+            return 0;
+        };
+        var time = new Date(lastLoginTim);
+        // console.log(lastLoginTim);
+        var y = time.getFullYear();
+        var M = time.getMonth() + 1;
+        M = M < 10 ? ("0" + M) : M;
+        var d = time.getDate();
+        d = d < 10 ? ("0" + d) : d;
+        var h = time.getHours();
+        h = h < 10 ? ("0" + h) : h;
+        var m = time.getMinutes();
+        m = m < 10 ? ("0" + m) : m;
+        var s = time.getSeconds();
+        s = s < 10 ? ("0" + s) : s;
+        var str = y + "-" + M + "-" + d + " " + h + ":" + m + ":" + s;
+        return str;
+    };
+    //教师删除状态字符串化
+    function statusToStr(status){
+        if(status === 1){
+            return "未删除";
+        }
+        return "删除";
+    }
+
+    //教师锁定状态字符串化
+    function lockedToStr(locked){
+        if(locked === 1){
+            return "未锁定";
+        }
+        return "锁定";
+    }
+
+
+
+
+
 </script>
 </html>

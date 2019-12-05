@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import raky.entity.Course;
 import raky.entity.Files;
 import raky.entity.Teacher;
 import raky.entity.Types;
 import raky.service.FilesService;
 import raky.service.TeacherService;
+import raky.util.LayuiUtil;
 import raky.util.Pager;
 
 import javax.annotation.Resource;
@@ -38,25 +40,31 @@ public class TeacherController extends CoreController {
     private Pager<Teacher> pager;
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
-    public String save(@RequestParam("file") MultipartFile files[], HttpServletRequest request, Teacher teacher){
-        List<Files> filesList=new ArrayList<>();
-        List<Map<String,String>> list = upLoad(files, request);
-        for (Map<String,String> map:list){
-            try {
-                Files file=new Files();
-                BeanUtils.populate(file,map);
-                filesList.add(file);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        teacher.setFilesList(filesList);
+    @ResponseBody
+    public int save(Teacher teacher){
+        //拿下来备用，是放在方法参数里的
+//        @RequestParam("file") MultipartFile files[], HttpServletRequest request,
+
+
+
+//        List<Files> filesList=new ArrayList<>();
+//        List<Map<String,String>> list = upLoad(files, request);
+//        for (Map<String,String> map:list){
+//            try {
+//                Files file=new Files();
+//                BeanUtils.populate(file,map);
+//                filesList.add(file);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        teacher.setFilesList(filesList);
         if(teacher.getId()!=null){
-            teacherService.update(teacher);
-            return "redirect:/teacher/pageList";
+            int update = teacherService.update(teacher);
+            return update;
         }
-        teacherService.insert(teacher);
-        return "redirect:/teacher/pageList";
+        int insert = teacherService.insert(teacher);
+        return insert;
 
     }
 
@@ -79,17 +87,17 @@ public class TeacherController extends CoreController {
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model){
-        Files files=new Files();
-        files.setLinkId(id);
-        files.setLinkTable("教师管理表");
-        List<Types> typesList =getTypesListByParentCode(60l);
+//        Files files=new Files();
+//        files.setLinkId(id);
+//        files.setLinkTable("教师管理表");
+        List<Types> typesList =getTypesListByParentCode(60L);
         model.addAttribute("typesList",typesList);
         if(id!=null){
             model.addAttribute("teacher",teacherService.getOne(id));
-            model.addAttribute("filesList",filesService.getList(files));
-            return "/teacher/edit";
+//            model.addAttribute("filesList",filesService.getList(files));
+            return "/teacher/edit.html";
         }
-        return "/teacher/edit";
+        return "/teacher/edit.html";
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
@@ -105,21 +113,20 @@ public class TeacherController extends CoreController {
         return "/teacher/list";
     }
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
-    public String getPageList(ModelMap model, Teacher teacher, Integer requestPage,Integer pageSize) {
-        if(requestPage==null){
-            requestPage=1;
-        }if(pageSize==null){
-            pageSize=5;
+    @ResponseBody
+    public LayuiUtil<Course> getPageList(Teacher teacher, Integer page, Integer limit) {
+        if(page==null){
+            page=1;
+        }if(limit==null){
+            limit=10;
         }
-        pager.init(requestPage, pageSize, teacherService.getCount(teacher));
+        teacher.setPositions((teacher.getPositions() != null && !teacher.getPositions().equals("")) ? teacher.getPositions() : null);
+        teacher.setName((teacher.getName() != null && !teacher.getName().equals("")) ? teacher.getName() : null);
+        pager.init(page, limit, teacherService.getCount(teacher));
         teacher.setOffset(pager.getOffset());
         teacher.setLimit(pager.getLimit());
         List<Teacher> teacherPageList = teacherService.getPageList(teacher);
-        pager.setList(teacherPageList);
-        pager.setUrl("/teacher/pageList");
-        model.addAttribute("pager", pager);
-        model.addAttribute("course", teacher);
-        return "/teacher/list";
-
+        LayuiUtil layui = LayuiUtil.<Teacher>builder().data(teacherPageList).msg("教师信息").code(0).count(Long.valueOf(teacherService.getCount(teacher))).build();
+        return layui;
     }
 }

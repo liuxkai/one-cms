@@ -25,12 +25,13 @@
     <sql id="condition" >
         <where>
             <if test="id != null"> and ID = #{id}</if>
-            <if test="userName != null and userName !=''"> and `USER_NAME` like concat('%',#{userName},'%')</if>
+            <if test="userName != null and userName !=''"> and USER_NAME like concat('%',#{userName},'%')</if>
             <if test="age != null and age !=''"> and AGE like concat('%',#{age},'%')</if>
             <if test="lastLoginTime != null"> and LAST_LOGIN_TIME like concat('%',#{lastLoginTime},'%')</if>
             <if test="createTime != null"> and CREATE_TIME like concat('%',#{createTime},'%')</if>
             <if test="startTime != null  and startTime !=''  "> and CREATE_TIME &gt; #{startTime}  </if>
             <if test="endTime != null and endTime !='' "> and CREATE_TIME &lt;  #{endTime}  </if>
+            <if test="deleted != null and deleted !='' "> and DELETED = #{deleted}  </if>
         </where>
     </sql>
     <select id="getList" resultMap="getListResultMap" parameterType="Users">
@@ -221,7 +222,7 @@
     </update>
 
     <delete id="delete" parameterType="java.lang.Long">
-      delete from USERS where ID=#{id}
+      update USERS set DELETED = 1 where ID = #{id}
     </delete>
     <select id="findOne" parameterType="Users" resultMap="getListResultMap">
         select * from USERS where USER_NAME = #{userName} and PASS_WORD = #{passWord}

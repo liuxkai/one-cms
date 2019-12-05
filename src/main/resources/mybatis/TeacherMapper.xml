@@ -38,14 +38,16 @@
   <select id="getCount" parameterType="Teacher" resultType="java.lang.Integer"  >
     select count(ID) from TEACHER <include refid="condition" />
   </select>
-
-
-
   <delete id="delete" parameterType="java.lang.Long" >
-    delete from TEACHER
+    update TEACHER set DELETED = 0
     where ID = #{id,jdbcType=BIGINT}
   </delete>
-
+  <delete id="deleteAll" parameterType="java.util.List" >
+    update TEACHER set DELETED = 0 where ID in
+    <foreach collection="list" item="ids" open="(" close=")" separator=",">
+      #{ids,jdbcType=VARCHAR}
+    </foreach>
+  </delete>
   <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="Teacher" >
     insert into TEACHER
     <trim prefix="(" suffix=")" suffixOverrides="," >
