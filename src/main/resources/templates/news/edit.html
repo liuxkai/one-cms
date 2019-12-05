@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>课程编辑</title>
+    <title>新闻编辑</title>
     <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all" />
     <style>
         .top{
@@ -13,65 +13,56 @@
 <body>
         <form class="layui-form">
             <div class="layui-form-item">
-                <label class="layui-form-label">职称类型:</label>
+                <label class="layui-form-label">新闻类型:</label>
                 <div class="layui-input-inline">
-                    <select class="layui-input top" name="positions">
+                    <select class="layui-input top" name="newsType">
                         <option>-- 请选择 --</option>
-                        <option  th:each="c:${typesList}"  th:value="${c.typeName}" th:text="${c.typeName}" th:selected="${teacher?.positions != c.typeName}?null:${teacher?.positions}">普通职称</option>
+                        <option  th:each="c:${typesList}"  th:value="${c.typeName}" th:text="${c.typeName}" th:selected="${news?.newsType != c.typeName}?null:${news?.newsType}">普通职称</option>
                     </select>
-                    <input type="hidden" name="id" th:value="${teacher?.id}"/>
+                    <input type="hidden" name="uuid" th:value="${news?.uuid}"/>
+                    <input type="hidden" name="id" th:value="${news?.id}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">教师名称:</label>
+                <label class="layui-form-label">新闻标题:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="name" class="layui-input" th:value="${teacher?.name}"/>
+                    <input type="text" name="title" class="layui-input" th:value="${news?.title}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">性别:</label>
+                <label class="layui-form-label">作者:</label>
                 <div class="layui-input-inline">
-                    <select name="sex" id="sex">
-                        <option value="1">-- 请选择 --</option>
-                        <option value="1" th:selected="${teacher?.sex == 1} ? selected : null">男</option>
-                        <option value="0" th:selected="${teacher?.sex == 0} ? selected : null">女</option>
-                    </select>
+                    <input type="text" name="author" class="layui-input" th:value="${news?.author}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">手机号:</label>
+                <label class="layui-form-label">摘要:</label>
                 <div class="layui-input-inline">
-                    <input type="number" name="contactWay" class="layui-input" th:value="${teacher?.contactWay}"/>
+                    <input type="text" name="summary" class="layui-input" th:value="${news?.summary}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">邮件:</label>
+                <label class="layui-form-label">信息来源:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="email" class="layui-input" th:value="${teacher?.email}"/>
+                    <input type="text" name="infoSource" class="layui-input" th:value="${news?.infoSource}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">联系方式:</label>
+                <label class="layui-form-label">新闻内容:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="contactWay" class="layui-input" th:value="${teacher?.contactWay}"/>
+                    <input type="text" name="content" class="layui-input" th:value="${news?.content}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">QQ号:</label>
+                <label class="layui-form-label">主图说明:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="onlineContact" class="layui-input" th:value="${teacher?.onlineContact}"/>
+                    <input type="text" name="imageMemo" class="layui-input" th:value="${news?.imageMemo}"/>
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">联系地址:</label>
+                <label class="layui-form-label">视频说明:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="address" class="layui-input" th:value="${teacher?.address}"/>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">简介:</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="memo" class="layui-input" th:value="${teacher?.memo}"/>
+                    <input type="text" name="videoDesc" class="layui-input" th:value="${news?.videoDesc}"/>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -93,17 +84,21 @@
         form.on('submit(submit)',function (data) {
             console.log(data.field);
             $.ajax({
-                    url:'/teacher/save',
+                    url:'/news/save',
                     data:data.field,     //经测试通过可以传过去两个字段名
                     dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
                     type:'post',
                     success:function (data) {
                         if (data == '1'){
-                        //location.href = "index.jsp";
-                        layer.msg('编辑成功');
+                            //location.href = "index.jsp";
+                            layer.msg('编辑成功');
+                            var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            setTimeout(function () {
+                                parent.layer.close(index);
+                            }, 2000);
                         }else{
-                        //location.href = "login.jsp";
-                        layer.msg('编辑失败');
+                            //location.href = "login.jsp";
+                            layer.msg('编辑失败');
                         }
                     }
                 })

@@ -1,36 +1,34 @@
 {
 	"contentManagement": [
 		{
-			"title": "用户列表",
-			"icon": "&#xe634;",
-			"href": "",
-			"spread": false,
-			"children": [
-				{
-					"title": "学生管理",
-					"icon": "&#xe61c;",
-					"href": "/skip/main3",
-					"spread": false
-				},
-				{
-					"title": "教师管理",
-					"icon": "&#xe609;",
-					"href": "/skip/teacherList",
-					"spread": false
+			"title": "学生管理",
+			"icon": "&#xe61c;",
+			"href": "/skip/main3",
+			"spread": false
+		},
+		{
+			"title": "教师管理",
+			"icon": "&#xe609;",
+			"href": "/skip/teacherList",
+			"spread": false
 
-				},
-				{
-					"title": "用户中心",
-					"icon": "&#xe612;",
-					"href": "/skip/userList",
-					"spread": false
-				}
-			]
+		},
+		{
+			"title": "用户中心",
+			"icon": "&#xe612;",
+			"href": "/skip/userList",
+			"spread": false
 		},
 		{
 			"title": "课程管理",
 			"icon": "&#xe634;",
 			"href": "/skip/courseList",
+			"spread": false
+		},
+		{
+			"title": "新闻管理",
+			"icon": "&#xe634;",
+			"href": "/skip/newsList",
 			"spread": false
 		}
 

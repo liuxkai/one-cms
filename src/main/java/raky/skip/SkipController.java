@@ -51,24 +51,22 @@ public class SkipController extends CoreController {
     @RequestMapping(value = "/courseList")
     public String courseList(ModelMap model){
         List<Types> typesList =getTypesListByParentCode(40l);
-        //集合去重
-        List<Types> unique = typesList.stream().collect(
-                Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Types::getTypeName))), ArrayList::new)
-        );
-        model.addAttribute("typesList",unique);
+        model.addAttribute("typesList",typesList);
         return "course/list.html";
     }
 
     @RequestMapping(value = "/teacherList")
     public String teacherList(ModelMap model){
         List<Types> typesList =getTypesListByParentCode(60l);
-        //集合去重
-        List<Types> unique = typesList.stream().collect(
-                Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Types::getTypeName))), ArrayList::new)
-        );
-        model.addAttribute("typesList",unique);
-        return "teacher/list.html"; }
+        model.addAttribute("typesList",typesList);
+        return "teacher/list.html";
+    }
+
+    @RequestMapping(value = "/newsList")
+    public String newsList(ModelMap model){
+        List<Types> typesList =getTypesListByParentCode(20l);
+        model.addAttribute("typesList",typesList);
+        return "news/list.html";
+    }
 
 }

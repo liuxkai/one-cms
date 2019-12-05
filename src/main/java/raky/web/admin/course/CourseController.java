@@ -66,12 +66,7 @@ public class CourseController extends CoreController {
     @RequestMapping(value = "/input", method = RequestMethod.GET)
     public String getOne(Long id, ModelMap model) {
         List<Types> typesList =getTypesListByParentCode(40L);
-        //集合去重
-        List<Types> unique = typesList.stream().collect(
-                Collectors.collectingAndThen(
-                        Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(Types::getTypeName))), ArrayList::new)
-        );
-        model.addAttribute("typesList",unique);
+        model.addAttribute("typesList",typesList);
         if(id!=null){
             model.addAttribute("course", courseService.getOne(id));
         }
@@ -79,10 +74,10 @@ public class CourseController extends CoreController {
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
-        List<Types> typesList =getTypesListByParentCode(40l);
-        model.addAttribute("course",courseService.getOne(id));
+        List<Types> typesList =getTypesListByParentCode(40L);
         model.addAttribute("typesList",typesList);
-        return "/course/show";
+        model.addAttribute("course",courseService.getOne(id));
+        return "/course/show.html";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
