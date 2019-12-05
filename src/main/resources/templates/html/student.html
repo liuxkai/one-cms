@@ -75,16 +75,17 @@
             ,method:"get"
             , cols: [ [ //表头
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'id', title: 'ID', width: 80 }
-                , {field: 'name', title: '姓名', width: 112}
-                , {field:  "clazz", title: '班级', width: 112, sort: true, totalRow: true}
-                , {field:  "sex", title: '性别', width: 112, sort: true, totalRow: true, templet:'#sex'}
-                , {field:  "company", title: '公司', width: 112, sort: true, totalRow: true }
-                , {field:  "salary", title: '薪资(元)', width: 112, sort: true, totalRow: true}
-                , {field:  "major", title: '专业', width: 112, sort: true, totalRow: true}
-                , {field:  "school", title: '毕业学校', width: 112, sort: true, totalRow: true}
-                , {field:  "contactWay", title: '手机号', width: 112, sort: true, totalRow: true}
-                , {field:  "address", title: '联系地址', width: 112, sort: true, totalRow: true}
+                , {field: 'name', title: '姓名', width: 123}
+                , {field:  "clazz", title: '班级', width: 123}
+                , {field:  "sex", title: '性别', width: 123,  templet:'#sex'}
+                , {field:  "company", title: '公司', width: 123 }
+                , {field:  "school", title: '毕业学校', width: 123}
+                , {field:  "contactWay", title: '手机号', width: 123}
+                , {field:  "address", title: '联系地址', width: 123}
+                , {field:  "salary", title: '薪资(元)', width: 123}
+                , {field:  "deleted", title: '是否删除', width: 123, templet: function (res) {
+                        return res.deleted == 1 ? '删除' : '未删除'
+                    }}
                 , {fixed: 'right', width: 150, align: 'center', toolbar: '#barDemo'}
             ]]
             ,id: 'testReload'

@@ -419,7 +419,7 @@ iframe {
 
 #top_tabs_box {
     padding-right: 138px;
-    height: 40px;
+    height: 41px;
     border-bottom: 1px solid #e2e2e2;
 }
 
@@ -443,7 +443,7 @@ iframe {
 }
 
 .clildFrame.layui-tab-content {
-    top: 44px;
+    top: 50px;
     position: absolute;
     bottom: 0;
     width: 100%;

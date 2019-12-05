@@ -138,6 +138,7 @@ public class StudentController extends CoreController {
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
     @ResponseBody
     public LayuiUtil<Student> getPageList(Student student, Integer page, Integer limit) {
+
         pager.init(page, limit, studentService.getCount(student));
         student.setOffset(pager.getOffset());
         student.setLimit(pager.getLimit());

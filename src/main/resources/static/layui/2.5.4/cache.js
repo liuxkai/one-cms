@@ -19,7 +19,7 @@ layui.use(['form','jquery',"layer"],function() {
         $("#userFace").attr("src",window.sessionStorage.getItem('userFace'));
         $(".userAvatar").attr("src",$(".userAvatar").attr("src").split("images/")[0] + "images/" + window.sessionStorage.getItem('userFace').split("images/")[1]);
     }else{
-        $("#userFace").attr("src","layui/images/face/face.jpg");
+        $("#userFace").attr("src","/static/images/face.jpg");
     }
 
     //公告层
@@ -64,13 +64,13 @@ layui.use(['form','jquery',"layer"],function() {
             title : false,
             type : 1,
             content : '<div class="admin-header-lock" id="lock-box">'+
-                            '<div class="admin-header-lock-img"><img src="images/face.jpg" class="userAvatar"/></div>'+
+                            '<div class="admin-header-lock-img"><img src="/static/images/face.jpg" class="userAvatar"/></div>'+
                             '<div class="admin-header-lock-name" id="lockUserName">北大青鸟</div>'+
                             '<div class="input_btn">'+
                                 '<input type="password" class="admin-header-lock-input layui-input" autocomplete="off" placeholder="请输入密码解锁.." name="lockPwd" id="lockPwd" />'+
                                 '<button class="layui-btn" id="unlock">解锁</button>'+
                             '</div>'+
-                            '<p>请输入密码，否则不会解锁成功哦！！！</p>'+
+                            '<p>请输入“123456”，否则不会解锁成功哦！！！</p>'+
                         '</div>',
             closeBtn : 0,
             shade : 0.9,
@@ -143,13 +143,13 @@ layui.use(['form','jquery',"layer"],function() {
                                         '<div class="layui-word-aux">开启后切换窗口刷新当前页面</div>'+
                                     '</div>'+
                                 '</div>'+
-                                '<div class="layui-form-item">'+
-                                    '<label class="layui-form-label">单一登陆</label>'+
-                                    '<div class="layui-input-block">'+
-                                        '<input type="checkbox" name="oneLogin" lay-filter="multipleLogin" lay-skin="switch" lay-text="是|否">'+
-                                        '<div class="layui-word-aux">开启后不可同时多个地方登录</div>'+
-                                    '</div>'+
-                                '</div>'+
+                                // '<div class="layui-form-item">'+
+                                //     '<label class="layui-form-label">单一登陆</label>'+
+                                //     '<div class="layui-input-block">'+
+                                //         '<input type="checkbox" name="oneLogin" lay-filter="multipleLogin" lay-skin="switch" lay-text="是|否">'+
+                                //         '<div class="layui-word-aux">开启后不可同时多个地方登录</div>'+
+                                //     '</div>'+
+                                // '</div>'+
                                 '<div class="layui-form-item skinBtn">'+
                                     '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="settingSuccess">设定完成</a>'+
                                     '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noSetting">朕再想想</a>'+
