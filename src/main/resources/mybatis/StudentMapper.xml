@@ -32,7 +32,7 @@
     </where>
   </sql>
 
-  <select id="getList" resultMap="getListResultMap" parameterType="Student">
+  <select id="getPageList" resultMap="getListResultMap" parameterType="Student">
     select * from STUDENT where 1 = 1
     <if test="id != null"> and ID = #{id}</if>
 --     一个搜索，多个条件
@@ -50,7 +50,7 @@
     <if test="priority != null" > and PRIORITY = #{priority,jdbcType=INTEGER} </if>
      limit #{offset}, #{limit}
   </select>
-  <select id="getPageList" resultMap="getListResultMap"  parameterType="Student">
+  <select id="getList" resultMap="getListResultMap"  parameterType="Student">
     select * from STUDENT <include refid="condition" />
     limit #{offset}, #{limit}
   </select>
