@@ -39,24 +39,16 @@ public class StudentController extends CoreController {
     @RequestMapping(value = "/insert", method = RequestMethod.GET)
     public String insert(Long id, ModelMap model,Student student) {
         if(id!=null){
+            Student stu = studentService.getOne(id);
+
             model.addAttribute("student", studentService.getOne(id));
         }
         return "/html/editor.html";
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
-    public String update(@RequestBody  Student student) {
-        if(student.getId()!=null){
-            int update = studentService.update(student);
-            return String.valueOf(update);
-        }
-        int insert = studentService.save(student);  // 由于没有头像上传，所以添加save方法保存 insert需要上传图片
-        return String.valueOf(insert) ;
-    }
-
 
     @RequestMapping(value = "/save",method = {RequestMethod.POST,RequestMethod.GET})
+    @ResponseBody
     public String save(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request,Student student ){
         try {
             List<Map<String, String>> list = upLoad(files, request);
@@ -71,11 +63,11 @@ public class StudentController extends CoreController {
                 e.printStackTrace();
         }
         if(student.getId()==null){
-            studentService.insert(student);
-            return "redirect:/student/pageList";
+            int insert = studentService.insert(student);
+            return String.valueOf(insert);
         }
-        studentService.update(student);
-        return "redirect:/student/pageList";
+        int update = studentService.update(student);
+        return String.valueOf(update);
     }
     @RequestMapping(value = "/change",method = RequestMethod.POST)
     @ResponseBody

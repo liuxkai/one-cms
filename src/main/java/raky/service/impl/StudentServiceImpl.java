@@ -30,7 +30,6 @@ public class StudentServiceImpl extends CoreServiceImpl<Student> implements Stud
         }
 
 
-
         return update;
     }
 
