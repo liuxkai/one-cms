@@ -110,7 +110,7 @@ public class StudentController extends CoreController {
         model.addAttribute("studentList",studentList);
         return "/student/list";
     }
-    @RequestMapping(value = "/detailed",method = RequestMethod.GET)
+    @RequestMapping(value = "8/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
         model.addAttribute("student",studentService.getOne(id));
         return "/html/detail";

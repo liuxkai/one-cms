@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-        <form class="layui-form">
+        <form class="layui-form" >
             <div class="layui-form-item">
                 <label class="layui-form-label">新闻类型:</label>
                 <div class="layui-input-inline">
@@ -29,6 +29,18 @@
                     <input type="text" name="title" class="layui-input" th:value="${news?.title}"/>
                 </div>
             </div>
+
+            <!--上传-->
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test2">多图片上传</button>
+                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                    预览图：
+                    <div class="layui-upload-list" id="demo2"></div>
+                </blockquote>
+            </div>
+           <!--结束-->
+
+
             <div class="layui-form-item">
                 <label class="layui-form-label">作者:</label>
                 <div class="layui-input-inline">
@@ -75,12 +87,32 @@
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
 <script type="text/javascript">
-        layui.use(['element','form'], function() {
+        layui.use(['element','form','upload'], function() {
         var element = layui.element, //元素操作
         form = layui.form //滑块
         // 操作对象
         var form = layui.form;
         var $ = layui.jquery;
+
+        var upload = layui.upload;
+            upload.render({
+                elem: '#test2'
+                ,url: '/news/upload'
+                ,multiple: true
+                ,accept: 'file'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    });
+                }
+                ,done: function(res){
+                    alert(res)
+                }
+            });
+
+
+
         form.on('submit(submit)',function (data) {
             console.log(data.field);
             $.ajax({

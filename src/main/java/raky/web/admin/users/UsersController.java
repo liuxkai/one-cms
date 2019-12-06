@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Types;
 import raky.entity.Users;
+import raky.service.FilesService;
 import raky.service.UsersService;
 import raky.util.LayuiUtil;
 import raky.util.Pager;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -32,7 +34,8 @@ public class UsersController extends CoreController {
     private UsersService usersService;
     @Resource
     private Pager<Users> pager;
-
+    @Autowired
+    private FilesService filesService;
     @RequestMapping(value = "/save" )
     @ResponseBody
     public String save(@RequestBody Users users){
@@ -104,7 +107,7 @@ public class UsersController extends CoreController {
         LayuiUtil layuiUtil = LayuiUtil.<Users>builder().data(usersPageList).msg("").code(0).count(Long.valueOf(usersService.getCount(users))).build();
         List<Types> typesList1 =getTypesListByParentCode(10L);
         List<Types> typesList2 =getTypesListByParentCode(60L);
-        model.addAttribute("typesList1",typesList1);
+    8    model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",users);
         return layuiUtil;
@@ -113,6 +116,10 @@ public class UsersController extends CoreController {
     @RequestMapping(value = "/upload")
     @ResponseBody
     public String  upload(MultipartFile  file,HttpServletRequest request) throws IOException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String path = new String("D://src/" + format);//D盘路径
+        File filePath = new File(path);
+
         String filename = file.getOriginalFilename();
         String uploadPath = request.getSession().getServletContext().getRealPath("static/files/upload/"+getDate());
         File uploadDirectory = new File(uploadPath);
