@@ -24,14 +24,9 @@ public class LoginController extends CoreController {
     @RequestMapping("UserLogin")
     public String login(Users user, HttpServletRequest httpServletRequest, String vrifyCode,Model model){
         //获取session中的谷歌验证码内容
-        System.out.println(user.getUserName());
-        System.out.println(user.getPassWord());
         String captchaId = (String) httpServletRequest.getSession().getAttribute("vrifyCode");
         String parameter = httpServletRequest.getParameter("vrifyCode");
-        System.out.println(captchaId);
-        System.out.println(parameter);
         Users OnlinerUser;
-        /*ModelAndView modelAndView = new ModelAndView();*/
         int result = 0;
         if (!captchaId.equals(parameter)) {
            httpServletRequest.getSession().getServletContext().setAttribute("info","验证码不正确");
@@ -51,19 +46,12 @@ public class LoginController extends CoreController {
             System.out.println(result);
             if (result !=1){
                 httpServletRequest.getSession().getServletContext().setAttribute("info","用户名或者密码不正确");
-                /*modelAndView.setViewName("redirect:/tologin");*/
                 return "redirect:/tologin";
             }
-//            modelAndView.addObject("OnlineUser",OnlinerUser);
             httpServletRequest.getSession().getServletContext().setAttribute("OnlineUsername",OnlinerUser.getUserName());
-           /* model.addAttribute("OnlinerUser",OnlinerUser);*/
             httpServletRequest.getSession().setAttribute("OnlinerUser",OnlinerUser);
-            /*modelAndView.setViewName("/skip/main");*/
             return "redirect:/skip/main";
         }
-
-
-
     }
     @RequestMapping("list")
     public String getList(){
@@ -76,7 +64,6 @@ public class LoginController extends CoreController {
     }
     @RequestMapping("add")
     public String add(ModelMap model){
-        System.out.println("********");
         List<Types> typesList1 =getTypesListByParentCode(10L);
         List<Types> typesList2 =getTypesListByParentCode(60L);
         model.addAttribute("typesList1",typesList1);
@@ -85,7 +72,6 @@ public class LoginController extends CoreController {
     }
     @RequestMapping("update")
     public String update(ModelMap model,Long id){
-        System.out.println(id);
         Users user = usersService.getOne(id);
         List<Types> typesList1 =getTypesListByParentCode(10L);
         List<Types> typesList2 =getTypesListByParentCode(60L);
