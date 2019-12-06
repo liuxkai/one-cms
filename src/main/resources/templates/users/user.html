@@ -176,12 +176,12 @@
                     area: ['100%', '100%'],
                     content: '/admin/users/detailed?id='+data.id,
 
-                    end:function(){  //层销毁后触发的回调。数据表格重载
-                        userTable.reload({
-                            url: '/admin/users/pageList',
-
-                        });
-                    }
+                    // end:function(){  //层销毁后触发的回调。数据表格重载
+                    //     userTable.reload({
+                    //         url: '/admin/users/pageList',
+                    //
+                    //     });
+                    // }
 
 
                 });
@@ -191,7 +191,7 @@
                     layer.close(index);
                     //向服务端发送删除指令
                     $.post("/admin/users/delete", {id: data.id}, function (s) {
-                        alert()
+
                     })
                 });
             } else if (layEvent === 'edit') {
