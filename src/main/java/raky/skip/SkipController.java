@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import raky.entity.Files;
 import raky.entity.Types;
 import raky.entity.Users;
+import raky.service.FilesService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -27,7 +28,8 @@ import java.util.stream.Collectors;
 public class SkipController extends CoreController {
     @Autowired(required = false)
     private Files files;
-
+    @Autowired
+    private FilesService filesService;
     @RequestMapping(value = "/aa")
     public String aaa(){
         return "html/nv.html";
@@ -79,8 +81,12 @@ public class SkipController extends CoreController {
         Long id = onlinerUser.getId();
         Files files = new Files();
         files.setLinkId(id);
-        files.setLinkTable("");
+        System.out.println(id);
+        files.setLinkTable("用户管理表");
+        Files file = filesService.findFile(files);
+        System.out.println(file);
         model.addAttribute("onlinerUser",onlinerUser);
+        model.addAttribute("files",files);
         return "html/main";
     }
 

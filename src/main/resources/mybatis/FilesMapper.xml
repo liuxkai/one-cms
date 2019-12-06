@@ -137,4 +137,7 @@
     </set>
     where LINK_ID = #{linkId,jdbcType=BIGINT}
   </update>
+  <select id="findFile" parameterType="Files" resultMap="getListResultMap">
+    select * from FILES where LINK_ID = #{linkId,jdbcType=BIGINT} and LINK_TABLE = #{linkTable,jdbcType=VARCHAR}
+  </select>
 </mapper>
