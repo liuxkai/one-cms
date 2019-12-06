@@ -11,7 +11,7 @@
     </style>
 </head>
 <body>
-        <form class="layui-form">
+        <form class="layui-form" id="userForm" enctype="multipart/form-data">
             <div class="layui-form-item">
                 <label class="layui-form-label">职称类型:</label>
                 <div class="layui-input-inline">
@@ -85,24 +85,68 @@
                     <button lay-submit lay-filter="submit" class="layui-btn">提交</button>
                 </div>
             </div>
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test2">上传图片</button>
+                <div class="layui-upload-list">
+                    <img class="layui-upload-img" id="demo1">
+                    <p id="demoText"></p>
+                </div>
+            </div>
         </form>
 </body>
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
 <script type="text/javascript">
-        layui.use(['element','form', 'laydate'], function() {
+        layui.use(['element','form', 'laydate', 'upload'], function() {
         var element = layui.element, //元素操作
             form = layui.form,//滑块
-            laydate = layui.laydate;//日期
+            laydate = layui.laydate,//日期
+            upload = layui.upload;
         // 操作对象
         var form = layui.form;
         var $ = layui.jquery;
-        form.on('submit(submit)',function (data) {
-            console.log(data.field);
-            $.ajax({
+
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test2'
+                ,accept: 'file'
+                ,url: '/teacher/save'
+                ,auto: false
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                }
+                ,done: function(res){
+                    //如果上传失败
+                    if(res.code > 0){
+                        return layer.msg('上传失败');
+                    }
+                    //上传成功
+                }
+                ,error: function(){
+                    //演示失败状态，并实现重传
+                    var demoText = $('#demoText');
+                    demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                    demoText.find('.demo-reload').on('click', function(){
+                        uploadInst.upload();
+                    });
+                }
+            });
+
+
+            form.on('submit(submit)',function (data) {
+                var fd = new FormData();
+                var formData = new FormData($( "#userForm" )[0]);
+                console.log(data.field);
+                $.ajax({
+                    cache : true,
                     url:'/teacher/save',
-                    data:data.field,     //经测试通过可以传过去两个字段名
+                    data:formData,     //经测试通过可以传过去两个字段名
                     dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
+                    contentType: false,
+                    processData: false,
                     type:'post',
                     success:function (data) {
                         if (data == '1'){

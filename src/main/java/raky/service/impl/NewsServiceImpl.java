@@ -34,13 +34,13 @@ public class NewsServiceImpl extends CoreServiceImpl<News> implements NewsServic
     }
     public  int update(News news){
         int update = newsMapper.update(news);
-//        List<Files> filesList=news.getFilesList();
-//        for (Files files:filesList){
-//            files.setLinkId(news.getId());
-//            files.setLinkTable("新闻管理表");
-//            System.out.println(files);
-//            filesMapper.insert(files);
-//        }
+        List<Files> filesList=news.getFilesList();
+        for (Files files:filesList){
+            files.setLinkId(news.getId());
+            files.setLinkTable("新闻管理表");
+            System.out.println(files);
+            filesMapper.insert(files);
+        }
         return update;
     }
 }

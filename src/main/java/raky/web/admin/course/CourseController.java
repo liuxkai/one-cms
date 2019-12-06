@@ -77,7 +77,7 @@ public class CourseController extends CoreController {
         List<Types> typesList =getTypesListByParentCode(40L);
         model.addAttribute("typesList",typesList);
         model.addAttribute("course",courseService.getOne(id));
-        return "/course/show.html";
+        return "/course/detail.html";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -101,7 +101,7 @@ public class CourseController extends CoreController {
         }if(limit==null){
             limit=10;
         }
-        course.setCourseType((course.getCourseType() != null && course.getCourseType() != 0) ? course.getCourseType() : null);
+        course.setCourseType((course.getCourseType() != null && !course.getCourseType().equals("")) ? course.getCourseType() : null);
         course.setCourseName((course.getCourseName() != null && !course.getCourseName().equals("")) ? course.getCourseName() : null);
         pager.init(page, limit, courseService.getCount(course));
         course.setOffset(pager.getOffset());

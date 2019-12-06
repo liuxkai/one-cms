@@ -40,24 +40,20 @@ public class TeacherController extends CoreController {
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
-    public int save(Teacher teacher){
-        //拿下来备用，是放在方法参数里的
-//        @RequestParam("file") MultipartFile files[], HttpServletRequest request,
-
-
-
-//        List<Files> filesList=new ArrayList<>();
-//        List<Map<String,String>> list = upLoad(files, request);
-//        for (Map<String,String> map:list){
-//            try {
-//                Files file=new Files();
-//                BeanUtils.populate(file,map);
-//                filesList.add(file);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        teacher.setFilesList(filesList);
+    public int save(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request, Teacher teacher){
+        System.out.println(teacher);
+        List<Files> filesList=new ArrayList<>();
+        List<Map<String,String>> list = upLoad(files, request);
+        for (Map<String,String> map:list){
+            try {
+                Files file=new Files();
+                BeanUtils.populate(file,map);
+                filesList.add(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        teacher.setFilesList(filesList);
         if(teacher.getId()!=null){
             int update = teacherService.update(teacher);
             return update;
@@ -116,7 +112,7 @@ public class TeacherController extends CoreController {
         List<Types> typesList =getTypesListByParentCode(60l);
         model.addAttribute("typesList",typesList);
         model.addAttribute("teacher",teacherService.getOne(id));
-        return "/teacher/show.html";
+        return "/teacher/detail.html";
     }
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String getList(ModelMap model){
