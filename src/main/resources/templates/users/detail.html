@@ -39,7 +39,7 @@
         <tr>
             <td>性别：<span th:text="${user?.getSex() == '1' ? '男':'女'}"></span></td>
             <td>年龄：<span th:text="${user?.getAge()}"></span></td>
-            <td>生日：<span th:text="${user?.getBirthday()}"></span></td>
+            <td>生日：<span th:text="${#dates.format(user.birthday,'yyyy-MM-dd')}"></span></td>
             <td>职位：<span th:text="${user?.getPositions()}"></span></td>
         </tr>
         <tr>
@@ -49,8 +49,8 @@
             <td>最后登录ip：<span th:text="${user?.getLastLoginIp()}"></span></td>
         </tr>
         <tr>
-            <td>最后登陆时间：<span th:text="${user?.getLastLoginTime()}"></span></td>
-            <td>添加时间：<span th:text="${user?.getCreateTime()}"></span></td>
+            <td>最后登陆时间：<span th:text="${#dates.format(user.lastLoginTime,'yyyy-MM-dd')}"></span></td>
+            <td>添加时间：<span th:text="${#dates.format(user.createTime,'yyyy-MM-dd')}"></span></td>
             <td>是否锁定：<span th:text="${user?.getLocked() == '1' ? '为锁定':'已锁定'}"></span></td>
             <td>是否删除：<span th:text="${user?.getDeleted() == '1' ? '未删除':'已删除'}"></span></td>
         </tr>

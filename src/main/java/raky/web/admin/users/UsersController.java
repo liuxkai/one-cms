@@ -51,7 +51,6 @@ public class UsersController extends CoreController {
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     @ResponseBody
     public String delete(Long id){
-        System.out.println(id);
         usersService.delete(id);
         return "redirect:/users/list";
     }
@@ -71,13 +70,11 @@ public class UsersController extends CoreController {
     }
     @RequestMapping(value = "/detailed",method = {RequestMethod.POST,RequestMethod.GET})
     public String getDetailed(Long id,ModelMap model){
-        System.out.println(id);
         List<Types> typesList1 =getTypesListByParentCode(10L);
         List<Types> typesList2 =getTypesListByParentCode(60L);
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",usersService.getOne(id));
-
         return "/users/detail";
     }
 
@@ -95,13 +92,6 @@ public class UsersController extends CoreController {
     @RequestMapping(value = "/pageList",method = RequestMethod.GET)
     @ResponseBody
     public LayuiUtil getPageList(ModelMap model, Users users, Integer page, Integer limit){
-       /* if(aroundTime!=null&&aroundTime.contains("/")){
-            String[] split = aroundTime.split("-");
-            users.setStartTime(split[0]);
-            users.setEndTime(split[1]);
-        }*/
-        System.out.println(users.getDeleted());
-        System.out.println(users.getCondition());
         if(page==null){
             page=1;
         }if(limit==null){
@@ -111,12 +101,6 @@ public class UsersController extends CoreController {
         users.setOffset(pager.getOffset());
         users.setLimit(pager.getLimit());
         List<Users> usersPageList = usersService.getPageList(users);
-        /*pager.setList(usersPageList);
-        pager.setUrl("/users/pageList");
-        model.addAttribute("pager",pager);
-        model.addAttribute("users",users);
-        model.addAttribute("aroundTime",aroundTime);
-        return "/users/list";*/
         LayuiUtil layuiUtil = LayuiUtil.<Users>builder().data(usersPageList).msg("").code(0).count(Long.valueOf(usersService.getCount(users))).build();
         List<Types> typesList1 =getTypesListByParentCode(10L);
         List<Types> typesList2 =getTypesListByParentCode(60L);
