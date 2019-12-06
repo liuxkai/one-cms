@@ -18,8 +18,6 @@ import raky.util.Pager;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -45,44 +43,97 @@ public class NewsController extends CoreController{
     }
 
 
+
+//    @RequestMapping(value = "/save", method = RequestMethod.POST)
+//    @ResponseBody
+//    public int save(News news){
+////        @RequestParam("File") MultipartFile[] newsFile,@RequestParam("file") MultipartFile files[],         ,HttpServletRequest request
+////        List<Files> list=new ArrayList<>();
+////        List<Map<String,String>> filesList = upLoad(files, request);
+////        List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
+////        for (Map map:newsFilesList){
+////            logger.info(map.get("fileName").toString());
+////            if(isVideoFile(map.get("fileName").toString())){
+////                news.setVideoPath(map.get("savePath").toString());
+////            }else{
+////                news.setImagePath(map.get("savePath").toString());
+////            }
+////        }
+////        for (Map map:filesList){
+////            Files file=new Files();
+////            try {
+////                BeanUtils.populate(file,map);
+////                list.add(file);
+////            } catch (Exception e) {
+////                e.printStackTrace();
+////            }
+////        }
+////        news.setFilesList(list);
+//        if(news.getViewCount() == null){ news.setViewCount(0);}
+//        if(news.getInfoState() == null){ news.setInfoState(0);}
+//        if(news.getPriority() == null){ news.setPriority(0);}
+//        if(news.getDeleted() == null){ news.setDeleted(0);}  //0是未删除,1是删除
+//        if (news.getUuid() != null && news.getUuid() != "") {
+//            logger.info(news.getId());
+//            int update = newsService.update(news);
+//            return update;
+//        }
+//        news.setUuid(UUID.randomUUID().toString());
+//        int insert = newsService.insert(news);
+//        return insert;
+//    }
+
+
+
+
+
+
+
+
+
+
+
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public int save(News news){
-//        @RequestParam("File") MultipartFile[] newsFile,@RequestParam("file") MultipartFile files[],         ,HttpServletRequest request
-//        List<Files> list=new ArrayList<>();
-//        List<Map<String,String>> filesList = upLoad(files, request);
-//        List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
-//        for (Map map:newsFilesList){
-//            logger.info(map.get("fileName").toString());
-//            if(isVideoFile(map.get("fileName").toString())){
-//                news.setVideoPath(map.get("savePath").toString());
-//            }else{
-//                news.setImagePath(map.get("savePath").toString());
-//            }
-//        }
-//        for (Map map:filesList){
-//            Files file=new Files();
-//            try {
-//                BeanUtils.populate(file,map);
-//                list.add(file);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        news.setFilesList(list);
-        if(news.getViewCount() == null){ news.setViewCount(0);}
-        if(news.getInfoState() == null){ news.setInfoState(0);}
-        if(news.getPriority() == null){ news.setPriority(0);}
-        if(news.getDeleted() == null){ news.setDeleted(0);}  //0是未删除,1是删除
-        if (news.getUuid() != null && news.getUuid() != "") {
-            logger.info(news.getId());
-            int update = newsService.update(news);
-            return update;
-        }
-        news.setUuid(UUID.randomUUID().toString());
-        int insert = newsService.insert(news);
-        return insert;
+    public int save(@RequestParam("File") MultipartFile[] newsFile, @RequestParam("file") MultipartFile files[], News news, HttpServletRequest request){
 
+        logger.info(newsFile.toString()+"===============newsFile================");
+        logger.info(files.toString()+"===============files================");
+        logger.info(news.toString()+"===============news================");
+        List<Files> list=new ArrayList<>();
+        List<Map<String,String>> filesList = upLoad(files, request);
+        List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
+        for (Map map:newsFilesList){
+            logger.info(map.get("fileName").toString());
+            if(isVideoFile(map.get("fileName").toString())){
+                news.setVideoPath(map.get("savePath").toString());
+            }else{
+                news.setImagePath(map.get("savePath").toString());
+            }
+        }
+        for (Map map:filesList){
+            Files file=new Files();
+            try {
+                BeanUtils.populate(file,map);
+                list.add(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(list.toString());
+        news.setFilesList(list);
+//        if(news.getViewCount() == null){ news.setViewCount(0);}
+//        if(news.getInfoState() == null){ news.setInfoState(0);}
+//        if(news.getPriority() == null){ news.setPriority(0);}
+//        if(news.getDeleted() == null){ news.setDeleted(0);}  //0是未删除,1是删除
+//        if (news.getUuid() != null && news.getUuid() != "") {
+//            logger.info(news.getId());
+//            int update = newsService.update(news);
+//            return update;
+//        }
+//        news.setUuid(UUID.randomUUID().toString());
+//        int insert = newsService.insert(news);
+        return 1;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -123,7 +174,7 @@ public class NewsController extends CoreController{
         List<Types> typesList =getTypesListByParentCode(20L);
         model.addAttribute("typesList",typesList);
         model.addAttribute("news",newsService.getOne(id));
-        return "/news/show.html";
+        return "/news/detail.html";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

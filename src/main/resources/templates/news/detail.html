@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            border：none;
+        }
+        #titile {
+            margin: auto;
+            font-size: 30px;
+            position: relative;
+            left: 500px;
+        }
+    </style>
+</head>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all"/>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/index.css}"/>
+<body>
+<div id="titile"> <span th:text="${news?.title}"></span></div>
+<div class="layui-form">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>标题 : <span th:text="${news?.title}"></span></th>
+            <th>新闻类型：<span th:text="${news?.newsType}"></span></th>
+            <th>作者：<span th:text="${news?.author}"></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>新闻编码：<span th:text="${news?.uuid}"></span></td>
+            <td>浏览量：<span th:text="${news?.viewCount}"></span></td>
+            <td>信息状态：<span th:text="${news?.infoState}"></span></td>
+        </tr>
+        <tr>
+            <td>最后浏览时间：<span th:text="${#dates.format(news?.viewDatetime, 'yyyy-MM-dd')}"></span></td>
+            <td>发布时间：<span th:text="${#dates.format(news?.publishTime, 'yyyy-MM-dd')}"></span></td>
+            <td>失效时间：<span th:text="${#dates.format(news?.invalidDate, 'yyyy-MM-dd')}"></span></td>
+
+        </tr>
+        <tr>
+            <td>信息来源：<span th:text="${news?.infoSource}"></span></td>
+            <td>是否删除：<span th:text="${news?.deleted == '1' ? '未删除':'已删除'}"></span></td>
+            <td>摘要：<span th:text="${news?.summary}"></span></td>
+        </tr>
+        <tr>
+
+            <td>主图路径：<span th:text="${news?.imagePath}"></span></td>
+            <td>主图说明：<span th:text="${news?.imageMemo}"></span></td>
+
+        </tr>
+        <tr>
+            <td>视频路径：<span th:text="${news?.videoPath}"></span></td>
+            <td>视频说明：<span th:text="${news?.videoDesc}"></span></td>
+        </tr>
+        <tr>
+            <td>新闻内容：<span th:text="${news?.content}"></span></td>
+        </tr>
+
+        </tbody>
+    </table>
+<!--    <img src="/img/files/upload/2019-12-06/bb03ca28-5af0-46b8-8e85-f472ecddcf45.jpg">-->
+</div>
+
+</body>
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
+<script th:src="@{/static/layui/2.5.4/index.js}"></script>
+<script th:src="@{/static/layui/2.5.4/cache.js}"></script>
+</html>

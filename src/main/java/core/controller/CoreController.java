@@ -42,7 +42,8 @@ public class CoreController {
 @ResponseBody
 public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request) {
     List<Map<String,String>> list=new ArrayList<>();
-    String uploadPath = request.getSession().getServletContext().getRealPath("static/files/upload/"+getDate());
+    String uploadPath = "D://static/files/upload/"+getDate();
+    System.out.println(uploadPath+"上传图片");
     File uploadDirectory = new File(uploadPath);
     if (uploadDirectory.exists()) {
         if (!uploadDirectory.isDirectory()) {

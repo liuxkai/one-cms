@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            border：none;
+        }
+        #titile {
+            margin: auto;
+            font-size: 30px;
+            position: relative;
+            left: 500px;
+        }
+    </style>
+</head>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all"/>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/index.css}"/>
+<body>
+<div id="titile"> <span th:text="${teacher?.name}"></span><span>的信息</span></div>
+<div class="layui-form">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>名称：<!--/*@thymesVar id="user" type=""*/-->
+                <!--/*@thymesVar id="getUserName" type=""*/-->
+                <span th:text="${teacher?.name}"></span></th>
+            <th>职位：<span th:text="${teacher?.positions}"></span></th>
+            <th>手机号码：<span th:text="${teacher?.contactWay}"></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>性别：<span th:text="${teacher?.sex == '1' ? '男':'女'}"></span></td>
+            <td>生日：<span th:text="${#dates.format(teacher?.birthDate, 'yyyy-MM-dd')}"></span></td>
+            <td>QQ：<span th:text="${teacher?.onlineContact}"></span></td>
+        </tr>
+        <tr>
+            <td>联系地址：<span th:text="${teacher?.address}"></span></td>
+            <td>邮箱：<span th:text="${teacher?.email}"></span></td>
+            <td>是否删除：<span th:text="${teacher?.deleted == '1' ? '未删除':'已删除'}"></span></td>
+        </tr>
+        <tr>
+            <td>是否锁定：<span th:text="${teacher?.locked == '1' ? '未锁定':'已锁定'}"></span></td>
+            <td>简介：<span th:text="${teacher?.memo}"></span></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
+<script th:src="@{/static/layui/2.5.4/index.js}"></script>
+<script th:src="@{/static/layui/2.5.4/cache.js}"></script>
+</html>

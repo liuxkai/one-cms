@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            border：none;
+        }
+        #titile {
+            margin: auto;
+            font-size: 30px;
+            position: relative;
+            left: 500px;
+        }
+    </style>
+</head>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all"/>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/index.css}"/>
+<body>
+<div id="titile"> <span th:text="${course?.courseType}"></span></div>
+<div class="layui-form">
+    <table class="layui-table">
+        <tbody>
+        <tr>
+            <td>课程：<span th:text="${course?.courseName}"></span></td>
+            <td>描述：<span th:text="${course?.courseMemo}"></span></td>
+            <td>是否删除：<span th:text="${course?.deleted == '1' ? '未删除':'已删除'}"></span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
+<script th:src="@{/static/layui/2.5.4/index.js}"></script>
+<script th:src="@{/static/layui/2.5.4/cache.js}"></script>
+</html>

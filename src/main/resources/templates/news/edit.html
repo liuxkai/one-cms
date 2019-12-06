@@ -11,7 +11,8 @@
     </style>
 </head>
 <body>
-        <form class="layui-form" >
+        <form class="layui-form" id="userForm" enctype="multipart/form-data">
+            <input id="fileTitle"  name="file"/>
             <div class="layui-form-item">
                 <label class="layui-form-label">新闻类型:</label>
                 <div class="layui-input-inline">
@@ -29,18 +30,6 @@
                     <input type="text" name="title" class="layui-input" th:value="${news?.title}"/>
                 </div>
             </div>
-
-            <!--上传-->
-            <div class="layui-upload">
-                <button type="button" class="layui-btn" id="test2">多图片上传</button>
-                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                    预览图：
-                    <div class="layui-upload-list" id="demo2"></div>
-                </blockquote>
-            </div>
-           <!--结束-->
-
-
             <div class="layui-form-item">
                 <label class="layui-form-label">作者:</label>
                 <div class="layui-input-inline">
@@ -79,46 +68,101 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button lay-submit lay-filter="submit" class="layui-btn layui-btn-normal">提交</button>
+                    <button lay-submit lay-filter="submit" class="layui-btn layui-btn-normal" id="testListAction">提交</button>
                 </div>
             </div>
+
+
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test2">多图片上传</button>
+                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                    预览图：
+                    <div class="layui-upload-list" id="demoList"></div>
+                </blockquote>
+            </div>
+
+
         </form>
 </body>
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
 <script type="text/javascript">
-        layui.use(['element','form','upload'], function() {
+        layui.use(['element','form', 'upload'], function() {
         var element = layui.element, //元素操作
-        form = layui.form //滑块
-        // 操作对象
-        var form = layui.form;
+            form = layui.form,
+            upload = layui.upload;
         var $ = layui.jquery;
 
-        var upload = layui.upload;
-            upload.render({
+
+
+        // //上传缩略图
+        var demoListView = $('#demoList'),
+            uploadListIns = upload.render({
                 elem: '#test2'
-                ,url: '/news/upload'
-                ,multiple: true
+                ,url: '/news/save'
                 ,accept: 'file'
-                ,before: function(obj){
-                    //预读本地文件示例，不支持ie8
+                ,multiple: true
+                ,auto: false
+                ,choose: function(obj){
+                    var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                    //读取本地文件
                     obj.preview(function(index, file, result){
-                        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                        var tr = $(['<tr id="upload-'+ index +'">'
+                            ,'<td><img src='+result+' style="width:60px;height:60px"></td>'
+                            ,'<td>'+ (file.size/1014).toFixed(1) +'kb</td>'
+                            ,'<td>等待上传</td>'
+                            ,'<td>'
+//             ,'<button class="layui-btn layui-btn-mini demo-reload layui-hide">重传</button>'
+                            ,'<button class="layui-btn layui-btn-mini layui-btn-danger demo-delete">删除</button>'
+                            ,'</td>'
+                            ,'</tr>'].join(''));
+                        //单个重传
+                        tr.find('.demo-reload').on('click', function(){
+                            obj.upload(index, file);
+                        });
+                        //删除
+                        tr.find('.demo-delete').on('click', function(){
+                            delete files[index]; //删除对应的文件
+                            tr.remove();
+                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                        });
+
+                        demoListView.append(tr);
                     });
                 }
-                ,done: function(res){
-                    alert(res)
+                ,done: function(res, index, upload){
+                    if(res.img != ''){
+
+                        var tr = demoListView.find('tr#upload-'+ index),tds = tr.children();
+                        tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                        tds.eq(3).html(''); //清空操作
+                        var str = '<input type="hidden" name="photo[]" value='+res.img+'>';
+                        $('#demoList').append(str);
+                        return delete this.files[index]; //删除文件队列已经上传成功的文件
+                    }
+                    this.error(index, upload);
+                }
+                ,error: function(index, upload){
+                    var tr = demoListView.find('tr#upload-'+ index)
+                        ,tds = tr.children();
+                    tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                    tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
                 }
             });
 
 
 
         form.on('submit(submit)',function (data) {
+            var fd = new FormData();
+            var formData = new FormData($( "#userForm" )[0]);
             console.log(data.field);
             $.ajax({
+                    cache : true,
                     url:'/news/save',
-                    data:data.field,     //经测试通过可以传过去两个字段名
+                    data:formData,     //经测试通过可以传过去两个字段名
                     dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
+                    contentType: false,
+                    processData: false,
                     type:'post',
                     success:function (data) {
                         if (data == '1'){
