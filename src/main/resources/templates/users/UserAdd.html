@@ -9,7 +9,7 @@
 </head>
 <body>
 <div>
-<form class="layui-form" lay-filter="form" id="form" >
+<form class="layui-form" lay-filter="form" id="form" enctype="multipart/form-data" >
     <input type="hidden" name="id" th:value="${user?.getId()}">
     <!--上传头像-->
     <div class="layui-upload">
@@ -137,8 +137,10 @@
 
         var uploadInst = upload.render({
             elem: '#test1'
-            ,url: '/upload/'
-            ,before: function(obj){
+            ,accept: 'file'
+            ,url: '/admin/users/save'
+            ,auto: false
+            ,choose: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
                     $('#demo1').attr('src', result); //图片链接（base64）
@@ -161,18 +163,22 @@
             }
         });
 
+
         //上传结束
 
 
         //监听提交
         form.on('submit(demo1)', function(data){
             console.log(data.field)
+            var formData = new FormData($( "#form" )[0]);
             $.ajax({
+                cache : true,
                 url:"/admin/users/save",
                 type:"post",
-                dataType: "json",
-                data:JSON.stringify(data.field),
-                contentType:"application/json;charset=UTF-8",
+                data:formData,     //经测试通过可以传过去两个字段名
+                dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
+                contentType: false,
+                processData: false,
                 success: function(a){
                     if(a == 1){
                         parent.layer.msg("编辑成功");

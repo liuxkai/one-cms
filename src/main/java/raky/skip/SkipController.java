@@ -3,6 +3,7 @@ package raky.skip;
 
 import com.alibaba.fastjson.JSONObject;
 import core.controller.CoreController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import raky.entity.Files;
 import raky.entity.Types;
 import raky.entity.Users;
 
@@ -23,7 +25,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/skip")
 public class SkipController extends CoreController {
-
+    @Autowired(required = false)
+    private Files files;
 
     @RequestMapping(value = "/aa")
     public String aaa(){
@@ -73,6 +76,10 @@ public class SkipController extends CoreController {
     @RequestMapping(value = "/main")
     public String index(HttpServletRequest request,Model model){
         Users onlinerUser = (Users)request.getSession().getAttribute("OnlinerUser");
+        Long id = onlinerUser.getId();
+        Files files = new Files();
+        files.setLinkId(id);
+        files.setLinkTable("");
         model.addAttribute("onlinerUser",onlinerUser);
         return "html/main";
     }

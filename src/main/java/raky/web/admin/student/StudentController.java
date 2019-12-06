@@ -39,6 +39,7 @@ public class StudentController extends CoreController {
     @RequestMapping(value = "/insert", method = RequestMethod.GET)
     public String insert(Long id, ModelMap model,Student student) {
         if(id!=null){
+
             model.addAttribute("student", studentService.getOne(id));
         }
         return "/html/editor.html";

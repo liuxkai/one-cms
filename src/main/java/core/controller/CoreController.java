@@ -2,6 +2,7 @@ package core.controller;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import raky.entity.Files;
 import raky.entity.Types;
 import raky.service.TypesService;
 
@@ -27,6 +29,8 @@ import java.util.*;
 public class CoreController {
     private static final Logger logger=Logger.getLogger(CoreController.class);
 
+
+
     @Resource
     private TypesService typesService;
 
@@ -35,6 +39,7 @@ public class CoreController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+
     }
 
 
