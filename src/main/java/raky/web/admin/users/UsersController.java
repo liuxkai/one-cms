@@ -1,16 +1,21 @@
 package raky.web.admin.users;
 
 import core.controller.CoreController;
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import raky.entity.Files;
 import raky.entity.Types;
 import raky.entity.Users;
+import raky.service.FilesService;
 import raky.service.UsersService;
 import raky.util.LayuiUtil;
 import raky.util.Pager;
@@ -20,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -32,10 +38,36 @@ public class UsersController extends CoreController {
     private UsersService usersService;
     @Resource
     private Pager<Users> pager;
+    @Autowired
+    private FilesService filesService;
+
+    @Override
+    public void initBinder(WebDataBinder binder) {
+       super.initBinder(binder);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+
+    }
 
     @RequestMapping(value = "/save" )
     @ResponseBody
-    public String save(@RequestBody Users users){
+
+
+    public String save(Users users,@RequestParam(value = "file") MultipartFile files[],HttpServletRequest request){
+        List<Files> filesList=new ArrayList<>();
+        List<Map<String,String>> list = upLoad(files, request);
+        for (Map<String,String> map:list){
+            try {
+                Files file=new Files();
+                BeanUtils.populate(file,map);
+                filesList.add(file);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        users.setFilesList(filesList);
+
         int result ;
         if(users.getId()!=null){
            result =  usersService.update(users);
@@ -113,6 +145,10 @@ public class UsersController extends CoreController {
     @RequestMapping(value = "/upload")
     @ResponseBody
     public String  upload(MultipartFile  file,HttpServletRequest request) throws IOException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String path = new String("D://src/" + format);//D盘路径
+        File filePath = new File(path);
+
         String filename = file.getOriginalFilename();
         String uploadPath = request.getSession().getServletContext().getRealPath("static/files/upload/"+getDate());
         File uploadDirectory = new File(uploadPath);

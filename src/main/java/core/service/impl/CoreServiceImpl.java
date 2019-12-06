@@ -68,4 +68,10 @@ public class CoreServiceImpl<T> implements CoreService<T> {
 		return coreMapper.findOne(t);
 	}
 
+	@Override
+	public T findFile(T t) {
+
+		return coreMapper.findFile(t);
+	}
+
 }

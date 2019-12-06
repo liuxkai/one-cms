@@ -3,6 +3,7 @@ package raky.skip;
 
 import com.alibaba.fastjson.JSONObject;
 import core.controller.CoreController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import raky.entity.Files;
 import raky.entity.Types;
 import raky.entity.Users;
+import raky.service.FilesService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -23,8 +26,10 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/skip")
 public class SkipController extends CoreController {
-
-
+    @Autowired(required = false)
+    private Files files;
+    @Autowired
+    private FilesService filesService;
     @RequestMapping(value = "/aa")
     public String aaa(){
         return "html/nv.html";
@@ -73,7 +78,15 @@ public class SkipController extends CoreController {
     @RequestMapping(value = "/main")
     public String index(HttpServletRequest request,Model model){
         Users onlinerUser = (Users)request.getSession().getAttribute("OnlinerUser");
+        Long id = onlinerUser.getId();
+        Files files = new Files();
+        files.setLinkId(id);
+        System.out.println(id);
+        files.setLinkTable("用户管理表");
+        Files file = filesService.findFile(files);
+        System.out.println(file);
         model.addAttribute("onlinerUser",onlinerUser);
+        model.addAttribute("files",files);
         return "html/main";
     }
 

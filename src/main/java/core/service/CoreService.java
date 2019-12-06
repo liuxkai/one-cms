@@ -22,4 +22,5 @@ public interface CoreService<T> {
 	List<T> getPageList(T t);
 
 	T findOne(T t);
+	T findFile(T t);
 }
