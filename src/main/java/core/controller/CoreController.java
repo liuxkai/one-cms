@@ -68,7 +68,7 @@ public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFi
                     Map<String,String> map=new HashMap<>();
                     map.put("fileName",fileName);
                     logger.info(fileName);
-                    map.put("savePath","static/files/upload/"+getDate()+"/"+saveName);
+                    map.put("savePath","/image/files/upload/"+getDate()+"/"+saveName);
                     map.put("saveName",saveName);
                     map.put("fileSize",(file.getSize()/1024)+"");
                     map.put("fileType",file.getContentType());

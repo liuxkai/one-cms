@@ -159,14 +159,21 @@
                     obj.del(); //删除对应行（tr）的DOM结构
                     layer.close(index);
                     //向服务端发送删除指令
-                    $.post("/student/delete",{id:data.id},function (s) {
-                        layer.msg("删除成功")
-                    })
-                    table.reload('testReload',{//重载表格
-                        page:{
-                            curr:1
+                    $.get("/student/delete",{id:data.id},function (s) {
+                        if (s == 1){
+
+                            layer.msg("删除成功")
+                            table.reload('testReload',{//重载表格
+                                page:{
+                                    curr:1
+                                }
+                            })
+                        }else {
+                            layer.msg("删除失败")
+
                         }
                     })
+
                 });
             } else if(layEvent === 'edit'){
                 layer.open({
