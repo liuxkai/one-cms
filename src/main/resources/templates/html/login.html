@@ -71,7 +71,11 @@
 <script th:src="@{/layui/2.5.4/layui.all.js}" charset="utf-8"></script>
 <script th:src="@{/layui/2.5.4/lay/modules/laydate.js}" charset="utf-8"></script>
 <script>
-
-
+	layui.use(['form', 'layedit', 'laydate'], function(){
+		var form = layui.form
+				,layer = layui.layer
+				,layedit = layui.layedit
+				,laydate = layui.laydate;
+	});
 </script>
 </html>
