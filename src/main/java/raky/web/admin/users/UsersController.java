@@ -74,6 +74,7 @@ public class UsersController extends CoreController {
             return String.valueOf(result);
         }
         users.setCreateTime(new Date());
+        users.setLoginCount(1);
         result = usersService.insert(users);
 
         return String.valueOf(result);
