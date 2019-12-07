@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import raky.dao.FilesMapper;
 import raky.dao.UsersMapper;
 import raky.entity.Files;
-import raky.entity.Student;
 import raky.entity.Users;
 import raky.service.UsersService;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class UsersServiceImpl extends CoreServiceImpl<Users> implements UsersService {
     @Resource
     private UsersMapper usersMapper;
-    @Autowired
+    @Autowired(required = false)
     private FilesMapper filesMapper;
     @Override
     public Users findOne(Users user) {
@@ -36,6 +35,19 @@ public class UsersServiceImpl extends CoreServiceImpl<Users> implements UsersSer
         }
 
 
+
+        return update;
+    }
+    public  int update(Users users){
+        int update = usersMapper.update(users);
+        List<Files> filesList=users.getFilesList();
+        if(filesList!=null){
+            for (Files files:filesList){
+                files.setLinkTable("用户管理表");
+                files.setLinkId(users.getId());
+                filesMapper.update(files);
+            }
+        }
 
         return update;
     }

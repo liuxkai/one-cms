@@ -70,7 +70,6 @@ public class CoreServiceImpl<T> implements CoreService<T> {
 
 	@Override
 	public T findFile(T t) {
-
 		return coreMapper.findFile(t);
 	}
 

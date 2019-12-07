@@ -83,10 +83,9 @@ public class SkipController extends CoreController {
         files.setLinkId(id);
         System.out.println(id);
         files.setLinkTable("用户管理表");
-        Files file = filesService.findFile(files);
-        System.out.println(file);
+
         model.addAttribute("onlinerUser",onlinerUser);
-        model.addAttribute("files",files);
+        model.addAttribute("files", filesService.findFile(files));
         return "html/main";
     }
 
