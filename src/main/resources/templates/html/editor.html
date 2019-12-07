@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="header">
-<form class="layui-form" >
+<form class="layui-form" id="userForm">
     <input type="hidden" name="id" th:value="${student?.id}" />
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
@@ -75,7 +75,18 @@
         </div>
     </div>
     <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label"> </label>
+        <div class="layui-upload">
+            <button type="button" class="layui-btn layui-form-label" id="test2">上传图片</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo3">
+                <p id="demoText"></p>
 
+            </div>
+        </div>
+    </div>
+    <br>
 
     <div class="layui-form-item">
         <div class="layui-input-block">
@@ -112,12 +123,16 @@
             }
         })
         form.on('submit(demo1)',function (data) {
+            var fd = new FormData();
+            var formData = new FormData($( "#userForm" )[0]);
             $.ajax({
-                url:'/student/update',
+                cache : true,
+                url:'/student/save',
                 type:'post',
-                dataType: "json",
-                contentType:"application/json;charset=UTF-8",
-                data:JSON.stringify(data.field),
+                dataType: "text",
+                contentType: false,
+                processData: false,
+                data:formData,
                 success: function(a){
                     if(a == 1){
                         parent.layer.msg("编辑成功");
@@ -136,35 +151,36 @@
         })
 
         //普通图片上传 , 留下上传文件的接口 添加上传按钮和返回图片地址的隐藏域  异步上传
-        // var uploadInst = upload.render({
-        //     elem: '#test2'
-        //     , url: ''
-        //     , field: 'upload' //上传文件的name
-        //     //上传前的回调
-        //
-        //     , choose: function (obj) {
-        //         //预读本地文件示例，不支持ie8
-        //         obj.preview(function (index, file, result) {
-        //             $('#demo3').attr('src', result); //图片链接（base64） // 上传前回显
-        //         });
-        //     }
-        //     , done: function (res,index,upload) {
-        //         if (res.code > 0){
-        //             return layer.msg("上传失败")
-        //         }else{
-        //             $('#hidden').val(res.data)  // 上传之后将图片地址存隐藏域
-        //         }
-        //
-        //     }
-        //     , error: function (res, index) {
-        //
-        //         alert("上传失败");
-        //         //演示失败状态，并实现重传
-        //         layer.closeAll('loading');
-        //
-        //     }
-        // });
-        //
+        var uploadInst = upload.render({
+            elem: '#test2'
+            ,url: '/student/save'
+            ,auto: false
+            , field: 'file' //上传文件的name
+            //上传前的回调
+            , choose: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo3').attr('src', result); //图片链接（base64） // 上传前回显
+                });
+            }
+            , done: function (res,index,upload) {
+                if (res.code > 0){
+                    return layer.msg("上传失败")
+                }else{
+                    $('#hidden').val(res.data)  // 上传之后将图片地址存隐藏域
+                }
+
+            }
+            , error: function (res, index) {
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+
+            }
+        });
+
 
     })
 </script>
