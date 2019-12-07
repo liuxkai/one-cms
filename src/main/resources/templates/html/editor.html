@@ -19,14 +19,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？"  autocomplete="off" name="name" th:value="${student?.name}"/>
+            <input type="text" class="layui-input" lay-verify="required|name" lay-reqtext="用户名是必填项，岂能为空？"  autocomplete="off" name="name" th:value="${student?.name}"/>
         </div>
     </div>
     <br>
     <div class="layui-form-item">
         <label class="layui-form-label">班级</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="班级不能为空" autocomplete="off" name="clazz" th:value="${student?.clazz}"/>
+            <input type="text" class="layui-input"  lay-verify="required|clazz" lay-reqtext="班级不能为空" autocomplete="off" name="clazz" th:value="${student?.clazz}"/>
         </div>
     </div>
     <br>
@@ -41,7 +41,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">公司</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="公司不能为空" autocomplete="off" name="company" th:value="${student?.company}"/>
+            <input type="text" class="layui-input"  lay-verify="required|company" lay-reqtext="公司不能为空" autocomplete="off" name="company" th:value="${student?.company}"/>
         </div>
     </div>
     <br>
@@ -49,14 +49,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">薪资</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="薪资不能为空" autocomplete="off" name="salary" th:value="${student?.salary}"/>
+            <input type="text" class="layui-input"  lay-verify="required|salary" lay-reqtext="薪资不能为空" autocomplete="off" name="salary" th:value="${student?.salary}"/>
         </div>
     </div>
     <br>
     <div class="layui-form-item">
         <label class="layui-form-label">毕业学校</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input"  lay-verify="required" lay-reqtext="学校不能为空" autocomplete="off" name="school" th:value="${student?.school}"/>
+            <input type="text" class="layui-input"  lay-verify="required|school" lay-reqtext="学校不能为空" autocomplete="off" name="school" th:value="${student?.school}"/>
         </div>
     </div>
     <br>
@@ -71,13 +71,14 @@
     <div class="layui-form-item">
         <label class="layui-form-label">联系地址</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input" lay-verify="required" lay-reqtext="地址不能为空"autocomplete="off" name="address" th:value="${student?.address}"/>
+            <input type="text" class="layui-input" lay-verify="required|address" lay-reqtext="地址不能为空"autocomplete="off" name="address" th:value="${student?.address}"/>
         </div>
     </div>
     <br>
     <div class="layui-form-item">
         <label class="layui-form-label"> </label>
         <div class="layui-upload">
+            <img th:src="@{${files?.savePath}}" alt="">
             <button type="button" class="layui-btn layui-form-label" id="test2">上传图片</button>
             <div class="layui-upload-list">
                 <img class="layui-upload-img" id="demo3">
@@ -139,7 +140,7 @@
                         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
                         setTimeout(function () {
                             parent.layer.close(index);
-                        }, 2000);
+                        }, 1000);
 
                          // parent.layer.close(index);
                     }else {
