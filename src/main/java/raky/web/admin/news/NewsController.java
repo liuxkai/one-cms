@@ -96,9 +96,12 @@ public class NewsController extends CoreController{
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public int save(@RequestParam("File") MultipartFile[] newsFile, @RequestParam("file") MultipartFile files[], News news, HttpServletRequest request){
-
-        logger.info(newsFile.toString()+"===============newsFile================");
-        logger.info(files.toString()+"===============files================");
+        for (MultipartFile type : newsFile){
+            logger.info(type.toString()+"===============newsFile=========type=======");
+        }
+        for (MultipartFile type : files){
+            logger.info(type.toString()+"===============files=========type=======");
+        }
         logger.info(news.toString()+"===============news================");
         List<Files> list=new ArrayList<>();
         List<Map<String,String>> filesList = upLoad(files, request);
@@ -122,25 +125,25 @@ public class NewsController extends CoreController{
         }
         System.out.println(list.toString());
         news.setFilesList(list);
-//        if(news.getViewCount() == null){ news.setViewCount(0);}
-//        if(news.getInfoState() == null){ news.setInfoState(0);}
-//        if(news.getPriority() == null){ news.setPriority(0);}
-//        if(news.getDeleted() == null){ news.setDeleted(0);}  //0是未删除,1是删除
-//        if (news.getUuid() != null && news.getUuid() != "") {
-//            logger.info(news.getId());
-//            int update = newsService.update(news);
-//            return update;
-//        }
-//        news.setUuid(UUID.randomUUID().toString());
-//        int insert = newsService.insert(news);
-        return 1;
+        if(news.getViewCount() == null){ news.setViewCount(0);}
+        if(news.getInfoState() == null){ news.setInfoState(0);}
+        if(news.getPriority() == null){ news.setPriority(0);}
+        if(news.getDeleted() == null){ news.setDeleted(0);}  //0是未删除,1是删除
+        if (news.getUuid() != null && !news.getUuid().equals("")) {
+            logger.info(news.getId());
+            int update = newsService.update(news);
+            return update;
+        }
+        news.setUuid(UUID.randomUUID().toString());
+        int insert = newsService.insert(news);
+        return insert;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     @ResponseBody
     public String delete(Long id) {
-        newsService.delete(id);
-        return "1";
+        int delete = newsService.delete(id);
+        return String.valueOf(delete);
     }
 
     @RequestMapping(value = "/deleteAll", method = RequestMethod.GET)

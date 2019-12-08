@@ -5,8 +5,10 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,6 +25,7 @@ import raky.util.Pager;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -38,10 +41,16 @@ public class TeacherController extends CoreController {
     @Resource
     private Pager<Teacher> pager;
 
+    @Override
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
     @RequestMapping(value = "/save",method = RequestMethod.POST)
     @ResponseBody
     public int save(@RequestParam(value = "file") MultipartFile files[], HttpServletRequest request, Teacher teacher){
-        System.out.println(teacher);
         List<Files> filesList=new ArrayList<>();
         List<Map<String,String>> list = upLoad(files, request);
         for (Map<String,String> map:list){

@@ -57,13 +57,14 @@ public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFi
         try {
             for (MultipartFile file : files) {
                 String fileName = file.getOriginalFilename();
+                System.out.println(file.getContentType());
                 if(fileName!=null && !"".equalsIgnoreCase(fileName.trim()) && isFile(fileName)) {
                     //创建输出文件对象
                     String saveName=UUID.randomUUID().toString()+ getFileType(fileName);
                     Map<String,String> map=new HashMap<>();
                     map.put("fileName",fileName);
                     logger.info(fileName);
-                    map.put("savePath","static/files/upload/"+getDate()+"/"+saveName);
+                    map.put("savePath","image/files/upload/"+getDate()+"/"+saveName);
                     map.put("saveName",saveName);
                     map.put("fileSize",(file.getSize()/1024)+"");
                     map.put("fileType",file.getContentType());
@@ -94,7 +95,7 @@ public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFi
 
 //判断文件格式
     private Boolean isFile(String fileName) {
-        String[] img_type = new String[]{".jpg", ".jpeg", ".png", ".gif",".txt",".jsp" ,".mp4",".flv", ".bmp"};
+        String[] img_type = new String[]{".jpg", ".jpeg", ".png", ".gif",".txt",".jsp" ,".mp4",".flv", ".bmp", ".mp3"};
         if (fileName == null) {
             return false;
         }

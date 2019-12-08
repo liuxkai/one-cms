@@ -21,16 +21,17 @@ public class NewsServiceImpl extends CoreServiceImpl<News> implements NewsServic
     private NewsMapper newsMapper;
 
     public int insert(News news){
-        int update = newsMapper.insert(news);
-//        Long id = news.getId();
-//        List<Files> filesList=news.getFilesList();
-//        for (Files files:filesList){
-//            files.setLinkId(id);
-//            files.setLinkTable("新闻管理表");
-//            filesMapper.insert(files);
-//        }
-
-        return update;
+        int insert = newsMapper.insert(news);
+        System.out.println(insert+"----------------------------添加新闻------------------------");
+        Long id = news.getId();
+        System.out.println(id+"----------------------------添加新闻------------------------");
+        List<Files> filesList=news.getFilesList();
+        for (Files files:filesList){
+            files.setLinkId(id);
+            files.setLinkTable("新闻管理表");
+            filesMapper.insert(files);
+        }
+        return insert;
     }
     public  int update(News news){
         int update = newsMapper.update(news);
