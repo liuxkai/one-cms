@@ -113,7 +113,7 @@
                         title:"添加新闻",
                         shade: 0.5,//遮罩
                         shadeClose:true,
-                        area: ['70%','100%'],
+                        area: ['100%','100%'],
                         content:'/news/input',
                         end:function(){  //层销毁后触发的回调。数据表格重载
                             coursetable.reload({
@@ -134,7 +134,7 @@
                             title:"修改新闻",
                             shade: 0.5,//遮罩
                             shadeClose:true,
-                            area: ['70%','70%'],
+                            area: ['100%','100%'],
                             content:'/news/input?id='+checkStatus.data[0].id,
                             end:function(){  //层销毁后触发的回调。数据表格重载
                                 coursetable.reload({
@@ -217,7 +217,7 @@
                     title:"修改新闻",
                     shade: 0.5,//遮罩
                     shadeClose:true,
-                    area: ['70%','70%'],
+                    area: ['100%','100%'],
                     content:'/news/input?id='+data.id,
                     end:function(){  //层销毁后触发的回调。数据表格重载
                         coursetable.reload({

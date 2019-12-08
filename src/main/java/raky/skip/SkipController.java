@@ -50,7 +50,7 @@ public class SkipController extends CoreController {
     public Map<String, Object> upload(@RequestParam("file") MultipartFile file) throws IOException {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
         String format = sf.format(new Date());
-        String abpath = new String("/src/" + format);//D盘路径
+        String abpath = new String("D://static/" + format);//D盘路径
         File realFile = new File(abpath);
         if (!realFile.exists()) {
             realFile.mkdirs();
@@ -66,8 +66,7 @@ public class SkipController extends CoreController {
         map1.put("title",name);
         Map<String, Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("msg","");
-        map.put("data",map1);
+        map.put("msg","");map.put("data",map1);
 
         return map;
     }

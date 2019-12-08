@@ -88,7 +88,7 @@
             <div class="layui-upload">
                 <button type="button" class="layui-btn" id="test2">上传图片</button>
                 <div class="layui-upload-list">
-                    <img class="layui-upload-img" id="demo1">
+                    <img class="layui-upload-img" id="demo10" width="100px" height="100px">
                     <p id="demoText"></p>
                 </div>
             </div>
@@ -103,19 +103,19 @@
             laydate = layui.laydate,//日期
             upload = layui.upload;
         // 操作对象
-        var form = layui.form;
         var $ = layui.jquery;
 
             //普通图片上传
             var uploadInst = upload.render({
                 elem: '#test2'
-                ,accept: 'file'
+                ,accept: 'images' //指定允许上传时校验的文件类型
                 ,url: '/teacher/save'
                 ,auto: false
-                ,before: function(obj){
+                ,choose: function(obj){
                     //预读本地文件示例，不支持ie8
                     obj.preview(function(index, file, result){
-                        $('#demo1').attr('src', result); //图片链接（base64）
+                        console.log(result);
+                        $('#demo10').attr('src', result); //图片链接（base64）
                     });
                 }
                 ,done: function(res){
@@ -143,10 +143,10 @@
                 $.ajax({
                     cache : true,
                     url:'/teacher/save',
-                    data:formData,     //经测试通过可以传过去两个字段名
-                    dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
-                    contentType: false,
-                    processData: false,
+                    data:formData,     // 你的formid
+                    dataType:'text',
+                    contentType: false,//ajax 中 contentType 设置为 false 是为了避免 JQuery 对其操作，从而失去分界符，而使服务器不能正常解析文件
+                    processData: false,//当设置为true的时候,jquery ajax 提交的时候不会序列化 data，而是直接使用data
                     type:'post',
                     success:function (data) {
                         if (data == '1'){
