@@ -228,4 +228,5 @@
     <select id="findOne" parameterType="Users" resultMap="getListResultMap">
         select * from USERS where USER_NAME = #{userName} and PASS_WORD = #{passWord}
     </select>
+
 </mapper>

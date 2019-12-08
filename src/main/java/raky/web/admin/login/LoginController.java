@@ -36,6 +36,9 @@ public class LoginController extends CoreController {
             OnlinerUser = usersService.findOne(user);
             if (OnlinerUser !=null){
                 Integer loginCount = OnlinerUser.getLoginCount();
+                if (loginCount == null) {
+                    OnlinerUser.setLoginCount(1);
+                }
                 OnlinerUser.setLoginCount(loginCount+1);
                 String ipAddr = GetIp.getIpAddr(httpServletRequest);
                 System.out.println(ipAddr);

@@ -28,9 +28,6 @@ public class StudentServiceImpl extends CoreServiceImpl<Student> implements Stud
             files.setLinkTable("学生管理表");
             filesMapper.insert(files);
         }
-
-
-
         return update;
     }
 
@@ -41,7 +38,7 @@ public class StudentServiceImpl extends CoreServiceImpl<Student> implements Stud
             for (Files files:filesList){
                 files.setLinkTable("学生管理表");
                 files.setLinkId(student.getId());
-                filesMapper.insert(files);
+                filesMapper.update(files);
             }
         }
         return update;

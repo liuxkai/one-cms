@@ -2,6 +2,7 @@ package core.controller;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import raky.entity.Files;
 import raky.entity.Types;
 import raky.service.TypesService;
 
@@ -27,6 +29,8 @@ import java.util.*;
 public class CoreController {
     private static final Logger logger=Logger.getLogger(CoreController.class);
 
+
+
     @Resource
     private TypesService typesService;
 
@@ -35,6 +39,7 @@ public class CoreController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+
     }
 
 
@@ -57,14 +62,13 @@ public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFi
         try {
             for (MultipartFile file : files) {
                 String fileName = file.getOriginalFilename();
-                System.out.println(file.getContentType());
                 if(fileName!=null && !"".equalsIgnoreCase(fileName.trim()) && isFile(fileName)) {
                     //创建输出文件对象
                     String saveName=UUID.randomUUID().toString()+ getFileType(fileName);
                     Map<String,String> map=new HashMap<>();
                     map.put("fileName",fileName);
                     logger.info(fileName);
-                    map.put("savePath","image/files/upload/"+getDate()+"/"+saveName);
+                    map.put("savePath","/image/files/upload/"+getDate()+"/"+saveName);
                     map.put("saveName",saveName);
                     map.put("fileSize",(file.getSize()/1024)+"");
                     map.put("fileType",file.getContentType());
@@ -95,7 +99,7 @@ public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFi
 
 //判断文件格式
     private Boolean isFile(String fileName) {
-        String[] img_type = new String[]{".jpg", ".jpeg", ".png", ".gif",".txt",".jsp" ,".mp4",".flv", ".bmp", ".mp3"};
+        String[] img_type = new String[]{".jpg", ".jpeg", ".png", ".gif",".txt",".jsp" ,".mp4",".flv", ".bmp"};
         if (fileName == null) {
             return false;
         }

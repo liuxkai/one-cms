@@ -9,6 +9,7 @@ public interface CoreMapper<T> {
 
     int save(T t);
 
+
     int update(T t);
 
     int delete(Long id);
@@ -24,4 +25,6 @@ public interface CoreMapper<T> {
     List<T> getPageList(T t);
     /*通过用户名和密码登录*/
     T findOne(T t);
+
+    T findFile(T t);
 }
