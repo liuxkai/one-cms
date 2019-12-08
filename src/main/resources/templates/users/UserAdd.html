@@ -15,7 +15,7 @@
     <div class="layui-upload">
         <button type="button" class="layui-btn" id="test1">上传头像</button>
         <div class="layui-upload-list">
-            <img class="layui-upload-img" id="demo1" style="width: 50px;height: 50px">
+            <img class="layui-upload-img" id="demo1">
             <p id="demoText"></p>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <div class="layui-input-block">
             <select name="userType" lay-verify="required" lay-search="" lay-filter="encrypt">
                 <option value="">选择用户类型</option>
-                <option  th:each="c:${typesList1}"  th:value="${c?.getTypeName() == '学生类型'? '103':'106'}" th:text="${c?.getTypeName()}" th:selected="${user?.getUserType()} != 103? '老师类型': '学生类型'">类型</option>
+                <option  th:each="c:${typesList1}"  th:value="${c?.getTypeCode()}" th:text="${c?.getTypeName()}" th:selected="${user?.getUserType() != c.typeCode}?null:${user?.userType}">类型</option>
             </select>
         </div>
     </div>
