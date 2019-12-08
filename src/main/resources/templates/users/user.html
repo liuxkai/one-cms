@@ -181,14 +181,25 @@
 
 
                 });
-            } else if (layEvent === 'del') {
-                layer.confirm('真的删除行么', function (index) {
-                    obj.del(); //删除对应行（tr）的DOM结构
-                    layer.close(index);
-                    //向服务端发送删除指令
-                    $.post("/admin/users/delete", {id: data.id}, function (s) {
-
-                    })
+            } else if(layEvent === 'del'){
+                layer.confirm('确定删除吗?', {btn: ['确定删除', '取消']}, function (index) {
+                    var result = $.ajax({
+                        url : '/admin/users/delete',
+                        data: {id:data.id},
+                        dateType:'json',
+                        //强调内容类型
+                        contentType:'application/json;charsetset=UTF-8',
+                        async : false,   //同步请求
+                    });
+                    if(result.responseText == '1'){
+                        layer.msg("删除成功");
+                        userTable.reload({
+                            url: '/admin/users/pageList',
+                        });
+                    }else{
+                        console.log(result.responseText);
+                        layer.msg("删除失败");
+                    }
                 });
             } else if (layEvent === 'edit') {
                 var minindex = layer.open({

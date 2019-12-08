@@ -81,11 +81,11 @@ public class UsersController extends CoreController {
 
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete")
     @ResponseBody
     public String delete(Long id){
-        usersService.delete(id);
-        return "redirect:/users/list";
+         usersService.delete(id);
+         return "1";
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
