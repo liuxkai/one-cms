@@ -1,9 +1,10 @@
 package raky.entity;
 
+import core.entity.CoreEntity;
 import lombok.Data;
 
 @Data
-public class WebSeo {
+public class WebSeo extends CoreEntity {
     private Long id;
 
     private String webName;
@@ -21,5 +22,6 @@ public class WebSeo {
     private Integer locked;
 
     private Integer priority;
+
 
 }

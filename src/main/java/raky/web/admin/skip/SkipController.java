@@ -81,6 +81,8 @@ public class SkipController extends CoreController {
         return "/admin/student/list.html";
     }
 
+
+
     @RequestMapping(value = "/editor")
     public String editor(){
         return "/admin/student/input.html";
@@ -112,4 +114,9 @@ public class SkipController extends CoreController {
         return "admin/news/list.html";
     }
 
+
+   @RequestMapping(value = "/web")
+    public String web(){
+        return "/admin/webseo/list.html";
+    }
 }
