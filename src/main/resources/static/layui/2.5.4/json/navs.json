@@ -36,6 +36,12 @@
 			"icon": "&#xe61c;",
 			"href": "/admin/skip/web",
 			"spread": false
+		},
+		{
+			"title": "班级管理",
+			"icon": "&#xe61c;",
+			"href": "/admin/skip/class",
+			"spread": false
 		}
 
 	],

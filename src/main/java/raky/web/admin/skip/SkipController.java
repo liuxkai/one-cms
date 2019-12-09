@@ -119,4 +119,10 @@ public class SkipController extends CoreController {
     public String web(){
         return "/admin/webseo/list.html";
     }
+
+    @RequestMapping("class")
+    public String classDate(){
+        return "/admin/ClassDate/list.html";
+    }
+
 }
