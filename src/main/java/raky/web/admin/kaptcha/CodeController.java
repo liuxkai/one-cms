@@ -70,7 +70,7 @@ public class CodeController {
 
         if (!captchaId.equals(parameter)) {
             andView.addObject("info", "错误的验证码");
-            andView.setViewName("index");
+            andView.setViewName("default");
         } else {
             andView.addObject("info", "登录成功");
             andView.setViewName("success");
@@ -81,7 +81,7 @@ public class CodeController {
     @RequestMapping("/tologin")
     public String  login(){
 
-        return "html/login.html";
+        return "/admin/login/login.html";
     }
 
 

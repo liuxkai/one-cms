@@ -55,7 +55,7 @@
         form.on('submit(submit)',function (data) {
             console.log(data.field);
             $.ajax({
-                    url:'/course/save',
+                    url:'admin/course/save',
                     data:data.field,     //经测试通过可以传过去两个字段名
                     dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
                     type:'post',

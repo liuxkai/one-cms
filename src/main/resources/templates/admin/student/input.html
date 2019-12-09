@@ -128,7 +128,7 @@
             var formData = new FormData($( "#userForm" )[0]);
             $.ajax({
                 cache : true,
-                url:'/student/save',
+                url:'/admin/student/save',
                 type:'post',
                 dataType: "text",
                 contentType: false,
@@ -154,7 +154,7 @@
         //普通图片上传 , 留下上传文件的接口 添加上传按钮和返回图片地址的隐藏域  异步上传
         var uploadInst = upload.render({
             elem: '#test2'
-            ,url: '/student/save'
+            ,url: '/admin/student/save'
             ,auto: false
             , field: 'file' //上传文件的name
             //上传前的回调

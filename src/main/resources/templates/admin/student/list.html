@@ -68,7 +68,7 @@
         //执行一个 table 实例
         var coursetable =table.render({
             elem: '#demo'
-            ,url: "/student/pageList" //数据接口
+            ,url: "/admin/student/pageList" //数据接口
             ,title: '课程表'
             ,page: true //开启分页
             ,toolbar: 'default' //开启工具栏，此处显示默认图标，可以自定义模板，详见文档
@@ -102,7 +102,7 @@
                         shade: 0.5,//遮罩
                         shadeClose:true,
                         area: ['100%','100%'],
-                        content:'/student/insert',
+                        content:'/admin/student/insert',
                         end: function () { //最后执行reload
                             location.reload();
                         }
@@ -122,7 +122,7 @@
                             shade: 0.5,//遮罩
                             shadeClose:true,
                             area: ['100%','100%'],
-                            content:'/student/insert?id='+checkStatus.data[0].id,
+                            content:'/admin/student/insert?id='+checkStatus.data[0].id,
                             end: function () { //最后执行reload
                                 location.reload();
                             }
@@ -151,7 +151,7 @@
                     shade: 0.5,//遮罩
                     shadeClose:true,
                     area: ['100%','100%'],
-                    content:'/student/detailed?id='+data.id
+                    content:'/admin/student/detailed?id='+data.id
 
                 })
             } else if(layEvent === 'del'){
@@ -159,7 +159,7 @@
                     obj.del(); //删除对应行（tr）的DOM结构
                     layer.close(index);
                     //向服务端发送删除指令
-                    $.get("/student/delete",{id:data.id},function (s) {
+                    $.get("/admin/student/delete",{id:data.id},function (s) {
                         if (s == 1){
 
                             layer.msg("删除成功")
@@ -183,7 +183,7 @@
                     shade: 0.5,//遮罩
                     shadeClose:true,
                     area: ['100%','100%'],
-                    content:'/student/insert?id='+data.id,
+                    content:'/admin/student/insert?id='+data.id,
                     end: function () { //最后执行reload
                         location.reload();
                     }

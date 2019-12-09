@@ -1,7 +1,6 @@
-package raky.skip;
+package raky.web.admin.skip;
 
 
-import com.alibaba.fastjson.JSONObject;
 import core.controller.CoreController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,30 +20,14 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/skip")
+@RequestMapping("/admin/skip")
 public class SkipController extends CoreController {
     @Autowired(required = false)
     private Files files;
     @Autowired
     private FilesService filesService;
-    @RequestMapping(value = "/aa")
-    public String aaa(){
-        return "html/nv.html";
-    }
-
-
-    @RequestMapping(value = "/bb")
-    @ResponseBody
-    public String bb(String content,Model model){
-        System.out.println(content);
-
-        return content;
-    }
-
-
     @RequestMapping(value = "/upload")
     @ResponseBody
     public Map<String, Object> upload(@RequestParam("file") MultipartFile file) throws IOException {
@@ -85,48 +68,48 @@ public class SkipController extends CoreController {
 
         model.addAttribute("onlinerUser",onlinerUser);
         model.addAttribute("files", filesService.findFile(files));
-        return "html/main";
+        return "/admin/index/main";
     }
 
     @RequestMapping(value = "/main2")
     public String welcome(){
-        return "html/welcome.html";
+        return "/admin/index/welcome.html";
     }
 
     @RequestMapping(value = "/main3")
     public String student(){
-        return "html/student.html";
+        return "/admin/student/list.html";
     }
 
     @RequestMapping(value = "/editor")
     public String editor(){
-        return "html/editor.html";
+        return "/admin/student/input.html";
     }
 
     @RequestMapping(value = "/userList")
     public String userList(){
-        return "users/user.html";
+        return "/admin/users/list.html";
     }
 
     @RequestMapping(value = "/courseList")
     public String courseList(ModelMap model){
         List<Types> typesList =getTypesListByParentCode(40l);
         model.addAttribute("typesList",typesList);
-        return "course/list.html";
+        return "admin/course/list.html";
     }
 
     @RequestMapping(value = "/teacherList")
     public String teacherList(ModelMap model){
         List<Types> typesList =getTypesListByParentCode(60l);
         model.addAttribute("typesList",typesList);
-        return "teacher/list.html";
+        return "admin/teacher/list.html";
     }
 
     @RequestMapping(value = "/newsList")
     public String newsList(ModelMap model){
         List<Types> typesList =getTypesListByParentCode(20l);
         model.addAttribute("typesList",typesList);
-        return "news/list.html";
+        return "admin/news/list.html";
     }
 
 }

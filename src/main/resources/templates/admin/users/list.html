@@ -114,7 +114,7 @@
                         shade: 0.5,//遮罩
                         shadeClose: true,
                         area: ['100%', '100%'],
-                        content: '/login/add',
+                        content: '/admin/login/add',
                         end:function(){  //层销毁后触发的回调。数据表格重载
                             location.reload();
                         }
@@ -140,7 +140,7 @@
                             shade: 0.5,//遮罩
                             shadeClose: true,
                             area: ['100%', '100%'],
-                            content: '/login/update?id=' + checkStatus.data[0].id,
+                            content: '/admin/login/update?id=' + checkStatus.data[0].id,
 
                              end:function(){  //层销毁后触发的回调。数据表格重载
                                  userTable.reload({
@@ -209,7 +209,7 @@
                     shade: 0.5,//遮罩
                     shadeClose: true,
                     area: ['70%', '70%'],
-                    content: '/login/update?id='+data.id,
+                    content: '/admin/login/update?id='+data.id,
 
                      end:function(){  //层销毁后触发的回调。数据表格重载
                          userTable.reload({

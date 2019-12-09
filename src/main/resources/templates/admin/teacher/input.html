@@ -109,7 +109,7 @@
             var uploadInst = upload.render({
                 elem: '#test2'
                 ,accept: 'images' //指定允许上传时校验的文件类型
-                ,url: '/teacher/save'
+                ,url: '/admin/teacher/save'
                 ,auto: false
                 ,choose: function(obj){
                     //预读本地文件示例，不支持ie8
@@ -142,7 +142,7 @@
                 console.log(data.field);
                 $.ajax({
                     cache : true,
-                    url:'/teacher/save',
+                    url:'/admin/teacher/save',
                     data:formData,     // 你的formid
                     dataType:'text',
                     contentType: false,//ajax 中 contentType 设置为 false 是为了避免 JQuery 对其操作，从而失去分界符，而使服务器不能正常解析文件

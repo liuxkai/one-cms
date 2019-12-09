@@ -109,7 +109,7 @@
         var demoListView = $('#demoList'),
             uploadListIns = upload.render({
                 elem: '#test2'
-                ,url: '/news/save'
+                ,url: '/admin/news/save'
                 ,accept: 'images'  //指定允许上传时校验的文件类型
                 ,multiple: true //是否允许多文件上传。设置 true即可开启
                 ,auto: false
@@ -165,7 +165,7 @@
             var demoListView3 = $('#demoList3'),
                 uploadListIns3 = upload.render({
                     elem: '#test3'
-                    ,url: '/news/save'
+                    ,url: '/admin/news/save'
                     ,accept: 'video'  //指定允许上传时校验的文件类型
                     ,multiple: true //是否允许多文件上传。设置 true即可开启
                     ,auto: false
@@ -245,7 +245,7 @@
             console.log(data.field);
             $.ajax({
                     cache : true,
-                    url:'/news/save',
+                    url:'/admin/news/save',
                     data:formData,     //经测试通过可以传过去两个字段名
                     dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
                     contentType: false,

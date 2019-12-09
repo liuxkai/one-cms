@@ -30,7 +30,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/teacher")
+@RequestMapping("/admin/teacher")
 public class TeacherController extends CoreController {
     private static final Logger logger = LoggerFactory.getLogger(TeacherController.class);
 
@@ -112,22 +112,22 @@ public class TeacherController extends CoreController {
         if(id!=null){
             model.addAttribute("teacher",teacherService.getOne(id));
 //            model.addAttribute("filesList",filesService.getList(files));
-            return "/teacher/edit.html";
+            return "/admin/teacher/input.html";
         }
-        return "/teacher/edit.html";
+        return "/admin/teacher/input.html";
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
         List<Types> typesList =getTypesListByParentCode(60l);
         model.addAttribute("typesList",typesList);
         model.addAttribute("teacher",teacherService.getOne(id));
-        return "/teacher/detail.html";
+        return "/admin/teacher/show.html";
     }
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String getList(ModelMap model){
         List<Teacher> teacherList = teacherService.getList(new Teacher());
         model.addAttribute("teacherList",teacherList);
-        return "/teacher/list";
+        return "/admin/teacher/list";
     }
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
     @ResponseBody
