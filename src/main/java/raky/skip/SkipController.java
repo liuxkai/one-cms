@@ -66,7 +66,8 @@ public class SkipController extends CoreController {
         map1.put("title",name);
         Map<String, Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("msg","");map.put("data",map1);
+        map.put("msg","");
+        map.put("data",map1);
 
         return map;
     }

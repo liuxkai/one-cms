@@ -42,89 +42,40 @@ public class NewsController extends CoreController{
         binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(dateFormat, true));
     }
 
-
-
-//    @RequestMapping(value = "/save", method = RequestMethod.POST)
-//    @ResponseBody
-//    public int save(News news){
-////        @RequestParam("File") MultipartFile[] newsFile,@RequestParam("file") MultipartFile files[],         ,HttpServletRequest request
-////        List<Files> list=new ArrayList<>();
-////        List<Map<String,String>> filesList = upLoad(files, request);
-////        List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
-////        for (Map map:newsFilesList){
-////            logger.info(map.get("fileName").toString());
-////            if(isVideoFile(map.get("fileName").toString())){
-////                news.setVideoPath(map.get("savePath").toString());
-////            }else{
-////                news.setImagePath(map.get("savePath").toString());
-////            }
-////        }
-////        for (Map map:filesList){
-////            Files file=new Files();
-////            try {
-////                BeanUtils.populate(file,map);
-////                list.add(file);
-////            } catch (Exception e) {
-////                e.printStackTrace();
-////            }
-////        }
-////        news.setFilesList(list);
-//        if(news.getViewCount() == null){ news.setViewCount(0);}
-//        if(news.getInfoState() == null){ news.setInfoState(0);}
-//        if(news.getPriority() == null){ news.setPriority(0);}
-//        if(news.getDeleted() == null){ news.setDeleted(0);}  //0是未删除,1是删除
-//        if (news.getUuid() != null && news.getUuid() != "") {
-//            logger.info(news.getId());
-//            int update = newsService.update(news);
-//            return update;
-//        }
-//        news.setUuid(UUID.randomUUID().toString());
-//        int insert = newsService.insert(news);
-//        return insert;
-//    }
-
-
-
-
-
-
-
-
-
-
-
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public int save(@RequestParam("File") MultipartFile[] newsFile, @RequestParam("file") MultipartFile files[], News news, HttpServletRequest request){
-        for (MultipartFile type : newsFile){
-            logger.info(type.toString()+"===============newsFile=========type=======");
-        }
-        for (MultipartFile type : files){
-            logger.info(type.toString()+"===============files=========type=======");
-        }
-        logger.info(news.toString()+"===============news================");
+    public Object save(@RequestParam("File") MultipartFile[] newsFile, @RequestParam("file") MultipartFile files[], News news, HttpServletRequest request){
+        System.out.println(news);
+
         List<Files> list=new ArrayList<>();
         List<Map<String,String>> filesList = upLoad(files, request);
         List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
         for (Map map:newsFilesList){
-            logger.info(map.get("fileName").toString());
-            if(isVideoFile(map.get("fileName").toString())){
-                news.setVideoPath(map.get("savePath").toString());
-            }else{
-                news.setImagePath(map.get("savePath").toString());
-            }
+                logger.info(map.get("fileName").toString());
+                if(isVideoFile(map.get("fileName").toString())){
+                    news.setVideoPath(map.get("savePath").toString());
+                }else{
+                    news.setImagePath(map.get("savePath").toString());
+                }
         }
         for (Map map:filesList){
-            Files file=new Files();
-            try {
-                BeanUtils.populate(file,map);
-                list.add(file);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            Files file=new Files();
+//            try {
+//                BeanUtils.populate(file,map);
+//                list.add(file);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+            Map<String, Object> map1 = new HashMap<>();
+            map1.put("src", map.get("savePath"));
+            map1.put("title", map.get("saveName"));
+            Map<String, Object> map2 = new HashMap<>();
+            map2.put("code",0);
+            map2.put("msg","");
+            map2.put("data",map1);
+            return map2;
         }
-        System.out.println(list.toString());
-        news.setFilesList(list);
+//        news.setFilesList(list);
         if(news.getViewCount() == null){ news.setViewCount(0);}
         if(news.getInfoState() == null){ news.setInfoState(0);}
         if(news.getPriority() == null){ news.setPriority(0);}
