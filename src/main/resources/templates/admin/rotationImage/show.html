@@ -6,34 +6,39 @@
 
 </head>
 <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all"/>
+<style>
+
+
+</style>
 <body>
 
+<table class="layui-table" >
+    <colgroup>
+        <col width="200">
+        <col width="200">
+    </colgroup>
+    <tr style="text-align: center">
+        <th>图片</th>
+        <th>详细</th>
+    </tr>
+    <tr>
+        <td rowspan="5"><img th:src="@{${rotation.imagePath}}" alt="" height="100"></td>
+        <td>是否锁定：<span th:text="${rotation.locked} == 1 ? '已锁定' : '未锁定'"></span></td>
+    </tr>
 
-
-    <table class="layui-table">
-
-        <tr>
-            <th>图片</th>
-            <th>详细</th>
-        </tr>
-        <tr>
-            <td rowspan="5"><img th:src="@{${rotation.imagePath}}" alt=""  th:width="${rotation.width}" th:height="${rotation.height}"></td>
-            <td>是否锁定：<span th:text="${rotation.locked} == 1 ? '已锁定' : '未锁定'"></span></td>
-        </tr>
-
-        <tr>
-            <td>是否删除：<span th:text="${rotation.deleted} == 1 ? '已删除' : '未删除'"></span></td>
-        </tr>
-        <tr>
-            <td>优先级：<span th:text="${rotation.priority}"></span></td>
-        </tr>
-        <tr>
-            <td>图片宽度：<span th:text="${rotation.width}"></span></td>
-        </tr>
-        <tr>
-            <td>图片高度：<span th:text="${rotation.height}"></span></td>
-        </tr>
-    </table>
+    <tr>
+        <td>图片宽度：<span th:text="${rotation.width}"></span></td>
+    </tr>
+    <tr>
+        <td>图片高度：<span th:text="${rotation.height}"></span></td>
+    </tr>
+    <tr>
+        <td>是否删除：<span th:text="${rotation.deleted} == 1 ? '已删除' : '未删除'"></span></td>
+    </tr>
+    <tr>
+        <td>优先级：<span th:text="${rotation.priority}"></span></td>
+    </tr>
+</table>
 
 </body>
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
