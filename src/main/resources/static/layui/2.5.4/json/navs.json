@@ -27,7 +27,7 @@
 		},
 		{
 			"title": "新闻管理",
-			"icon": "&#xe634;",
+			"icon": "&#xe857;",
 			"href": "/admin/skip/newsList",
 			"spread": false
 		},
@@ -39,7 +39,13 @@
 		},
 		{
 			"title": "班级管理",
-			"icon": "&#xe61c;",
+			"icon": "&#xe64c;",
+			"href": "/admin/skip/class",
+			"spread": false
+		},
+		{
+			"title": "轮播图",
+			"icon": "&#xe631;",
 			"href": "/admin/skip/class",
 			"spread": false
 		}

@@ -115,6 +115,10 @@ public class SkipController extends CoreController {
         return "admin/news/list.html";
     }
 
+    @RequestMapping("/rotation")
+    public String rotation(){
+        return "/admin/rotationImage/list.html";
+    }
 
    @RequestMapping(value = "/web")
     public String web(){
