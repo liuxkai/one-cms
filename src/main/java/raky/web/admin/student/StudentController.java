@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/student")
+@RequestMapping("/admin/student")
 public class StudentController extends CoreController {
     private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
@@ -46,7 +46,7 @@ public class StudentController extends CoreController {
             files.setLinkTable("学生管理表");
             model.addAttribute("files",filesService.findFile(files));
         }
-        return "/html/editor.html";
+        return "/admin/student/input.html";
     }
 
 
@@ -97,19 +97,19 @@ public class StudentController extends CoreController {
         files.setLinkTable("学生管理表");
         model.addAttribute("student",studentService.getOne(id));
         model.addAttribute("filesList",filesService.getList(files));
-        return "/student/edit";
+        return "/admin/student/edit";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String getList(ModelMap model){
         List<Student> studentList = studentService.getList(new Student());
         model.addAttribute("studentList",studentList);
-        return "/student/list";
+        return "/admin/student/list";
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
         model.addAttribute("student",studentService.getOne(id));
-        return "/html/detail";
+        return "/admin/student/detail";
     }
 
 //    @RequestMapping(value = "/pageList", method = RequestMethod.GET)

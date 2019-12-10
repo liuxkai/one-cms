@@ -23,7 +23,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/course")
+@RequestMapping("/admin/course")
 public class CourseController extends CoreController {
     private static final Logger logger = LoggerFactory.getLogger(CourseController.class);
 
@@ -70,14 +70,14 @@ public class CourseController extends CoreController {
         if(id!=null){
             model.addAttribute("course", courseService.getOne(id));
         }
-        return "/course/edit.html";
+        return "/admin/course/input.html";
     }
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
         List<Types> typesList =getTypesListByParentCode(40L);
         model.addAttribute("typesList",typesList);
         model.addAttribute("course",courseService.getOne(id));
-        return "/course/detail.html";
+        return "/admin/course/show.html";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)

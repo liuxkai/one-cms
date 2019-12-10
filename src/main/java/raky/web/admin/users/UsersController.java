@@ -81,11 +81,11 @@ public class UsersController extends CoreController {
 
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete")
     @ResponseBody
     public String delete(Long id){
-        usersService.delete(id);
-        return "redirect:/users/list";
+         usersService.delete(id);
+         return "1";
     }
 
     @RequestMapping(value = "/input",method = RequestMethod.GET)
@@ -97,9 +97,9 @@ public class UsersController extends CoreController {
         model.addAttribute("typesList2",typesList2);
         if(id!=null){
             model.addAttribute("user",usersService.getOne(id));
-            return "/users/edit";
+            return "/admin/users/edit";
         }
-        return "/users/edit";
+        return "/admin/users/edit";
     }
     @RequestMapping(value = "/detailed",method = {RequestMethod.POST,RequestMethod.GET})
     public String getDetailed(Long id,ModelMap model){
@@ -108,7 +108,7 @@ public class UsersController extends CoreController {
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",usersService.getOne(id));
-        return "/users/detail";
+        return "/admin/users/detail";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)

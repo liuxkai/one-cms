@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all"/>
+    <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/index.css}"/>
+</head>
+<body>
+<div>
+<form class="layui-form" lay-filter="form" id="form" enctype="multipart/form-data" >
+    <input type="hidden" name="id" th:value="${webSeo?.getId()}">
+
+
+<!--结束-->
+    <div class="layui-form-item" style="width:390px">
+        <label class="layui-form-label">网页名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="webName" th:value="${webSeo?.webName}"  lay-verify="required" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item" style="width:390px">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" th:value="${webSeo?.title}" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+
+
+
+    <div class="layui-inline">
+        <label class="layui-form-label">搜索选择框</label>
+        <div class="layui-input-inline">
+            <select name="type" lay-verify="required" lay-search="">
+                <option value="">直接选择或搜索选择</option>
+                <option value="1" th:selected="${webSeo?.type == 1}">pc网站</option>
+                <option value="2" th:selected="${webSeo?.type == 2}">app网站</option>
+            </select>
+        </div>
+    </div>
+</div>
+<br>
+    <br>
+    <div class="layui-form-item" style="width:390px">
+    <label class="layui-form-label">关键字</label>
+        <div class="layui-input-block">
+        <input type="text" name="keywords" th:value="${webSeo?.keywords}" lay-verify="title" autocomplete="off" placeholder="" class="layui-input">
+        </div>
+    </div>
+
+
+    <div class="layui-inline" style="width:390px">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+            <input type="text" name="description" th:value="${webSeo?.description}"  lay-verify="date"  autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <br>
+<br>
+
+
+    <div class="layui-form-item" style="width:390px">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</div>
+</body>
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
+<script th:src="@{/static/layui/2.5.4/index.js}"></script>
+<script th:src="@{/static/layui/2.5.4/cache.js}"></script>
+<script th:src="@{/static/layui/2.5.4/lay/modules/laydate.js}"></script>
+<script>
+    layui.use(['form','layer','layedit','laydate','upload'],function(){
+        var form = layui.form,
+            laypage = layui.laypage,
+            upload = layui.upload,
+            layedit = layui.layedit,
+            laydate = layui.laydate,
+            $ = layui.jquery;
+        //日期
+
+        //进行头像上传
+
+       /* var uploadInst = upload.render({
+            elem: '#test1'
+            ,accept: 'file'
+            ,url: '/admin/users/save'
+            ,auto: false
+            ,choose: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });*/
+
+
+        //上传结束
+
+
+        //监听提交
+        form.on('submit(demo1)', function(data){
+            console.log(data.field)
+            var formData = new FormData($( "#form" )[0]);
+            $.ajax({
+                cache : true,
+                url:"/admin/webseo/save",
+                type:"post",
+                data:formData,     //经测试通过可以传过去两个字段名
+                dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
+                contentType: false,
+                processData: false,
+                success: function(a){
+                    if(a == 1){
+                        parent.layer.msg("编辑成功");
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        console.log(index)
+
+                        setTimeout(function() {
+                            /*parent.layer.close(index);*/
+                            top.layer.close(index);
+                            layer.closeAll("iframe");
+                            parent.location.reload();
+                        }, 1000);
+
+                        // parent.layer.close(index);
+                    }else {
+                        parent.layer.msg("编辑失败")
+                    }
+                }
+            })
+
+            return false;
+        });
+
+
+
+
+
+    });
+</script>
+</html>

@@ -23,7 +23,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
-@RequestMapping("/news")
+@RequestMapping("/admin/news")
 public class NewsController extends CoreController{
     private static final Logger logger=Logger.getLogger(NewsController.class);
 
@@ -118,9 +118,9 @@ public class NewsController extends CoreController{
         model.addAttribute("typesList", getTypesListByParentCode(20l));
         if(id!=null){
             model.addAttribute("news",newsService.getOne(id));
-            return "/news/edit.html";
+            return "/admin/news/input.html";
         }
-        return "/news/edit.html";
+        return "/admin/news/input.html";
     }
 
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
@@ -128,14 +128,14 @@ public class NewsController extends CoreController{
         List<Types> typesList =getTypesListByParentCode(20L);
         model.addAttribute("typesList",typesList);
         model.addAttribute("news",newsService.getOne(id));
-        return "/news/detail.html";
+        return "/admin/news/show.html";
     }
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getList(ModelMap model) {
         List<News> newsList = newsService.getList(new News());
         model.addAttribute("newsList", newsList);
-        return "/news/list";
+        return "/admin/news/list";
     }
 
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)

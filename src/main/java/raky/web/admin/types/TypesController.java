@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping("/types")
+@RequestMapping("/admin/types")
 public class TypesController extends CoreController {
     private static final Logger logger = LoggerFactory.getLogger(TypesController.class);
 
@@ -32,7 +32,7 @@ public class TypesController extends CoreController {
             types.setTypeCode(typeCode.intValue());
             typesService.update(types);
 
-            return "redirect:/types/pageList";
+            return "redirect:/admin/types/pageList";
         }
         if(types.getParentCode()==0){
             types.setTypeCode((getTypesListByParentCode(types.getParentCode()).size()+1)*10);
@@ -42,14 +42,14 @@ public class TypesController extends CoreController {
             types.setTypeCode(types.getParentCode().intValue()*10+((typesService.getCount(types)+1))*3);
         }
         typesService.insert(types);
-        return "redirect:/types/pageList";
+        return "redirect:/admin/types/pageList";
 
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.GET)
     public String delete(Long id){
         typesService.delete(id);
-        return "redirect:/types/list";
+        return "redirect:/admin/types/list";
     }
 
     @RequestMapping(value = "/change",method = RequestMethod.POST)
@@ -68,27 +68,27 @@ public class TypesController extends CoreController {
         model.addAttribute("type",type);
         if(type.getParentCode()!=0){
             model.addAttribute("parentTypeList",getTypesListByParentCode(0l));
-            return "/types/edit";
+            return "/admin/types/edit";
         }
-        return "/types/edit";
+        return "/admin/types/edit";
     }
     @RequestMapping(value = "/add",method = RequestMethod.GET)
     public String getType(ModelMap model){
         model.addAttribute("parentTypeList",getTypesListByParentCode(0l));
-        return "/types/add";
+        return "/admin/types/add";
     }
 
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
         model.addAttribute("type",typesService.getOne(id));
-        return "/types/show";
+        return "/admin/types/show";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
     public String getList(ModelMap model){
         List<Types> typesList = typesService.getList(new Types());
         model.addAttribute("typesList",typesList);
-        return "/types/list";
+        return "/admin/types/list";
     }
     @RequestMapping(value = "/pageList", method = RequestMethod.GET)
     public String getPageList(ModelMap model, Types types, Integer requestPage,Integer pageSize) {
@@ -106,7 +106,7 @@ public class TypesController extends CoreController {
         pager.setUrl("/types/pageList");
         model.addAttribute("pager", pager);
         model.addAttribute("types", types);
-        return "/types/list";
+        return "/admin/types/list";
 
     }
     @RequestMapping(value = "/index",method = RequestMethod.GET)

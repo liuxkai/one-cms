@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("login")
+@RequestMapping("/admin/login")
 public class LoginController extends CoreController {
     @Autowired
     private UsersService usersService;
@@ -53,17 +53,17 @@ public class LoginController extends CoreController {
             }
             httpServletRequest.getSession().getServletContext().setAttribute("OnlineUsername",OnlinerUser.getUserName());
             httpServletRequest.getSession().setAttribute("OnlinerUser",OnlinerUser);
-            return "redirect:/skip/main";
+            return "redirect:/admin/skip/main";
         }
     }
     @RequestMapping("list")
     public String getList(){
-        return "users/user";
+        return "admin/users/list";
     }
 
     @RequestMapping("save")
     public String getList1(){
-        return "users/UserAdd";
+        return "input";
     }
     @RequestMapping("add")
     public String add(ModelMap model){
@@ -71,7 +71,7 @@ public class LoginController extends CoreController {
         List<Types> typesList2 =getTypesListByParentCode(60L);
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
-        return "users/UserAdd";
+        return "/admin/users/input";
     }
     @RequestMapping("update")
     public String update(ModelMap model,Long id){
@@ -81,7 +81,7 @@ public class LoginController extends CoreController {
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",user);
-        return "users/UserAdd";
+        return "/admin/users/input";
     }
 
 }
