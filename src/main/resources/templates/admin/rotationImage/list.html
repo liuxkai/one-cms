@@ -82,7 +82,7 @@
                 , {field:  "deleted", title: '是否删除', width: 123, templet: function (res) {
                         return res.deleted == 1 ? '删除' : '未删除'
                     }}
-                , {field:  "priority", title: '优先级', width: 123}
+                , {field:  "priority", title: '优先级', width: 123,sort:true}
                 , {fixed: 'right', width: 200, align: 'center', toolbar: '#barDemo'},
             ]]
             ,id: 'testReload'
