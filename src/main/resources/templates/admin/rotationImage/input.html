@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播编辑</title>
+    <link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all" />
+    <style>
+
+        #header{
+            top: 30px;
+            width: 500px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+<form class="layui-form" id="userForm">
+    <input type="hidden" name="id" th:value="${rotation?.id}" />
+    <div class="layui-form-item">
+        <label class="layui-form-label">标题</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="required|title" lay-reqtext="必填项，岂能为空？"  autocomplete="off" name="title" th:value="${rotation?.title}"/>
+        </div>
+    </div>
+    <br>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label"> </label>
+        <div class="layui-upload">
+            <img th:src="@{${rotation?.imagePath}}" alt="">
+            <button type="button" class="layui-btn layui-form-label" id="test2">上传图片</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img" id="demo3">
+                <p id="demoText"></p>
+
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">高度</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="required|height" lay-reqtext="图片高度不能为空"autocomplete="off" name="height" th:value="${rotation?.height}"/>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">宽度</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="required|width" lay-reqtext="图片宽度不能为空"autocomplete="off" name="width" th:value="${rotation?.width}"/>
+        </div>
+    </div>
+    <br>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否锁定</label>
+        <div class="layui-input-block">
+            <input type="checkbox" checked="" id="locked"  name="locked" lay-skin="switch" lay-filter="switchTest" lay-text="是|否">
+        </div>
+    </div>
+    <br>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">优先级</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" lay-verify="required|priority" lay-reqtext="优先级不能为空"autocomplete="off" name="priority" th:value="${rotation?.priority}"/>
+        </div>
+    </div>
+    <br>
+
+
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="textAction">立即提交</button>
+
+        </div>
+    </div>
+
+</form>
+</div>
+</body>
+
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.all.js}"></script>
+<script>
+    layui.use(['form','layer','layedit','laydate','upload'],function(){
+        var form = layui.form,
+            laypage = layui.laypage,
+            upload = layui.upload,
+            layedit = layui.layedit,
+            laydate = layui.laydate,
+            $ = layui.jquery;
+
+        form.verify({
+            productNum: function (value) {
+                if (value == '') {
+                    return '不能为空';
+                }
+            },
+            content : function(val){
+                if(val == ''){
+                    return "不能为空";
+                }
+            }
+        })
+        form.on('submit(demo1)',function (data) {
+            var fd = new FormData();
+            var formData = new FormData($( "#userForm" )[0]);
+            var number = formData.get("locked") === "on" ? 1 : 0;
+            formData.set("locked", number);
+            $.ajax({
+                cache : true,
+                url:'/admin/rotation/save',
+                type:'post',
+                dataType: "text",
+                contentType: false,
+                processData: false,
+                data:formData,
+
+                success: function(a){
+                    if(a == 1){
+                        parent.layer.msg("编辑成功");
+                        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                        setTimeout(function () {
+                            parent.layer.close(index);
+                        }, 1000);
+
+                         // parent.layer.close(index);
+                    }else {
+                        parent.layer.msg("编辑失败")
+                    }
+                }
+            })
+            return false;
+        })
+
+        //普通图片上传 , 留下上传文件的接口 添加上传按钮和返回图片地址的隐藏域  异步上传
+        var uploadInst = upload.render({
+            elem: '#test2'
+            ,url: '/admin/rotation/save'
+            ,auto: false
+            , field: 'file' //上传文件的name
+            //上传前的回调
+            , choose: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    $('#demo3').attr('src', result); //图片链接（base64） // 上传前回显
+                });
+            }
+            , done: function (res,index,upload) {
+                if (res.code > 0){
+                    return layer.msg("上传失败")
+                }else{
+                    $('#hidden').val(res.data)  // 上传之后将图片地址存隐藏域
+                }
+
+            }
+            , error: function (res, index) {
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+
+            }
+        });
+
+
+    })
+</script>
+
+
+</html>
