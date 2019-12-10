@@ -97,7 +97,7 @@ public class StudentController extends CoreController {
         files.setLinkTable("学生管理表");
         model.addAttribute("student",studentService.getOne(id));
         model.addAttribute("filesList",filesService.getList(files));
-        return "/admin/student/edit";
+        return "/admin/student/input";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)
@@ -109,7 +109,7 @@ public class StudentController extends CoreController {
     @RequestMapping(value = "/detailed",method = RequestMethod.GET)
     public String getDetailed(Long id,ModelMap model){
         model.addAttribute("student",studentService.getOne(id));
-        return "/admin/student/detail";
+        return "/admin/student/show";
     }
 
 //    @RequestMapping(value = "/pageList", method = RequestMethod.GET)
