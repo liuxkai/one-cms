@@ -82,11 +82,11 @@
                 , {field: 'webName', title: '网页名称', align: 'center',width:180}
                 , {field: 'title', title: '标题',  align: 'center',width:180}
                 , {
-                    field: 'type', title: '类型',width:70, align: 'center',  templet: function (res) {
+                    field: 'type', title: '类型',width:150, align: 'center',  templet: function (res) {
                         return res.sex == 1 ? 'pc网站' : 'app网站'
                     }
                 }
-                , {field: 'keywords', title: '关键字', align: 'center',width:70}
+                , {field: 'keywords', title: '关键字', align: 'center',width:170}
                 , {field: 'description', title: '描述', align: 'center',width:170}
                 ,  {
                     field: 'deleted', title: '是否删除',width:180,  align: 'center', templet: function (res) {
