@@ -96,8 +96,8 @@ public class StudentController extends CoreController {
         files.setLinkId(id);
         files.setLinkTable("学生管理表");
         model.addAttribute("student",studentService.getOne(id));
-      //  model.addAttribute("filesList",filesService.getList(files));
-        return "/admin/student/edit";
+        model.addAttribute("filesList",filesService.getList(files));
+        return "/admin/student/input";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)

@@ -76,9 +76,7 @@ public List<Map<String,String>> upLoad(@RequestParam(value = "file") MultipartFi
                     File outFile = new File(uploadPath + "/" + saveName);
                     //拷贝文件到输出文件对象
                     FileUtils.copyInputStreamToFile(file.getInputStream(), outFile);
-
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();

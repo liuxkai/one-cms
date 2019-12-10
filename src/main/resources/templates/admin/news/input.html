@@ -47,12 +47,6 @@
                     <input type="text" name="infoSource" class="layui-input" th:value="${news?.infoSource}"/>
                 </div>
             </div>
-<!--            <div class="layui-form-item">-->
-<!--                <label class="layui-form-label">新闻内容:</label>-->
-<!--                <div class="layui-input-inline">-->
-<!--                    <input type="text" name="content" class="layui-input" th:value="${news?.content}"/>-->
-<!--                </div>-->
-<!--            </div>-->
             <div class="layui-form-item">
                 <label class="layui-form-label">新闻内容</label>
                 <div class="layui-input-block">
@@ -96,20 +90,24 @@
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
 <script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
 <script type="text/javascript">
-        layui.use(['element','form', 'upload','layedit'], function() {
-        var element = layui.element, //元素操作
-            form = layui.form,
-            layedit = layui.layedit,
-            upload = layui.upload;
-        var $ = layui.jquery;
+        layui.use(['form','layer','layedit','laydate','upload'], function() {
+            var form = layui.form,
+            layer = parent.layer === undefined ? layui.layer : top.layer,
+                laypage = layui.laypage,
+                upload = layui.upload,
+                layedit = layui.layedit,
+                laydate = layui.laydate,
+                $ = layui.jquery;
 
 
 
-        // //上传缩略图
+
+            // //上传缩略图
         var demoListView = $('#demoList'),
             uploadListIns = upload.render({
                 elem: '#test2'
-                ,url: '/admin/news/save'
+                ,url: '/news/save'
+                ,field: 'File'
                 ,accept: 'images'  //指定允许上传时校验的文件类型
                 ,multiple: true //是否允许多文件上传。设置 true即可开启
                 ,auto: false
@@ -161,11 +159,12 @@
             });
 
 
-            // //上传视频
+            //上传视频
             var demoListView3 = $('#demoList3'),
                 uploadListIns3 = upload.render({
                     elem: '#test3'
-                    ,url: '/admin/news/save'
+                    ,url: '/news/save'
+                    ,field: 'File'
                     ,accept: 'video'  //指定允许上传时校验的文件类型
                     ,multiple: true //是否允许多文件上传。设置 true即可开启
                     ,auto: false
@@ -198,7 +197,6 @@
                     }
                     ,done: function(res, index, upload){
                         if(res.img != ''){
-
                             var tr = demoListView3.find('tr#upload-'+ index),tds = tr.children();
                             tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
                             tds.eq(3).html(''); //清空操作
@@ -217,8 +215,14 @@
                 });
 
 
-        //用于同步编辑器内容到textarea
-        layedit.sync(editIndex);
+
+        layedit.set({
+            uploadImage : {
+                url : "/news/save",
+                type: 'POST'
+            }
+        });
+
         //构建一个默认的编辑器
         var editIndex = layedit.build('news_content', {
             tool: [
@@ -232,26 +236,29 @@
                 ,'right' //右对齐
                 ,'link' //超链接
                 ,'unlink' //清除链接
+                ,'image' //插入图片
                 ,'face' //表情
-                // ,'help' //帮助
+                ,'help' //帮助
             ]
             ,height: 150
             ,width:300
         })
 
+        //用于同步编辑器内容到textarea
+        layedit.sync(editIndex);
+
         form.on('submit(submit)',function (data) {
             var fd = new FormData();
             var formData = new FormData($( "#userForm" )[0]);
-            console.log(data.field);
+            formData.set("content", layedit.getContent(editIndex).split('<audio controls="controls" style="display: none;"></audio>')[0]);
             $.ajax({
-                    cache : true,
-                    url:'/admin/news/save',
-                    data:formData,     //经测试通过可以传过去两个字段名
+                    url:'/news/save',
+                    data:formData,       //经测试通过可以传过去两个字段名
                     dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
                     contentType: false,
                     processData: false,
                     type:'post',
-                    content : layedit.getContent(editIndex).split('<audio controls="controls" style="display: none;"></audio>')[0], //文章内容
+                    // content : layedit.getContent(editIndex).split('<audio controls="controls" style="display: none;"></audio>')[0]), //文章内容
                     success:function (data) {
                         if (data == '1'){
                             //location.href = "index.jsp";
@@ -268,10 +275,6 @@
                 })
                 return false;
             })
-
-
-
-
         });
 </script>
 

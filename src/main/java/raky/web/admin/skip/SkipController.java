@@ -49,7 +49,8 @@ public class SkipController extends CoreController {
         map1.put("title",name);
         Map<String, Object> map = new HashMap<>();
         map.put("code",0);
-        map.put("msg","");map.put("data",map1);
+        map.put("msg","");
+        map.put("data",map1);
 
         return map;
     }
@@ -80,6 +81,8 @@ public class SkipController extends CoreController {
     public String student(){
         return "/admin/student/list.html";
     }
+
+
 
     @RequestMapping(value = "/editor")
     public String editor(){
@@ -113,9 +116,14 @@ public class SkipController extends CoreController {
     }
 
 
-    @RequestMapping(value = "/rotation")
-    public String rotationList(){
-        return "/admin/rotationImage/list.html";
+   @RequestMapping(value = "/web")
+    public String web(){
+        return "/admin/webseo/list.html";
+    }
+
+    @RequestMapping("class")
+    public String classDate(){
+        return "/admin/ClassDate/list.html";
     }
 
 }

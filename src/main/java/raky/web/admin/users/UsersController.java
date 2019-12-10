@@ -97,9 +97,9 @@ public class UsersController extends CoreController {
         model.addAttribute("typesList2",typesList2);
         if(id!=null){
             model.addAttribute("user",usersService.getOne(id));
-            return "/admin/users/edit";
+            return "/admin/users/show";
         }
-        return "/admin/users/edit";
+        return "/admin/users/show";
     }
     @RequestMapping(value = "/detailed",method = {RequestMethod.POST,RequestMethod.GET})
     public String getDetailed(Long id,ModelMap model){
@@ -108,7 +108,7 @@ public class UsersController extends CoreController {
         model.addAttribute("typesList1",typesList1);
         model.addAttribute("typesList2",typesList2);
         model.addAttribute("user",usersService.getOne(id));
-        return "/admin/users/detail";
+        return "/admin/users/show";
     }
 
     @RequestMapping(value = "/list",method = RequestMethod.GET)

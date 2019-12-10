@@ -3,19 +3,16 @@ package raky.entity;
 import core.entity.CoreEntity;
 import lombok.Data;
 
+import java.util.Date;
 @Data
-public class WebSeo extends CoreEntity {
+public class ClassDate extends CoreEntity {
     private Long id;
 
-    private String webName;
+    private Date classDate;
 
-    private String title;
+    private String state;
 
-    private Integer type;
-
-    private String keywords;
-
-    private String description;
+    private String classHref;
 
     private Integer deleted;
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        input {
+            border：none;
+
+        }
+        #titile {
+            margin: auto;
+            font-size: 30px;
+            position: relative;
+            left: 500px;
+        }
+    </style>
+</head>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/layui.css}" media="all"/>
+<link rel="stylesheet" th:href="@{/static/layui/2.5.4/css/index.css}"/>
+<body>
+
+<div class="layui-form">
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>开班时间：<!--/*@thymesVar id="user" type=""*/-->
+            <!--/*@thymesVar id="getUserName" type=""*/-->
+            <span th:text="${#dates.format(class?.classDate,'yyyy-MM-dd')}"></span></th>
+            <th>班级状态：<!--/*@thymesVar id="user" type=""*/-->
+            <!--/*@thymesVar id="getRealName" type=""*/-->
+            <span th:text="${class?.state}"></span></th>
+            <th>班级链接：<span th:text="${class?.classHref}"></span></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>是否删除：<span th:text="${class?.deleted == '1' ? '删除':'未删除'}"></span></td>
+            <td>是否锁定：<span th:text="${class?.locked == '1' ? '锁定':'未锁定'}"></span></td>
+            <td>优先级：<span th:text="${class?.priority == '0' ? '优先级低':'优先级高'}"></span></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+<script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/static/layui/2.5.4/layui.js}"></script>
+<script th:src="@{/static/layui/2.5.4/index.js}"></script>
+<script th:src="@{/static/layui/2.5.4/cache.js}"></script>
+</html>

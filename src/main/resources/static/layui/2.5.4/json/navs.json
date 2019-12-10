@@ -32,9 +32,15 @@
 			"spread": false
 		},
 		{
-			"title": "轮播图管理",
-			"icon": "&#xe634;",
-			"href": "/admin/skip/rotation",
+			"title": "网页管理",
+			"icon": "&#xe61c;",
+			"href": "/admin/skip/web",
+			"spread": false
+		},
+		{
+			"title": "班级管理",
+			"icon": "&#xe61c;",
+			"href": "/admin/skip/class",
 			"spread": false
 		}
 
