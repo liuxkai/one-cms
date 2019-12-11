@@ -77,7 +77,6 @@ public class CourseController extends CoreController {
         List<Types> typesList =getTypesListByParentCode(40L);
         model.addAttribute("typesList",typesList);
         model.addAttribute("course",courseService.getOne(id));
-        //测试
         return "/admin/course/show.html";
 
     }
