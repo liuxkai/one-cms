@@ -22,6 +22,11 @@
 <div id="titile"> <span th:text="${news?.title}"></span></div>
 <div class="layui-form">
     <table class="layui-table">
+        <colgroup>
+            <col width="400">
+            <col width="300">
+            <col>
+        </colgroup>
         <thead>
         <tr>
             <th>标题 : <span th:text="${news?.title}"></span></th>
@@ -47,20 +52,17 @@
             <td>摘要：<span th:text="${news?.summary}"></span></td>
         </tr>
         <tr>
-            <td>主图路径：<span th:text="${news?.imagePath}"></span></td>
-            <td>主图说明：<span th:text="${news?.imageMemo}"></span></td>
-            <td></td>
+            <td><img th:src="${news?.imagePath}"></td>
+            <td colspan="2">主图说明：<span th:text="${news?.imageMemo}"></span></td>
 
         </tr>
         <tr>
-            <td>视频路径：<span th:text="${news?.videoPath}"></span></td>
-            <td>视频说明：<span th:text="${news?.videoDesc}"></span></td>
-            <td></td>
+            <td><video th:src="${news?.videoPath}" height="100px" width="100px"></video></td>
+            <td colspan="2">视频说明：<span th:text="${news?.videoDesc}"></span></td>
         </tr>
         </tbody>
     </table>
     <div>新闻内容：<span th:utext="${news?.content}"></span></div>
-<!--    <img src="/img/files/upload/2019-12-06/bb03ca28-5af0-46b8-8e85-f472ecddcf45.jpg">-->
 </div>
 </body>
 <script th:src="@{/static/layui/2.5.4/lay/modules/jquery.js}"></script>

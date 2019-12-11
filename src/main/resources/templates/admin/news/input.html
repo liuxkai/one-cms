@@ -50,7 +50,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">新闻内容</label>
                 <div class="layui-input-block">
-                    <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="news_content"></textarea>
+                    <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="news_content" th:utext="${news?.content}"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -106,7 +106,7 @@
         var demoListView = $('#demoList'),
             uploadListIns = upload.render({
                 elem: '#test2'
-                ,url: '/news/save'
+                ,url: '/admin/news/save'
                 ,field: 'File'
                 ,accept: 'images'  //指定允许上传时校验的文件类型
                 ,multiple: true //是否允许多文件上传。设置 true即可开启
@@ -163,7 +163,7 @@
             var demoListView3 = $('#demoList3'),
                 uploadListIns3 = upload.render({
                     elem: '#test3'
-                    ,url: '/news/save'
+                    ,url: '/admin/news/save'
                     ,field: 'File'
                     ,accept: 'video'  //指定允许上传时校验的文件类型
                     ,multiple: true //是否允许多文件上传。设置 true即可开启
@@ -218,7 +218,7 @@
 
         layedit.set({
             uploadImage : {
-                url : "/news/save",
+                url : "/admin/news/save",
                 type: 'POST'
             }
         });
@@ -240,8 +240,8 @@
                 ,'face' //表情
                 ,'help' //帮助
             ]
-            ,height: 150
-            ,width:300
+            ,height: 200
+            ,width:200
         })
 
         //用于同步编辑器内容到textarea
@@ -252,7 +252,7 @@
             var formData = new FormData($( "#userForm" )[0]);
             formData.set("content", layedit.getContent(editIndex).split('<audio controls="controls" style="display: none;"></audio>')[0]);
             $.ajax({
-                    url:'/news/save',
+                    url:'/admin/news/save',
                     data:formData,       //经测试通过可以传过去两个字段名
                     dataType:'text',     //通过post请求提交后返回的是文本格式，然后进行判断返回的值决定跳转
                     contentType: false,
