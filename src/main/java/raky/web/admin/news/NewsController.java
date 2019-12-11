@@ -47,7 +47,7 @@ public class NewsController extends CoreController{
     public Object save(@RequestParam("File") MultipartFile[] newsFile, @RequestParam("file") MultipartFile files[], News news, HttpServletRequest request){
         System.out.println(news);
 
-        List<Files> list=new ArrayList<>();
+        List<Files> list = new ArrayList<>();
         List<Map<String,String>> filesList = upLoad(files, request);
         List<Map<String,String>> newsFilesList = upLoad(newsFile, request);
         for (Map map:newsFilesList){

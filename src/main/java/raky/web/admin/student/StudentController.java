@@ -142,8 +142,4 @@ public class StudentController extends CoreController {
         LayuiUtil<Student> build = LayuiUtil.<Student>builder().code(0).msg("").count(Long.valueOf(studentService.getCount(student))).data(studentPageList).build();
         return build;
     }
-
-
-
-
 }

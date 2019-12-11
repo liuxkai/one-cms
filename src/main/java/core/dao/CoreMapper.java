@@ -9,7 +9,6 @@ public interface CoreMapper<T> {
 
     int save(T t);
 
-
     int update(T t);
 
     int delete(Long id);

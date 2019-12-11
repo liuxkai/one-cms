@@ -41,7 +41,7 @@ public class TeacherServiceImpl extends CoreServiceImpl<Teacher> implements Teac
             for (Files files:filesList){
                 files.setLinkTable("教师管理表");
                 files.setLinkId(teacher.getId());
-                filesMapper.insert(files);
+                filesMapper.update(files);
             }
         }
 
